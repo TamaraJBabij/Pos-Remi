@@ -10,6 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "macros", "macros\macros.vcx
 		{0956576C-3AFE-41EB-A368-D55828C149D9} = {0956576C-3AFE-41EB-A368-D55828C149D9}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39D424C3-7AE9-41D9-98C3-8820438C626F}"
+	ProjectSection(SolutionItems) = preProject
+		setup.cfg = setup.cfg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
