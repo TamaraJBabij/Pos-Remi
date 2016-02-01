@@ -63,11 +63,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\root\include;D:\Program Files (x86)\GnuWin32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\root\lib;D:\Program Files %28x86%29\GnuWin32\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>%ROOTSYS%\include;$(IncludePath)</IncludePath>
+    <LibraryPath>%ROOTSYS%\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\root_v5.34.34\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\root_v5.34.34\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -103,6 +107,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>%ROOTSYS%\lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>rootcint -f dict.cpp -c DataSet.h Group.h</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataSet.cpp" />
