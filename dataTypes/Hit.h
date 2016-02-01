@@ -29,7 +29,7 @@ struct Hit
 {
     ChannelID channel;
     DetectorID detector;
-    Int_t bins;
+    int bins;
     double time;
 };
 

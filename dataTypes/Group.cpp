@@ -5,13 +5,14 @@
 #include <string>
 #include "Hit.h"
 #include "Group.h"
+#include "TObject.h" 
 
 
 //required for compatibility with root:
-ClassImp(DataSet);
+ClassImp(Group);
 
 //constructor where id is passed in as group number from raw tree
-Group::Group(Int_t _id)
+Group::Group(int _id)
 {
     id = _id;
 }
@@ -22,7 +23,7 @@ Group::~Group()
 }
 
 //gets ID of current group
-Int_t Group::getId(){
+int Group::getId(){
 	return id;
 }
 
