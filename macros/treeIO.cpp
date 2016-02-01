@@ -1,7 +1,7 @@
 #include <iostream>
-#include "dataTypes/DataSet.h"
-#include "dataTypes/Group.h"
-#include "dataTypes/Hit.h"
+#include "DataSet.h"
+#include "Group.h"
+#include "Hit.h"
 #include "TFile.h"
 #include "TTreeReader.h"
 #include "TTreeReaderValue.h"
