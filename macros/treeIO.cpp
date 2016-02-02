@@ -37,6 +37,64 @@ DataSet loadFromTree(TTree* tree){
 
         //make the Hit object by loading the values from the tree according to the config file
 
+		switch (channel) {
+		case CFG_CHANNEL_POS_CP2:
+			h.channel = ChannelID::mcp;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_POS_U1_S:
+			h.channel = ChannelID::u1;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_POS_U2_S:
+			h.channel = ChannelID::u2;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_POS_V1_s:
+			h.channel = ChannelID::v1;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_POS_V2_S:
+			h.channel = ChannelID::v2;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_POS_W1_S:
+			h.channel = ChannelID::w1;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_POS_W2_S:
+			h.channel = ChannelID::w2;
+			h.detector = DetectorID::pos;
+			break;
+		case CFG_CHANNEL_ELEC_CP2:
+			h.channel = ChannelID::mcp;
+			h.detector = DetectorID::neg;
+			break;
+		case CFG_CHANNEL_ELEC_U1_S:
+			h.channel = ChannelID::u1;
+			h.detector = DetectorID::neg;
+			break;
+		case CFG_CHANNEL_ELEC_U2_S:
+			h.channel = ChannelID::u2;
+			h.detector = DetectorID::neg;
+			break;
+		case CFG_CHANNEL_ELEC_V1_s:
+			h.channel = ChannelID::v1;
+			h.detector = DetectorID::neg;
+			break;
+		case CFG_CHANNEL_ELEC_V2_S:
+			h.channel = ChannelID::v2;
+			h.detector = DetectorID::neg;
+			break;
+		case CFG_CHANNEL_ELEC_W1_S:
+			h.channel = ChannelID::w1;
+			h.detector = DetectorID::neg;
+			break;
+		case CFG_CHANNEL_ELEC_W2_S:
+			h.channel = ChannelID::w2;
+			h.detector = DetectorID::neg;
+			break;
+		}
 
 
 

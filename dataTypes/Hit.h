@@ -6,19 +6,19 @@
 */
 enum ChannelID
 {
-	ChannelID_mcp,
-	ChannelID_x1,
-	ChannelID_x2,
-	ChannelID_y1,
-	ChannelID_y2,
-	ChannelID_z1,
-	ChannelID_z2
+	mcp,
+	u1,
+	u2,
+	v1,
+	v2,
+	w1,
+	w2
 };
 
 enum DetectorID
 {
-    DetectorID_pos,
-    DetectorID_neg
+    pos,
+    neg
 };
 
 /*
