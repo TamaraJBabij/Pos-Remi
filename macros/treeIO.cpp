@@ -2,32 +2,36 @@
 #include "DataSet.h"
 #include "Group.h"
 #include "Hit.h"
-#include "TFile.h"
-#include "TTreeReader.h"
-#include "TTreeReaderValue.h"
+#include "TTree.h"
 
 //make each group, fill it with hits, add it to the dataset
-DataSet loadFromTree(TFile* treeFile){
-	//treeReader is a TTreeReader that we will use to get the values from the tree
-  	TTreeReader treeReader("T", treeFile);
-  	//Set up the readers to get the values from each entry of the raw data tree
-    TTreeReaderValue<Int_t> groupNumberReader(treeReader, "GroupNumber");
-    TTreeReaderValue<Int_t> channelReader(treeReader, "Channel");
-    TTreeReaderValue<Int_t> timeReader(treeReader, "Time");
-     //We need to set some things up for the first entry, so we start this as true,
-    //and set it to false as soon as we've finished the set up
-    bool firstEntry = true;
-    Group* currrentGroup=NULL;
+DataSet loadFromTree(TTree* tree){
+	int groupNumber, channel, bins;
+
+	//Set up the tree to store values from each entry of the raw data tree
+	tree->SetBranchAddress("GroupNumber",&groupNumber);
+	tree->SetBranchAddress("Channel", &channel);
+	tree->SetBranchAddress("Time", &bins);
+
+	//Establish data container variables
+	Group* currentGroup = NULL;
     DataSet* data = new DataSet();
-    //This will loop through all of the entries in the tree
-    while(rawTreeReader.Next()){
+
+	int N = (int) tree->GetEntries();
+
+	int a = 3;
+
+	//This will loop through all of the entries in the tree
+	for (int i = 0; i < N; i++) {
+		tree->GetEntry(i);
+
     	if(currentGroup==NULL){
     		//remember the first group
-            currentGroup = new Group(*groupNumberReader);
+            currentGroup = new Group(groupNumber);
     	}
-    	else if( *groupNumberReader != currentGroup->getId() ){
+    	else if( groupNumber != currentGroup->getId() ){
     		data->addGroup(currentGroup);
-    		currentGroup = new Group(*groupNumberReader);
+    		currentGroup = new Group(groupNumber);
     	}
     	Hit h;
 
