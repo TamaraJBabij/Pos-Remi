@@ -26,10 +26,12 @@ DataSet* loadFromTree(TTree* tree){
     	if(currentGroup==NULL){
     		//remember the first group
             currentGroup = new Group(groupNumber);
+        }
     	
         else if( groupNumber != currentGroup->getId() ){
             data->addGroup(currentGroup);
             currentGroup = new Group(groupNumber);
+        }
         
         Hit h;
 
@@ -114,7 +116,7 @@ DataSet* loadFromTree(TTree* tree){
 
         currentGroup->addHit(h);
     }
-    return data
+    return data;
 }
 
 /*FIRST ENTRY: make a new group and remember group id

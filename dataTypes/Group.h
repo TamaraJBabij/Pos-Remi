@@ -68,6 +68,12 @@ public:
 
 	int getId();
 
+	// iterator is a generic way to access any data structure that c defines, special class in c++ that is like a pointer to some data
+	// lets the complier know that the class is a container that holds Groups*
+	// allows for easy looping through Group
+	vector<Hit*>::iterator begin();
+	vector<Hit*>::iterator end();
+
 	//required for root to use the object
 	ClassDef(Group, 1);
 };

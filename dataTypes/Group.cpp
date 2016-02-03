@@ -33,3 +33,13 @@ void Group::addHit(Hit h)
 {
 	rawData.push_back(h);
 }
+
+//as defined in header file (see comments for explanation)
+// when using an object as a data container end and begin functions must exist (in c++)
+// allows looping through trhe dataset which loops through the groups in the vector
+vector<Hit*>::iterator begin(){
+	return rawData.begin()
+}
+vector<Hit*>::iterator end(){
+	return rawData.end()
+}
