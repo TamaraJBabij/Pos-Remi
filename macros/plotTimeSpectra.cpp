@@ -1,4 +1,4 @@
-// creats histogram of time of flioghts (given by MCP signal) of the particles. 
+// creats histogram of time of flights (given by MCP signal) of the particles. 
 #include <iostream>
 #include "DataSet.h"
 #include "Group.h"
@@ -30,4 +30,9 @@ HistogramPair plotTimeSpectra(DataSet* dataset){
 		}
 
 	}
+//Draw histograms, which represent time spectra relative to the positron hit
+//Want to export histogram data as well as save time spectra figures
+hist.positive->Draw();
+hist.negative->Draw();
 }
+
