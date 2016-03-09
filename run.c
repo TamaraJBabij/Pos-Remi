@@ -1,0 +1,7 @@
+
+{
+	gROOT->ProcessLine(".L Debug/dataTypes.dll");
+	gROOT->ProcessLine(".L setup.cfg");
+	gROOT->ProcessLine(".include dataTypes");
+	gROOT->ProcessLine(".L macros/treeIO.cpp");
+}
