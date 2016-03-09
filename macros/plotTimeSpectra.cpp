@@ -24,11 +24,8 @@ HistogramPair plotTimeSpectra(DataSet* dataset){
 				else if(hit.detector == DetectorID::neg){
 					hist.negative->Fill(hit.time);
 				}
-				}
 			}
-
 		}
-
 	}
 //Draw histograms, which represent time spectra relative to the positron hit
 //Want to export histogram data as well as save time spectra figures
