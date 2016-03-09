@@ -21,11 +21,10 @@ HistogramPair plotTimeSpectra(DataSet* dataset){
 				if(hit.detector == DetectorID::pos){
 					hist.positive->Fill(hit.time);
 				}
-				else if(hit.detector == DetectorID::neg)
+				else if(hit.detector == DetectorID::neg){
+					hist.negative->Fill(hit.time);
 				}
 			}
-
 		}
-
 	}
 }
