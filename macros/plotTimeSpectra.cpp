@@ -16,7 +16,7 @@ HistogramPair plotTimeSpectra(DataSet* dataset){
 	hist.positive = new TH1D("hpos","TimeSpectra positive",200,-100,32000);
 	hist.negative = new TH1D("hneg","TimeSpectra negative",200,-100,32000);
 	for(Group* group : dataset){
-		for(Hit& hit : *group){
+		for(Hit& hit : group){
 			if(hit.channel == ChannelID::mcp){
 				if(hit.detector == DetectorID::pos){
 					hist.positive->Fill(hit.time);
@@ -29,7 +29,8 @@ HistogramPair plotTimeSpectra(DataSet* dataset){
 	}
 //Draw histograms, which represent time spectra relative to the positron hit
 //Want to export histogram data as well as save time spectra figures
-hist.positive->Draw();
-hist.negative->Draw();
+//need to set up canvas first
+//hist.positive->Draw();
+//hist.negative->Draw();
 }
 
