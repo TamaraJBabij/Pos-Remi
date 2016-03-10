@@ -16,12 +16,12 @@ HistogramPair plotTimeSpectra(DataSet* dataset){
 	hist.positive = new TH1D("hpos","TimeSpectra positive",200,-100,32000);
 	hist.negative = new TH1D("hneg","TimeSpectra negative",200,-100,32000);
 	for(Group* group : dataset){
-		for(Hit& hit : group){
-			if(hit.channel == ChannelID::mcp){
-				if(hit.detector == DetectorID::pos){
+		for(Hit& h : group){
+			if(h.channel == ChannelID::mcp){
+				if(h.detector == DetectorID::pos){
 					hist.positive->Fill(hit.time);
 				}
-				else if(hit.detector == DetectorID::neg){
+				else if(h.detector == DetectorID::neg){
 					hist.negative->Fill(hit.time);
 				}
 			}
