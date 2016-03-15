@@ -8,49 +8,120 @@
 // will try writing data to a new tree with time converted from comSTOP mode and in ns from bins. 
 // Will then attempt to histogram
 
-DataSetTree* readWriteTree(TTree* tree) {
+TTree* readWriteTree(TTree* tree) {
 	//READ TREE
 	//define the variables to hold the read values
 	int rawGroupNumber, rawChannel, rawBins;
 	//Set up the tree to store values from each entry of the raw data tree
-	tree->SetBranchAddress("RawGroupNumber", &rawGroupNumber);
-	tree->SetBranchAddress("RawChannel", &rawChannel);
-	tree->SetBranchAddress("RawTime", &rawBins);
+	// Tell tree to populate these variables when reading an entry
+	//tree->SetBranchAddress("Name of Column", &Set name of pointer);
+	tree->SetBranchAddress("GroupNumber", &rawGroupNumber);
+	tree->SetBranchAddress("Channel", &rawChannel);
+	tree->SetBranchAddress("Time", &rawBins);
 
 	//WRITE TREE
-	void DataSetTree(){
-		//create a tree file tree1.root - create the file, the Tree and a few branches
-		int groupNumber, channel, bins;
+	//Establish data container variables
+	// Data container in this case will be another tree
+	//create a tree file tree1.root - create the file, the Tree and a few branches
 		TFile f("DataSetTree.root", "recreate");
-		TTree tds("tds", "simple tree that stores raw data");
+		TTree treeDS("treeDS", "simple tree that stores raw data");
 		Int_t GroupNumber, Channel;
 		Double_t Time;
-	}
-	
+		treeDS.Branch("GroupNumber", &groupNumber);
+		treeDS.Branch("Channel", &channel);
+		treeDS.Branch("Time", &time);
 
-	//Establish data container variables
-	Group* currentGroup = NULL;
-	DataSet* data = new DataSet();
+	//FILL TREE
+		int N = (int)tree->GetEntries();
 
-	int N = (int)tree->GetEntries();
+		//This will loop through all of the entries in the tree
+		for (int i = 0; i < N; i++) {
+			tree->GetEntry(i);
 
-	//This will loop through all of the entries in the tree
-	for (int i = 0; i < N; i++) {
-		tree->GetEntry(i);
+			//make the new dataset tree by loading the values from the tree according to the config file
+			time = 32000 - 0.5*rawBins;
+			switch (rawChannel) {
+			case CFG_CHANNEL_POS_CP2:
+				channel = ChannelID::mcp;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_CP2;
+				break;
+			case CFG_CHANNEL_POS_U1_S:
+				channel = ChannelID::u1;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_U1_S;
+				break;
+			case CFG_CHANNEL_POS_U2_S:
+				channel = ChannelID::u2;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_U2_S;
+				break;
+			case CFG_CHANNEL_POS_V1_S:
+				channel = ChannelID::v1;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_V1_S;
+				break;
+			case CFG_CHANNEL_POS_V2_S:
+				channel = ChannelID::v2;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_V2_S;
+				break;
+			case CFG_CHANNEL_POS_W1_S:
+				channel = ChannelID::w1;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_W1_S;
+				break;
+			case CFG_CHANNEL_POS_W2_S:
+				channel = ChannelID::w2;
+				detector = DetectorID::pos;
+				time -= CFG_DELAY_POS_W2_S;
+				break;
+			case CFG_CHANNEL_ELEC_CP2:
+				channel = ChannelID::mcp;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_CP2;
+				break;
+			case CFG_CHANNEL_ELEC_U1_S:
+				channel = ChannelID::u1;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_U1_S;
+				break;
+			case CFG_CHANNEL_ELEC_U2_S:
+				channel = ChannelID::u2;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_U2_S;
+				break;
+			case CFG_CHANNEL_ELEC_V1_S:
+				channel = ChannelID::v1;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_V1_S;
+				break;
+			case CFG_CHANNEL_ELEC_V2_S:
+				channel = ChannelID::v2;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_V2_S;
+				break;
+			case CFG_CHANNEL_ELEC_W1_S:
+				channel = ChannelID::w1;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_W1_S;
+				break;
+			case CFG_CHANNEL_ELEC_W2_S:
+				channel = ChannelID::w2;
+				detector = DetectorID::neg;
+				time -= CFG_DELAY_ELEC_W2_S;
+				break;
+			treeDS.Fill();}
+			
 
-		if (currentGroup == NULL) {
-			//remember the first group
-			currentGroup = new Group(groupNumber);
+
+
+
+
+			
 		}
-
-		else if (groupNumber != currentGroup->getId()) {
-			data->addGroup(currentGroup);
-			currentGroup = new Group(groupNumber);
-		}
-
-
-	}
-	return data;
+		return data;
+		treeDS.Write();
 }
 
 /*FIRST ENTRY: make a new group and remember group id
