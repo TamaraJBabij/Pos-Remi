@@ -5,4 +5,5 @@
 	gROOT->ProcessLine(".include dataTypes");
 	gROOT->ProcessLine(".L macros/treeIO.cpp");
 	gROOT->ProcessLine(".L macros/plotTimeSpectra.cpp");
+	gROOT->ProcessLine(".L macros/ReadWriteTree.cpp");
 }

@@ -23,12 +23,15 @@ TTree* readWriteTree(TTree* tree) {
 	//Establish data container variables
 	// Data container in this case will be another tree
 	//create a tree file tree1.root - create the file, the Tree and a few branches
-		TFile f("DataSetTree.root", "recreate");
+		TFile file("DataSetTree.root", "recreate");
 		TTree treeDS("treeDS", "simple tree that stores raw data");
-		Int_t GroupNumber, Channel;
-		Double_t Time;
+		Int_t groupNumber;
+		Double_t time;
+	Hit:DetectorID detector;
+	Hit:ChannelID channel;
 		treeDS.Branch("GroupNumber", &groupNumber);
 		treeDS.Branch("Channel", &channel);
+		treeDS.Branch("Detector", &detector);
 		treeDS.Branch("Time", &time);
 
 	//FILL TREE
@@ -120,7 +123,7 @@ TTree* readWriteTree(TTree* tree) {
 
 			
 		}
-		return data;
+		return treeDS;
 		treeDS.Write();
 }
 
