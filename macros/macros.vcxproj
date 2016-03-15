@@ -116,7 +116,7 @@
   <ItemGroup>
     <ClCompile Include="plotTimeSpectra.cpp" />
     <ClCompile Include="ReadWriteTree.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="ReadWRiteTreeusingENUM.cpp" />
     <ClCompile Include="treeIO.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

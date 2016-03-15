@@ -25,13 +25,10 @@ TTree* readWriteTree(TTree* tree) {
 	//create a tree file tree1.root - create the file, the Tree and a few branches
 		TFile file("DataSetTree.root", "recreate");
 		TTree treeDS("treeDS", "simple tree that stores raw data");
-		Int_t groupNumber;
+		Int_t groupNumber, channel;
 		Double_t time;
-	Hit:DetectorID detector;
-	Hit:ChannelID channel;
 		treeDS.Branch("GroupNumber", &groupNumber);
 		treeDS.Branch("Channel", &channel);
-		treeDS.Branch("Detector", &detector);
 		treeDS.Branch("Time", &time);
 
 	//FILL TREE
@@ -45,75 +42,62 @@ TTree* readWriteTree(TTree* tree) {
 			time = 32000 - 0.5*rawBins;
 			switch (rawChannel) {
 			case CFG_CHANNEL_POS_CP2:
-				channel = ChannelID::mcp;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_CP2;
 				break;
 			case CFG_CHANNEL_POS_U1_S:
-				channel = ChannelID::u1;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_U1_S;
 				break;
 			case CFG_CHANNEL_POS_U2_S:
-				channel = ChannelID::u2;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_U2_S;
 				break;
 			case CFG_CHANNEL_POS_V1_S:
-				channel = ChannelID::v1;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_V1_S;
 				break;
 			case CFG_CHANNEL_POS_V2_S:
-				channel = ChannelID::v2;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_V2_S;
 				break;
 			case CFG_CHANNEL_POS_W1_S:
-				channel = ChannelID::w1;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_W1_S;
 				break;
 			case CFG_CHANNEL_POS_W2_S:
-				channel = ChannelID::w2;
-				detector = DetectorID::pos;
+				channel = rawChannel;
 				time -= CFG_DELAY_POS_W2_S;
 				break;
 			case CFG_CHANNEL_ELEC_CP2:
-				channel = ChannelID::mcp;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_CP2;
 				break;
 			case CFG_CHANNEL_ELEC_U1_S:
-				channel = ChannelID::u1;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_U1_S;
 				break;
 			case CFG_CHANNEL_ELEC_U2_S:
-				channel = ChannelID::u2;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_U2_S;
 				break;
 			case CFG_CHANNEL_ELEC_V1_S:
-				channel = ChannelID::v1;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_V1_S;
 				break;
 			case CFG_CHANNEL_ELEC_V2_S:
-				channel = ChannelID::v2;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_V2_S;
 				break;
 			case CFG_CHANNEL_ELEC_W1_S:
-				channel = ChannelID::w1;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_W1_S;
 				break;
 			case CFG_CHANNEL_ELEC_W2_S:
-				channel = ChannelID::w2;
-				detector = DetectorID::neg;
+				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_W2_S;
 				break;
+				groupNumber = rawGroupNumber;
 			treeDS.Fill();}
 			
 
@@ -123,8 +107,9 @@ TTree* readWriteTree(TTree* tree) {
 
 			
 		}
-		return treeDS;
 		treeDS.Write();
+		return &treeDS;
+		
 }
 
 /*FIRST ENTRY: make a new group and remember group id
