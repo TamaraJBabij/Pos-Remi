@@ -23,24 +23,24 @@ TTree* readWriteTree(TTree* tree) {
 	//Establish data container variables
 	// Data container in this case will be another tree
 	//create a tree file tree1.root - create the file, the Tree and a few branches
-		TFile file("DataSetTree.root", "recreate");
-		TTree treeDS("treeDS", "simple tree that stores raw data");
-		Int_t groupNumber, channel;
-		Double_t time;
-		treeDS.Branch("GroupNumber", &groupNumber);
-		treeDS.Branch("Channel", &channel);
-		treeDS.Branch("Time", &time);
+	TFile file("DataSetTree.root", "recreate");
+	TTree treeDS("treeDS", "simple tree that stores raw data");
+	Int_t groupNumber, channel;
+	Double_t time;
+	treeDS.Branch("GroupNumber", &groupNumber);
+	treeDS.Branch("Channel", &channel);
+	treeDS.Branch("Time", &time);
 
 	//FILL TREE
-		int N = (int)tree->GetEntries();
+	int N = (int)tree->GetEntries();
 
-		//This will loop through all of the entries in the tree
-		for (int i = 0; i < N; i++) {
-			tree->GetEntry(i);
+	//This will loop through all of the entries in the tree
+	for (int i = 0; i < N; i++) {
+		tree->GetEntry(i);
 
-			//make the new dataset tree by loading the values from the tree according to the config file
-			time = 32000 - 0.5*rawBins;
-			switch (rawChannel) {
+		//make the new dataset tree by loading the values from the tree according to the config file
+		time = 32000 - 0.5*rawBins;
+		switch (rawChannel) {
 			case CFG_CHANNEL_POS_CP2:
 				channel = rawChannel;
 				time -= CFG_DELAY_POS_CP2;
@@ -97,14 +97,9 @@ TTree* readWriteTree(TTree* tree) {
 				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_W2_S;
 				break;
-				groupNumber = rawGroupNumber;
-			treeDS.Fill();}
-			
-
-
-
-
-
+			}
+			groupNumber = rawGroupNumber;
+			treeDS.Fill();
 			
 		}
 		treeDS.Write();

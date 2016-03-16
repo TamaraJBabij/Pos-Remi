@@ -14,17 +14,17 @@
 
 HistogramPair plotTimeSpectra(DataSet* dataset) {
 	HistogramPair hist;
-	hist.positive = new TH1D("hpos", "TimeSpectra positive", 200, -100, 32000);
-	hist.negative = new TH1D("hneg", "TimeSpectra negative", 200, -100, 32000);
+	hist.positive = new TH1D ("hpos", "TimeSpectra positive", 200, -100, 32000);
+	hist.negative = new TH1D ("hneg","TimeSpectra negative",200,-100,32000);
 
 	vector<Group*>* groups = dataset->getGroups();
 
-	for (int i = 0; i < groups->size(); i++) {
+	for ( int i = 0 ; i < groups->size() ; i++ ) {
 
 		Group* group = groups->at(i);
 		vector<Hit>* hits = group.getHits();
 
-		for (int j = 0; j < hits->size(); j++) {
+		for (int j = 0 ; j < hits->size(); j++) {
 
 			Hit h = hits->at(j);
 
@@ -32,7 +32,7 @@ HistogramPair plotTimeSpectra(DataSet* dataset) {
 				if (h.detector == DetectorID::pos) {
 					hist.positive->Fill(h.time);
 				}
-				else if (h.detector == DetectorID::neg) {
+				else if(h.detector == DetectorID::neg){
 					hist.negative->Fill(h.time);
 				}
 			}

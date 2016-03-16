@@ -18,13 +18,16 @@
     <ClCompile Include="treeIO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="plotTimeSpectra.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ReadWriteTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ReadWRiteTreeusingENUM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plotTimeSpectraOLD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plotTimeSpectra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
