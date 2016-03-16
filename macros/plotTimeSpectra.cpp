@@ -12,14 +12,13 @@
 
 
 
-HistogramPair plotTimeSpectra(DataSet* dataset) {
+HistogramPair plotTimeSpectra(TTree* tree) {
 	HistogramPair hist;
 	hist.positive = new TH1D("hpos", "TimeSpectra positive", 200, -100, 32000);
 	hist.negative = new TH1D("hneg", "TimeSpectra negative", 200, -100, 32000);
 
-	vector<Group*>* groups = dataset->getGroups();
-
-	for (int i = 0; i < groups->size(); i++) {
+	int N = (int)tree->GetEntries();
+	for (int i = 0; i < N; i++) {
 
 		Group* group = groups->at(i);
 		vector<Hit>* hits = group.getHits();
