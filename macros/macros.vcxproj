@@ -114,6 +114,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="anuprocess.cpp" />
     <ClCompile Include="plotTimeSpectra.cpp" />
     <ClCompile Include="plotTimeSpectraOLD.cpp" />
     <ClCompile Include="ReadWriteTree.cpp" />
