@@ -18,9 +18,9 @@ void plotTimeSpectra(TTree* tree) {
 	//Sets up canvas I guess?
 
 	//setting up to read our tree of processed time data
-	Int_t Channel;
-	Int_t GroupNumber;
-	Double_t Time;
+	Int_t channel;
+	Int_t groupNumber;
+	Double_t time;
 	tree->SetBranchAddress("GroupNumber", &groupNumber);
 	tree->SetBranchAddress("Channel", &channel);
 	tree->SetBranchAddress("Time", &time);
@@ -33,12 +33,12 @@ void plotTimeSpectra(TTree* tree) {
 	for (int i = 0; i < N; i++) {
 		tree->GetEntry(i);
 
-		switch (Channel) {
+		switch (channel) {
 		case CFG_CHANNEL_POS_CP2:
-			hpos->Fill(Time);
+			hpos->Fill(time);
 			break
 		case CFG_CHANNEL_ELEC_CP2:
-			hneg->Fill(Time);
+			hneg->Fill(time);
 			break
 			}
 		}
