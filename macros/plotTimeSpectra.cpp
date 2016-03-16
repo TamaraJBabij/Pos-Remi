@@ -13,27 +13,27 @@
 
 
 HistogramPair plotTimeSpectra(TTree* tree) {
+	Int_t GroupNumber, Channel;
+	Double_t Time;
+	tree->SetBranchAddress("GroupNumber", &groupNumber);
+	tree->SetBranchAddress("Channel", &channel);
+	tree->SetBranchAddress("Time", &time);
+
 	HistogramPair hist;
 	hist.positive = new TH1D("hpos", "TimeSpectra positive", 200, -100, 32000);
 	hist.negative = new TH1D("hneg", "TimeSpectra negative", 200, -100, 32000);
 
 	int N = (int)tree->GetEntries();
 	for (int i = 0; i < N; i++) {
+		tree->GetEntry(i);
 
-		Group* group = groups->at(i);
-		vector<Hit>* hits = group.getHits();
-
-		for (int j = 0; j < hits->size(); j++) {
-
-			Hit h = hits->at(j);
-
-			if (h.channel == ChannelID::mcp) {
-				if (h.detector == DetectorID::pos) {
-					hist.positive->Fill(h.time);
-				}
-				else if (h.detector == DetectorID::neg) {
-					hist.negative->Fill(h.time);
-				}
+		switch (Channel) {
+		case CFG_CHANNEL_POS_CP2:
+			hist.positive->Fill(h.time);
+			break
+		case CFG_CHANNEL_ELEC_CP2:
+			hist.negative->Fill(h.time);
+			break
 			}
 		}
 		hist.positive->Draw();
