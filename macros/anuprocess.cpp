@@ -1,3 +1,12 @@
+#include <iostream>
+#include "DataSet.h"
+#include "Group.h"
+#include "Hit.h"
+#include "HistogramPair.h"
+#include "TTree.h"
+#include <vector>
+
+
 void anuprocess()
 {
 	TCanvas *c1 = new TCanvas("c1", "Histograms", 1000, 700);
@@ -10,7 +19,7 @@ void anuprocess()
 	Int_t Channel;
 	Int_t Time;
 	thisGroup->SetBranchAddress("GroupNumber", &GroupNumber);
-	thisGroup->SetBranchAddress("Time", &Time);
+	thisGroup->SetBranchAddress("Time", &Time);  
 	thisGroup->SetBranchAddress("Channel", &Channel);
 	std::vector<int> PCP(0);
 	PCP.reserve(10);
