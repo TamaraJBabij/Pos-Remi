@@ -1,11 +1,10 @@
 // creats histogram of time of flights (given by MCP signal) of the particles. 
 #include <iostream>
-#include "DataSet.h"
-#include "Group.h"
-#include "Hit.h"
 #include "HistogramPair.h"
 #include "TTree.h"
-#include <vector>
+#include "TH1D.h"
+
+using namespace std;
 
 
 // returns histogram
@@ -14,7 +13,7 @@
 
 
 
-void plotTimeSpectra(TTree* tree) {
+TH1D* plotTimeSpectra(TTree* tree) {
 	//Sets up canvas I guess?
 
 	//setting up to read our tree of processed time data
@@ -26,23 +25,25 @@ void plotTimeSpectra(TTree* tree) {
 	tree->SetBranchAddress("Time", &time);
 
 	//Histogram both positive and negative MCP detector pulses, all relative to positron time
-	TH1D *hpos = new TH1D("hpos", "TimeSpectra positive", 200, -100, 32000);
-	TH1D *hneg = new TH1D("hneg", "TimeSpectra negative", 200, -100, 32000);
+	TH1D *hpos = new TH1D("hpos", "TimeSpectra positive", 200, 0, 32000);
+	//TH1D *hneg = new TH1D("hneg", "TimeSpectra negative", 200, -100, 32000);
+	//hpos->SetDirectory(0);
+	Double_t timeDouble;
 
 	int N = (int)tree->GetEntries();
+	cout << N << endl;
+
 	for (int i = 0; i < N; i++) {
 		tree->GetEntry(i);
-
 		switch (channel) {
 		case CFG_CHANNEL_POS_CP2:
 			hpos->Fill(time);
-			break
+			break;
 		case CFG_CHANNEL_ELEC_CP2:
-			hneg->Fill(time);
-			break
-			}
+			//hneg->Fill(timeDouble);
+			break;
 		}
-		hpos->Draw();
+	}
 	return hpos;
 }
 //Draw histograms, which represent time spectra relative to the positron hit
