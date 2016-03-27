@@ -4,11 +4,9 @@
 
 #include "Group.h"
 #include <vector>
-//used to make objects compatible with root
-#include "TObject.h" 
 
 //Object to load from tree, store all groups/hits and write back to tree
-class DataSet : public TObject{
+class DataSet {
 private:
 	//Set of groups. Each group contains some data and a set of hits, which contain channel and time info
 	vector<Group*> data;
@@ -20,8 +18,14 @@ public:
 
 	void addGroup(Group* g);
 
+
+	// iterator is a generic way to access any data structure that c defines, special class in c++ that is like a pointer to some data
+	// lets the complier know that the class is a container that holds Groups*
+	// allows for easy looping through Group
+	//means datasets act like a collection of groups
+	vector<Group*>::iterator begin();
+	vector<Group*>::iterator end();
+
 	vector<Group*>* getGroups();
-	//required for root to use the object
-	ClassDef(DataSet, 1);
 };
 #endif

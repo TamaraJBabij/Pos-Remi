@@ -1,8 +1,6 @@
+#include "stdafx.h"
 #include "DataSet.h"
 #include <vector>
-
-//required for compatibility with root:
-ClassImp(DataSet);
  
 //code for the constructor
 DataSet::DataSet(){
@@ -25,6 +23,13 @@ void DataSet::addGroup(Group* g)
 //as defined in header file (see comments for explanation)
 // when using an object as a data container end and begin functions must exist (in c++)
 // allows looping through the dataset which loops through the groups in the vector
+vector<Group*>::iterator DataSet::begin() {
+	return data.begin();
+}
+vector<Group*>::iterator DataSet::end() {
+	return data.end();
+}
+
 vector<Group*>* DataSet::getGroups() {
 	return &data;
 }

@@ -118,17 +118,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssociateHits.cpp" />
-    <ClCompile Include="DataSet.cpp" />
     <ClCompile Include="dict.cpp" />
-    <ClCompile Include="Group.cpp" />
     <ClCompile Include="FirstCut.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DataSet.h" />
-    <ClInclude Include="dict.h" />
-    <ClInclude Include="Group.h" />
-    <ClInclude Include="Hit.h" />
-    <ClInclude Include="LinkDef.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

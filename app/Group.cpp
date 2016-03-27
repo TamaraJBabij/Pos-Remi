@@ -1,15 +1,13 @@
 //Stores hits and relevant information into a group, group identified by group number
 //Raw data goes in, group comes out, you cant explain that
 
+#include "stdafx.h"
 #include <vector>
 #include <string>
 #include "Hit.h"
 #include "Group.h"
 #include "TObject.h" 
 
-
-//required for compatibility with root:
-ClassImp(Group);
 
 //constructor where id is passed in as group number from raw tree
 Group::Group(int _id)
@@ -35,7 +33,16 @@ void Group::addHit(Hit h)
 }
 
 
+//as defined in header file (see comments for explanation)
+// when using an object as a data container end and begin functions must exist (in c++)
+// allows looping through trhe dataset which loops through the groups in the vector
+vector<Hit>::iterator Group::begin() {
+	return rawData.begin();
+}
+vector<Hit>::iterator Group::end() {
+	return rawData.end();
+}
+
 vector<Hit>* Group::getHits(){
 	return &rawData;
 }
-

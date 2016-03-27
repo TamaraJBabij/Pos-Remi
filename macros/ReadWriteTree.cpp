@@ -1,6 +1,7 @@
 #include <iostream>
 #include "TTree.h"
 #include "TFile.h"
+#include "configuration.h"
 
 // Root does histogram DataSet as there is poor vector intergration
 // will try writing data to a new tree with time converted from comSTOP mode and in ns from bins. 
