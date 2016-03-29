@@ -4,7 +4,7 @@
 #include "TTree.h"
 #include "TH1D.h"
 #include "configuration.h"
-#include "DataSet.h"
+#include "TFile.h"
 
 using namespace std;
 
@@ -37,47 +37,19 @@ TH1D* plotTimeSpectra(TTree* tree) {
 
 	for (int i = 0; i < N; i++) {
 		tree->GetEntry(i);
-		if ( channel == CFG_CHANNEL_POS_CP2 ) {
+		switch (channel) {
+		case CFG_CHANNEL_POS_CP2:
 			hpos->Fill(time);
-		}
-		else if ( channel == CFG_CHANNEL_ELEC_CP2 ) {
+			break;
+		case CFG_CHANNEL_ELEC_CP2:
 			//hneg->Fill(timeDouble);
+			break;
 		}
 	}
 	return hpos;
-
-	//Draw histograms, which represent time spectra relative to the positron hit
-	//Want to export histogram data as well as save time spectra figures
-	//need to set up canvas first
-
-	//hist.negative->Draw();
-
-
-
 }
+//Draw histograms, which represent time spectra relative to the positron hit
+//Want to export histogram data as well as save time spectra figures
+//need to set up canvas first
 
-
-HistogramPair plotTimeSpectraDS(DataSet* data) {
-	//Sets up canvas I guess?
-
-	//Histogram both positive and negative MCP detector pulses, all relative to positron time
-	HistogramPair histograms;
-	histograms.positive = new TH1D("hpos", "TimeSpectra positive", 200, 0, 32000);
-	histograms.negative = new TH1D("hneg", "TimeSpectra negative", 200, -100, 32000);
-
-
-	for (Group* g : *data) {
-		for (Hit h : *g) {
-			if (h.channel == mcp) {
-				if (h.detector == pos) {
-					histograms.positive->Fill(h.time);
-				}
-				else if (h.detector == neg) {
-					histograms.negative->Fill(h.time);
-				}
-
-			}
-		}
-	}
-	return histograms;
-}
+//hist.negative->Draw();

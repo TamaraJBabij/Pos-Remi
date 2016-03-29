@@ -1,7 +1,10 @@
 #include <iostream>
+#include "DataSet.h"
+#include "Group.h"
+#include "Hit.h"
 #include "TTree.h"
-#include "TFile.h"
 #include "configuration.h"
+#include "TFile.h"
 
 // Root does histogram DataSet as there is poor vector intergration
 // will try writing data to a new tree with time converted from comSTOP mode and in ns from bins. 
@@ -22,13 +25,13 @@ TTree* readWriteTree(TTree* tree) {
 	//Establish data container variables
 	// Data container in this case will be another tree
 	//create a tree file tree1.root - create the file, the Tree and a few branches
-	TFile fileDS("DataSetTree.root", "recreate");
-	TTree* treeDS = new TTree("treeDS", "simple tree that stores raw data");
+	TFile file("DataSetTree.root", "recreate");
+	TTree treeDS("treeDS", "simple tree that stores raw data");
 	Int_t groupNumber, channel;
 	Double_t time;
-	treeDS->Branch("GroupNumber", &groupNumber);
-	treeDS->Branch("Channel", &channel);
-	treeDS->Branch("Time", &time);
+	treeDS.Branch("GroupNumber", &groupNumber);
+	treeDS.Branch("Channel", &channel);
+	treeDS.Branch("Time", &time);
 
 	//FILL TREE
 	int N = (int)tree->GetEntries();
@@ -96,14 +99,14 @@ TTree* readWriteTree(TTree* tree) {
 				channel = rawChannel;
 				time -= CFG_DELAY_ELEC_W2_S;
 				break;
-		}
-		groupNumber = rawGroupNumber;
-		treeDS->Fill();
+			}
+			groupNumber = rawGroupNumber;
+			treeDS.Fill();
 			
-	}
-	fileDS.Write();
-	fileDS.Close();
-	return treeDS;
+		}
+		treeDS.Write();
+		return &treeDS;
+		
 }
 
 /*FIRST ENTRY: make a new group and remember group id

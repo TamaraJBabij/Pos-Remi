@@ -4,6 +4,7 @@
 #include "Hit.h"
 #include "TTree.h"
 #include "configuration.h"
+#include "TFile.h"
 
 //make each group, fill it with hits, add it to the dataset
 DataSet* loadFromTree(TTree* tree){
@@ -16,8 +17,7 @@ DataSet* loadFromTree(TTree* tree){
 
 	//Establish data container variables
 	Group* currentGroup = NULL;
-
-	DataSet* data = new DataSet();
+    DataSet* data = new DataSet();
 
 	int N = (int) tree->GetEntries();
 

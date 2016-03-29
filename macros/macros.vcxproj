@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="plotTimeSpectra.cpp" />
+    <ClCompile Include="plotTimeSpectraDS.cpp" />
     <ClCompile Include="ReadWriteTree.cpp" />
     <ClCompile Include="treeIO.cpp" />
   </ItemGroup>

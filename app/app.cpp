@@ -10,6 +10,9 @@
 #include <TApplication.h>
 #include <TH1D.h>
 #include "DataSet.h"
+#include "TFile.h"
+#include "HistogramPair.h"
+#include "TObject.h"
 
 using namespace std;
 
@@ -27,7 +30,7 @@ int main(int argc, char* argv[]) {
 	//tree->Draw("Time");
 	HistogramPair hists = plotTimeSpectraDS(data);
 
-	hists.positive->Draw();	rootapp->Run();
+	hists.positive->Draw();	hists.negative->Draw();	rootapp->Run();
 
     return 0;
 }
