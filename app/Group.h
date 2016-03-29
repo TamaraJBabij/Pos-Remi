@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Hit.h"
+#include "Event.h"
 
 
 using namespace std;
@@ -52,8 +53,8 @@ private:
 	//Raw data of Hits from file
 	vector<Hit> rawData;
 
-	//Set
-	vector<Set>	setData;
+	//Events
+	vector<Event> events;
 public:
 	//Constructor - do everything you need to when you create a Group object
 	Group(int id);
@@ -63,6 +64,7 @@ public:
 	~Group();
 
 	void addHit(Hit h);
+	void addEvent(Event e);
 
 	int getId();
 

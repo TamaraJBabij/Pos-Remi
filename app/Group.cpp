@@ -7,6 +7,7 @@
 #include "Hit.h"
 #include "Group.h"
 #include "TObject.h" 
+#include "Event.h"
 
 
 //constructor where id is passed in as group number from raw tree
@@ -31,6 +32,14 @@ void Group::addHit(Hit h)
 {
 	rawData.push_back(h);
 }
+
+//stores an event object in the set of groups.
+
+void Group::addEvent(Event e)
+{
+	events.push_back(e);
+}
+
 
 
 //as defined in header file (see comments for explanation)

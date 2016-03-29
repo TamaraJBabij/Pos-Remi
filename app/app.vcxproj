@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataSet.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="HistogramPair.h" />
     <ClInclude Include="Hit.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="app.cpp" />
     <ClCompile Include="DataSet.cpp" />
     <ClCompile Include="Group.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

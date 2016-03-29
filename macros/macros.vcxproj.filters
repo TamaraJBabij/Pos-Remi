@@ -30,7 +30,7 @@
     <ClCompile Include="firstCut.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="associateHits.cpp">
+    <ClCompile Include="constructEvents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
