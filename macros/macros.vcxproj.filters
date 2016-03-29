@@ -27,6 +27,12 @@
     <ClCompile Include="plotTimeSpectraDS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="firstCut.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="associateHits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configuration.h">

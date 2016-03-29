@@ -118,6 +118,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="associateHits.cpp" />
+    <ClCompile Include="firstCut.cpp" />
     <ClCompile Include="plotTimeSpectra.cpp" />
     <ClCompile Include="plotTimeSpectraDS.cpp" />
     <ClCompile Include="ReadWriteTree.cpp" />
