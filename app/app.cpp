@@ -48,8 +48,10 @@ int main(int argc, char* argv[]) {
 	void constructEvents(DataSet* data);
 
 	// construct timesum histograms
+	HistogramTimeSums timesums = checkTimeSums(data);
 
-
+	TCanvas c2("c2", "Second Canvas")
+	timesums.layer_upos->Draw();
 
     return 0;
 }

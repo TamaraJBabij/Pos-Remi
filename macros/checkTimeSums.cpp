@@ -24,8 +24,15 @@ HistogramTimeSums checkTimeSums(DataSet* data) {
 	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 200, 0, 1000);
 
 	for (Group* g : *data) {
-		for (Event e : *g.events) {
-
+		for (Event e : g->events) {
+			if (e.mcp->detector == pos) {
+				for (double u1tdiff : e.u1) {
+					for (double u2tdiff : e.u2) {
+						timesums.layer_upos->Fill(u1tdiff + u2tdiff);
+					}
+				}
+			}
 		}
 	}
+	return timesums;
 }
