@@ -153,6 +153,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="HistogramPair.h" />
+    <ClInclude Include="HistogramTimeSums.h" />
     <ClInclude Include="Hit.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="stdafx.h" />

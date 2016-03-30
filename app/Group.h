@@ -53,12 +53,14 @@ private:
 	//Raw data of Hits from file
 	vector<Hit> rawData;
 
-	//Events
-	vector<Event> events;
+	
 public:
 	//Constructor - do everything you need to when you create a Group object
 	Group(int id);
 	Group();
+	
+	//Events
+	vector<Event> events;
 
 	//Destructor - do everything you need to when you destroy a Group object
 	~Group();
@@ -75,5 +77,7 @@ public:
 	// allows for easy looping through Group
 	vector<Hit>::iterator begin();
 	vector<Hit>::iterator end();
+
+
 };
 #endif

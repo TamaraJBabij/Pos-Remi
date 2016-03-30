@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="checkTimeSums.cpp" />
     <ClCompile Include="constructEvents.cpp" />
     <ClCompile Include="firstCut.cpp" />
     <ClCompile Include="plotTimeSpectra.cpp" />

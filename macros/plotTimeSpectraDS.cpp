@@ -7,7 +7,6 @@
 using namespace std;
 
 HistogramPair plotTimeSpectraDS(DataSet* data) {
-	//Sets up canvas I guess?
 
 	//Histogram both positive and negative MCP detector pulses, all relative to positron time
 	HistogramPair histograms;

@@ -13,6 +13,7 @@
 #include "TFile.h"
 #include "HistogramPair.h"
 #include "TObject.h"
+#include "Event.h"
 
 using namespace std;
 
@@ -38,7 +39,17 @@ int main(int argc, char* argv[]) {
 	//TPad::Divide() specifies number of vertical and horizontal slices of canvas
 	c1.Divide(1,2);
 	c1.cd(1);
-	hists.positive->Draw();	c1.cd(2);	hists.negative->Draw();	rootapp->Run();
+	hists.positive->Draw();
+	c1.cd(2);
+	hists.negative->Draw();
+	rootapp->Run();
+
+	//Associate hits into events, where event is a single particle/ion hit on the detector. Events are sorted by group
+	void constructEvents(DataSet* data);
+
+	// construct timesum histograms
+
+
 
     return 0;
 }
