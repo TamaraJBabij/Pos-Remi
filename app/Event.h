@@ -2,6 +2,7 @@
 #include "Group.h"
 #include <vector>
 #include "Hit.h"
+#include "stdafx.h"
 
 class Event
 {

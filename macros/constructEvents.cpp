@@ -5,6 +5,7 @@
 #include "TTree.h"
 #include "TFile.h"
 #include "Event.h"
+#include "stdafx.h"
 
 // For each "triple event" taken by the logic, layer hits are not stored in order with their mcp hits. 
 // Therefore they must be sorted such that the appropriate layer hits can be associated with the appropriate mcpo hit. 
@@ -26,7 +27,7 @@ void constructEvents(DataSet* data){
 					}
 				}
 
-				currentGroup->addHit(h); 
+				*g.addEvent(event); 
 			}
 		}
 	}

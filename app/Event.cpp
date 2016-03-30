@@ -1,5 +1,6 @@
 #include "Hit.h"
 #include "Event.h"
+#include "stdafx.h"
 
 //constructor mcp is the uniquely associated mcp hit
 Event::Event(Hit* _mcp) {
