@@ -1,8 +1,10 @@
 #pragma once 
-#include "Group.h"
+#include "stdafx.h"
 #include <vector>
 #include "Hit.h"
-#include "stdafx.h"
+
+
+using namespace std;
 
 class Event
 {

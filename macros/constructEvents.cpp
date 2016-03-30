@@ -27,7 +27,7 @@ void constructEvents(DataSet* data){
 					}
 				}
 
-				*g.addEvent(event); 
+				g->addEvent(event); 
 			}
 		}
 	}
