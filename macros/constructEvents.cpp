@@ -19,10 +19,10 @@ void constructEvents(DataSet* data){
 				for (Hit* otherHit : *g) {
 					if (otherHit->channel != mcp && otherHit->detector == mcpHit->detector){
 						double tdiff = otherHit->time - mcpHit->time;
-						//if (tdiff < 1000 && tdiff>-1000) {
+						if (tdiff < 1000 && tdiff>-1000) {
 							//add this tdiff and channel id to the event
 							event.storeHitInfo(tdiff, otherHit->channel);
-						//}
+						}
 					}
 				}
 

@@ -12,5 +12,7 @@ struct HistogramTimeSums {
 	TH1D* layer_uneg;
 	TH1D* layer_vneg;
 	TH1D* layer_wneg;
+	//Shared ptr
+	//std::shared_ptr<TH1D> test;
 };
 
