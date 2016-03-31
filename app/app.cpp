@@ -42,16 +42,17 @@ int main(int argc, char* argv[]) {
 	hists.positive->Draw();
 	c1.cd(2);
 	hists.negative->Draw();
-	rootapp->Run();
 
 	//Associate hits into events, where event is a single particle/ion hit on the detector. Events are sorted by group
-	void constructEvents(DataSet* data);
+	constructEvents(data);
 
 	// construct timesum histograms
 	HistogramTimeSums timesums = checkTimeSums(data);
 
-	TCanvas c2("c2", "Second Canvas")
+	TCanvas c2("c2", "Second Canvas");
 	timesums.layer_upos->Draw();
+
+	rootapp->Run();
 
     return 0;
 }

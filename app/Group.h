@@ -51,7 +51,7 @@ private:
 	Particle electron, positron, ion;
 
 	//Raw data of Hits from file
-	vector<Hit> rawData;
+	vector<Hit*> rawData;
 
 	
 public:
@@ -65,18 +65,18 @@ public:
 	//Destructor - do everything you need to when you destroy a Group object
 	~Group();
 
-	void addHit(Hit h);
+	void addHit(Hit* h);
 	void addEvent(Event e);
 
 	int getId();
 
-	vector<Hit>* getHits();
+	vector<Hit*>* getHits();
 
 	// iterator is a generic way to access any data structure that c defines, special class in c++ that is like a pointer to some data
 	// lets the complier know that the class is a container that holds Hit*s
 	// allows for easy looping through Group
-	vector<Hit>::iterator begin();
-	vector<Hit>::iterator end();
+	vector<Hit*>::iterator begin();
+	vector<Hit*>::iterator end();
 
 
 };

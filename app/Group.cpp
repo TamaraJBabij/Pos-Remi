@@ -28,7 +28,7 @@ int Group::getId(){
 
 //stores a hit object in the set of raw data.
 //parsing in tree of data, and storing that in a vector of hits in each group
-void Group::addHit(Hit h)
+void Group::addHit(Hit* h)
 {
 	rawData.push_back(h);
 }
@@ -45,13 +45,13 @@ void Group::addEvent(Event e)
 //as defined in header file (see comments for explanation)
 // when using an object as a data container end and begin functions must exist (in c++)
 // allows looping through trhe dataset which loops through the groups in the vector
-vector<Hit>::iterator Group::begin() {
+vector<Hit*>::iterator Group::begin() {
 	return rawData.begin();
 }
-vector<Hit>::iterator Group::end() {
+vector<Hit*>::iterator Group::end() {
 	return rawData.end();
 }
 
-vector<Hit>* Group::getHits(){
+vector<Hit*>* Group::getHits(){
 	return &rawData;
 }

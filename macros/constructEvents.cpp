@@ -13,15 +13,15 @@
 
 void constructEvents(DataSet* data){
 	for (Group* g : *data) {
-		for (Hit mcpHit : *g) {
-			if (mcpHit.channel == mcp) {
-				Event event(&mcpHit);
-				for (Hit otherHit : *g) {
-					if (otherHit.channel != mcp && otherHit.detector == mcpHit.detector){
-						double tdiff = otherHit.time - mcpHit.time;
+		for (Hit* mcpHit : *g) {
+			if (mcpHit->channel == mcp) {
+				Event event(mcpHit);
+				for (Hit* otherHit : *g) {
+					if (otherHit->channel != mcp && otherHit->detector == mcpHit->detector){
+						double tdiff = otherHit->time - mcpHit->time;
 						//if (tdiff < 1000 && tdiff>-1000) {
 							//add this tdiff and channel id to the event
-							event.storeHitInfo(tdiff, otherHit.channel);
+							event.storeHitInfo(tdiff, otherHit->channel);
 						//}
 					}
 				}

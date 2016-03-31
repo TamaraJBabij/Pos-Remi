@@ -15,13 +15,13 @@ HistogramPair plotTimeSpectraDS(DataSet* data) {
 
 
 	for (Group* g : *data) {
-		for (Hit h : *g) {
-			if (h.channel == mcp) {
-				if (h.detector == pos) {
-					histograms.positive->Fill(h.time);
+		for (Hit* h : *g) {
+			if (h->channel == mcp) {
+				if (h->detector == pos) {
+					histograms.positive->Fill(h->time);
 				}
-				else if (h.detector == neg) {
-					histograms.negative->Fill(h.time);
+				else if (h->detector == neg) {
+					histograms.negative->Fill(h->time);
 				}
 
 			}
