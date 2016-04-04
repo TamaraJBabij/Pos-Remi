@@ -33,7 +33,13 @@
     <ClCompile Include="constructEvents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="calculateTimeSums.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="checkTimeSums.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plotTimeSums.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
