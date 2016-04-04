@@ -9,6 +9,9 @@
 #include <TCanvas.h>
 #include <TApplication.h>
 #include <TH1D.h>
+#include <TFormula.h>
+#include <TH1.h>
+#include <TF1.h>
 #include "DataSet.h"
 #include "TFile.h"
 #include "HistogramPair.h"
@@ -51,6 +54,13 @@ int main(int argc, char* argv[]) {
 	// construct timesum histograms
 	HistogramTimeSums timesums = calculateTimeSums(data);
 
+	//Store fit parameters into a tree for later accessing
+	// setting up tree
+	TTree treeTS("TimeSumPeaks", "simple tree that stores timesum peaks and sigma");
+	//Cant store strings in tree?
+	Double_t peak, sigma;
+	treeTS.Branch("Peak", &peak);
+	treeTS.Branch("Sigma", &sigma);
 	
 	TCanvas c2("c2", "Second Canvas");
 	//set up canvas for time sums - 3 for each detector - 6 in total
@@ -59,9 +69,16 @@ int main(int argc, char* argv[]) {
 	c2.cd(1);
 	timesums.layer_upos->Draw();
 	timesums.layer_upos->Fit("gaus");
+
+	//Want to display fit parameters on timesums plots
+	//timesums.layer_upos->SetOptFit();
 	c2.cd(2);
 	timesums.layer_vpos->Draw();
 	timesums.layer_vpos->Fit("gaus");
+	TF1 *fit = timesums.layer_vpos->GetFunction("gaus");
+	peak = fit->GetParameter(1);
+	sigma = fit->GetParameter(2);
+	treeTS.Fill();
 	c2.cd(3);
 	timesums.layer_wpos->Draw();
 	timesums.layer_wpos->Fit("gaus");
@@ -76,6 +93,7 @@ int main(int argc, char* argv[]) {
 	timesums.layer_wneg->Fit("gaus");
 
 	rootapp->Run();
+
 
 
     return 0;
