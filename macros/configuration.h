@@ -37,4 +37,7 @@
 #define CFG_DELAY_ELEC_W1_S 20.4
 #define CFG_DELAY_ELEC_W2_S 18
 
+#define POS_MAX_NS 2100
+#define POS_MIN_NS 1900
+
 #endif
