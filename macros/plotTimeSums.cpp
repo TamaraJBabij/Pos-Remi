@@ -43,7 +43,7 @@ void plotTimeSums(HistogramTimeSums timesums) {
 	c2.cd(6);
 	timesums.layer_wneg->Draw();
 	timesums.layer_wneg->Fit("gaus");
-	rootapp->Run();
+	//rootapp->Run();
 
 
 }

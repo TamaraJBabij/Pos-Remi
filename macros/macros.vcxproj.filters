@@ -42,6 +42,9 @@
     <ClCompile Include="plotTimeSums.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="plotTimeSpectraEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configuration.h">
