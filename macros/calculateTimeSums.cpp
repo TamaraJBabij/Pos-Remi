@@ -6,6 +6,7 @@
 #include "HistogramTimeSums.h"
 #include "Hit.h"
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -24,6 +25,12 @@ HistogramTimeSums calculateTimeSums(DataSet* data) {
 	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 200, 50, 250);
 	//Shared ptr, stops memory leaks
 	//timesums.test = std::make_shared<TH1D>("wneg", "TimeSum wneg layer", 200, 0, 1000);
+	//timesums.layer_upos = std::make_unique<TH1D>("upos", "TimeSum upos layer", 200, 50, 200);
+	//timesums.layer_vpos = std::make_shared<TH1D>("vpos", "TimeSum vpos layer", 200, 50, 200);
+	//timesums.layer_wpos = std::make_shared<TH1D>("wpos", "TimeSum wpos layer", 200, 50, 200);
+	//timesums.layer_uneg = std::make_shared<TH1D>("uneg", "TimeSum uneg layer", 200, 50, 200);
+	//timesums.layer_vneg = std::make_shared<TH1D>("vneg", "TimeSum vneg layer", 200, 50, 200);
+	//timesums.layer_wneg = std::make_shared<TH1D>("wneg", "TimeSum wneg layer", 200, 50, 200);
 	//For each associated event in the group (where group is a 32 micros window)
 	//Sum each possible combination of wires that make up the layers to produce timesums for each layer
 	for (Group* g : *data) {

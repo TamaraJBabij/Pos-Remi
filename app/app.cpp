@@ -22,6 +22,9 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+	//Initial function to set up the debug environment
+	int setUpDebugEnvironment();
+	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
 	TFile* rawFile = TFile::Open("../parsed.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
