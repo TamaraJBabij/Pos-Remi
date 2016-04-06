@@ -79,8 +79,8 @@ int main(int argc, char* argv[]) {
 	timesums.layer_vpos->Draw();
 	timesums.layer_vpos->Fit("gaus");
 	TF1 *fit = timesums.layer_vpos->GetFunction("gaus");
-	peak = fit->GetParameter(1);
-	sigma = fit->GetParameter(2);
+	//peak = fit->GetParameter(1);
+	//sigma = fit->GetParameter(2);
 	treeTS.Fill();
 	c2.cd(3);
 	timesums.layer_wpos->Draw();
