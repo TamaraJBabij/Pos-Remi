@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../parsed.root");
+	TFile* rawFile = TFile::Open("../output.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	//TTree* tree = readWriteTree(rawTree);
 
@@ -69,12 +69,12 @@ int main(int argc, char* argv[]) {
 	TTree treeTS("TimeSumPeaks", "simple tree that stores timesum peaks and sigma");
 	//Cant store strings in tree?
 	Double_t peak, sigma, error;
-	//Char_t layer;
+	//Text_t layer;
 	//treeTS.Branch("Layer", &layer);
 	treeTS.Branch("Peak", &peak);
 	treeTS.Branch("Sigma", &sigma);
 	treeTS.Branch("Error", &error);
-	
+
 	TCanvas c2("c2", "Second Canvas");
 	//set up canvas for time sums - 3 for each detector - 6 in total
 	//TPad::Divide() specifies number of vertical and horizontal slices of canvas
@@ -83,15 +83,10 @@ int main(int argc, char* argv[]) {
 	timesums.layer_upos->Draw();
 	timesums.layer_upos->Fit("gaus");
 	gStyle->SetOptFit(0011);
-	//timesums.layer_upos->Write();
-	//timesums.layer_upos->Write();
-	//need ot make fit persistent for this method to work
-	TF1 *fit = timesums.layer_upos->GetFunction("gaus");
-	//layer = layer_upos;
-	peak = fit->GetParameter(1);
-	//std::cout << fit->GetParameter(1) << endl;
-	sigma = fit->GetParameter(2);
-	error = fit->GetParError(1);
+	TF1 *fitu = timesums.layer_upos->GetFunction("gaus");
+	peak = fitu->GetParameter(1);
+	sigma = fitu->GetParameter(2);
+	error = fitu->GetParError(1);
 	treeTS.Fill();
 	//Want to display fit parameters on timesums plots
 	//timesums.layer_upos->SetOptFit();
@@ -99,18 +94,43 @@ int main(int argc, char* argv[]) {
 	c2.cd(2);
 	timesums.layer_vpos->Draw();
 	timesums.layer_vpos->Fit("gaus");
+	TF1 *fitv = timesums.layer_vpos->GetFunction("gaus");
+	peak = fitv->GetParameter(1);
+	sigma = fitv->GetParameter(2);
+	error = fitv->GetParError(1);
+	treeTS.Fill();
 	c2.cd(3);
 	timesums.layer_wpos->Draw();
 	timesums.layer_wpos->Fit("gaus");
+	TF1 *fitw = timesums.layer_wpos->GetFunction("gaus");
+	peak = fitw->GetParameter(1);
+	sigma = fitw->GetParameter(2);
+	error = fitw->GetParError(1);
+	treeTS.Fill();
 	c2.cd(4);
 	timesums.layer_uneg->Draw();
 	timesums.layer_uneg->Fit("gaus");
+	TF1 *fitun = timesums.layer_uneg->GetFunction("gaus");
+	peak = fitun->GetParameter(1);
+	sigma = fitun->GetParameter(2);
+	error = fitun->GetParError(1);
+	treeTS.Fill();
 	c2.cd(5);
 	timesums.layer_vneg->Draw();
 	timesums.layer_vneg->Fit("gaus");
+	TF1 *fitvn = timesums.layer_vneg->GetFunction("gaus");
+	peak = fitvn->GetParameter(1);
+	sigma = fitvn->GetParameter(2);
+	error = fitvn->GetParError(1);
+	treeTS.Fill();
 	c2.cd(6);
 	timesums.layer_wneg->Draw();
 	timesums.layer_wneg->Fit("gaus");
+	TF1 *fitwn = timesums.layer_wneg->GetFunction("gaus");
+	peak = fitwn->GetParameter(1);
+	sigma = fitwn->GetParameter(2);
+	error = fitwn->GetParError(1);
+	treeTS.Fill();
 
 	//Want to write timesum information to tree for accessing later in program, also to save to csv such that
 	//ts info for all runs can be accessed at later dates without rerunning code
