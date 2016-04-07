@@ -12,6 +12,7 @@
 #include <TFormula.h>
 #include <TH1.h>
 #include <TF1.h>
+#include <TStyle.h>
 #include "DataSet.h"
 #include "TFile.h"
 #include "HistogramPair.h"
@@ -48,8 +49,13 @@ int main(int argc, char* argv[]) {
 	c1.Divide(1,2);
 	c1.cd(1);
 	hists.positive->Draw();
+	//hists.positive->Write();
+	//Just defual draw hist option offers irrelavnt info for time spectrum
+	//gStyle->SetOptStat("");
 	c1.cd(2);
+	//TFile f("histos.root", "new");
 	hists.negative->Draw();
+	//hists.negative->Write();
 
 	//Associate hits into events, where event is a single particle/ion hit on the detector. Events are sorted by group
 	constructEvents(data);
@@ -59,11 +65,15 @@ int main(int argc, char* argv[]) {
 
 	//Store fit parameters into a tree for later accessing
 	// setting up tree
+	TFile file("TimeSumTree.root", "recreate");
 	TTree treeTS("TimeSumPeaks", "simple tree that stores timesum peaks and sigma");
 	//Cant store strings in tree?
-	Double_t peak, sigma;
+	Double_t peak, sigma, error;
+	//Char_t layer;
+	//treeTS.Branch("Layer", &layer);
 	treeTS.Branch("Peak", &peak);
 	treeTS.Branch("Sigma", &sigma);
+	treeTS.Branch("Error", &error);
 	
 	TCanvas c2("c2", "Second Canvas");
 	//set up canvas for time sums - 3 for each detector - 6 in total
@@ -72,16 +82,23 @@ int main(int argc, char* argv[]) {
 	c2.cd(1);
 	timesums.layer_upos->Draw();
 	timesums.layer_upos->Fit("gaus");
-
+	gStyle->SetOptFit(0011);
+	//timesums.layer_upos->Write();
+	//timesums.layer_upos->Write();
+	//need ot make fit persistent for this method to work
+	TF1 *fit = timesums.layer_upos->GetFunction("gaus");
+	//layer = layer_upos;
+	peak = fit->GetParameter(1);
+	//std::cout << fit->GetParameter(1) << endl;
+	sigma = fit->GetParameter(2);
+	error = fit->GetParError(1);
+	treeTS.Fill();
 	//Want to display fit parameters on timesums plots
 	//timesums.layer_upos->SetOptFit();
+
 	c2.cd(2);
 	timesums.layer_vpos->Draw();
 	timesums.layer_vpos->Fit("gaus");
-	TF1 *fit = timesums.layer_vpos->GetFunction("gaus");
-	//peak = fit->GetParameter(1);
-	//sigma = fit->GetParameter(2);
-	treeTS.Fill();
 	c2.cd(3);
 	timesums.layer_wpos->Draw();
 	timesums.layer_wpos->Fit("gaus");
@@ -94,6 +111,10 @@ int main(int argc, char* argv[]) {
 	c2.cd(6);
 	timesums.layer_wneg->Draw();
 	timesums.layer_wneg->Fit("gaus");
+
+	//Want to write timesum information to tree for accessing later in program, also to save to csv such that
+	//ts info for all runs can be accessed at later dates without rerunning code
+	treeTS.Write();
 
 	rootapp->Run();
 
