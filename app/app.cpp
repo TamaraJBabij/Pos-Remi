@@ -19,6 +19,7 @@
 #include "TObject.h"
 #include "Event.h"
 #include "HistogramTimeSums.h"
+#include "configlayers.h"
 
 using namespace std;
 
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../output.root");
+	TFile* rawFile = TFile::Open("../parsed.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	//TTree* tree = readWriteTree(rawTree);
 
@@ -69,8 +70,10 @@ int main(int argc, char* argv[]) {
 	TTree treeTS("TimeSumPeaks", "simple tree that stores timesum peaks and sigma");
 	//Cant store strings in tree?
 	Double_t peak, sigma, error;
-	//Text_t layer;
-	//treeTS.Branch("Layer", &layer);
+	//Will define layer numbers in configuration.h file
+	//not sure if text/string can be stored in trees
+	Double_t layer;
+	treeTS.Branch("Layer", &layer);
 	treeTS.Branch("Peak", &peak);
 	treeTS.Branch("Sigma", &sigma);
 	treeTS.Branch("Error", &error);
@@ -84,6 +87,7 @@ int main(int argc, char* argv[]) {
 	timesums.layer_upos->Fit("gaus");
 	gStyle->SetOptFit(0011);
 	TF1 *fitu = timesums.layer_upos->GetFunction("gaus");
+	layer = CFG_LAYER_UPOS;
 	peak = fitu->GetParameter(1);
 	sigma = fitu->GetParameter(2);
 	error = fitu->GetParError(1);
@@ -95,38 +99,47 @@ int main(int argc, char* argv[]) {
 	timesums.layer_vpos->Draw();
 	timesums.layer_vpos->Fit("gaus");
 	TF1 *fitv = timesums.layer_vpos->GetFunction("gaus");
+	layer = CFG_LAYER_VPOS;
 	peak = fitv->GetParameter(1);
 	sigma = fitv->GetParameter(2);
 	error = fitv->GetParError(1);
 	treeTS.Fill();
 	c2.cd(3);
+
 	timesums.layer_wpos->Draw();
 	timesums.layer_wpos->Fit("gaus");
 	TF1 *fitw = timesums.layer_wpos->GetFunction("gaus");
+	layer = CFG_LAYER_WPOS;
 	peak = fitw->GetParameter(1);
 	sigma = fitw->GetParameter(2);
 	error = fitw->GetParError(1);
 	treeTS.Fill();
+
 	c2.cd(4);
 	timesums.layer_uneg->Draw();
 	timesums.layer_uneg->Fit("gaus");
 	TF1 *fitun = timesums.layer_uneg->GetFunction("gaus");
+	layer = CFG_LAYER_UNEG;
 	peak = fitun->GetParameter(1);
 	sigma = fitun->GetParameter(2);
 	error = fitun->GetParError(1);
 	treeTS.Fill();
+
 	c2.cd(5);
 	timesums.layer_vneg->Draw();
 	timesums.layer_vneg->Fit("gaus");
 	TF1 *fitvn = timesums.layer_vneg->GetFunction("gaus");
+	layer = CFG_LAYER_VNEG;
 	peak = fitvn->GetParameter(1);
 	sigma = fitvn->GetParameter(2);
 	error = fitvn->GetParError(1);
 	treeTS.Fill();
+
 	c2.cd(6);
 	timesums.layer_wneg->Draw();
 	timesums.layer_wneg->Fit("gaus");
 	TF1 *fitwn = timesums.layer_wneg->GetFunction("gaus");
+	layer = CFG_LAYER_WNEG;
 	peak = fitwn->GetParameter(1);
 	sigma = fitwn->GetParameter(2);
 	error = fitwn->GetParError(1);

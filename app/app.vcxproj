@@ -149,6 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="configlayers.h" />
     <ClInclude Include="DataSet.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Group.h" />
