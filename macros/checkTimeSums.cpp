@@ -12,4 +12,4 @@ using namespace std;
 //Checks timesums for each layer
 // if timesums not within 2 sigma of peak given by fitting, bad timesums
 
-//void checkTimeSums(Dataset* data){}
+//void checkTimeSums(Dataset* data){   }
