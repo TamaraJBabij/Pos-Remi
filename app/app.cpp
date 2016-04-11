@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../parsed.root");
+	TFile* rawFile = TFile::Open("../140815.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	//TTree* tree = readWriteTree(rawTree);
 
@@ -148,6 +148,9 @@ int main(int argc, char* argv[]) {
 	//Want to write timesum information to tree for accessing later in program, also to save to csv such that
 	//ts info for all runs can be accessed at later dates without rerunning code
 	treeTS.Write();
+
+	//Checks timesums are within 2sigma of fitted peak
+	void checkTimeSums(DataSet* data, TTree* treeTS);
 
 	rootapp->Run();
 

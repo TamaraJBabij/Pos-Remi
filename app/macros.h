@@ -13,5 +13,5 @@ TH1D* plotTimeSpectra(TTree* tree);
 HistogramPair plotTimeSpectraDS(DataSet* data);
 void constructEvents(DataSet* data);
 HistogramTimeSums calculateTimeSums(DataSet* data);
-void checkTimeSums(DataSet* data);
 void plotTimeSums(HistogramTimeSums timesums);
+void checkTimeSums(DataSet* data, TTree* treeTS);
