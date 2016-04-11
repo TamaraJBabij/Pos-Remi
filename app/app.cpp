@@ -20,7 +20,8 @@
 #include "Event.h"
 #include "HistogramTimeSums.h"
 #include "configlayers.h"
-
+#include "Constants.h"
+#include "FitSet.h"
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -82,6 +83,8 @@ int main(int argc, char* argv[]) {
 	//set up canvas for time sums - 3 for each detector - 6 in total
 	//TPad::Divide() specifies number of vertical and horizontal slices of canvas
 	c2.Divide(2, 3);
+	FitSet fits;
+
 	c2.cd(1);
 	timesums.layer_upos->Draw();
 	timesums.layer_upos->Fit("gaus");
@@ -92,6 +95,7 @@ int main(int argc, char* argv[]) {
 	sigma = fitu->GetParameter(2);
 	error = fitu->GetParError(1);
 	treeTS.Fill();
+	fits.setFit(u,positive,peak,error,sigma);
 	//Want to display fit parameters on timesums plots
 	//timesums.layer_upos->SetOptFit();
 
@@ -104,8 +108,9 @@ int main(int argc, char* argv[]) {
 	sigma = fitv->GetParameter(2);
 	error = fitv->GetParError(1);
 	treeTS.Fill();
-	c2.cd(3);
+	fits.setFit(v, positive, peak, error, sigma);
 
+	c2.cd(3);
 	timesums.layer_wpos->Draw();
 	timesums.layer_wpos->Fit("gaus");
 	TF1 *fitw = timesums.layer_wpos->GetFunction("gaus");
@@ -114,6 +119,7 @@ int main(int argc, char* argv[]) {
 	sigma = fitw->GetParameter(2);
 	error = fitw->GetParError(1);
 	treeTS.Fill();
+	fits.setFit(w, positive, peak, error, sigma);
 
 	c2.cd(4);
 	timesums.layer_uneg->Draw();
@@ -124,6 +130,7 @@ int main(int argc, char* argv[]) {
 	sigma = fitun->GetParameter(2);
 	error = fitun->GetParError(1);
 	treeTS.Fill();
+	fits.setFit(u, negative, peak, error, sigma);
 
 	c2.cd(5);
 	timesums.layer_vneg->Draw();
@@ -134,6 +141,7 @@ int main(int argc, char* argv[]) {
 	sigma = fitvn->GetParameter(2);
 	error = fitvn->GetParError(1);
 	treeTS.Fill();
+	fits.setFit(v, negative, peak, error, sigma);
 
 	c2.cd(6);
 	timesums.layer_wneg->Draw();
@@ -144,13 +152,14 @@ int main(int argc, char* argv[]) {
 	sigma = fitwn->GetParameter(2);
 	error = fitwn->GetParError(1);
 	treeTS.Fill();
+	fits.setFit(w, negative, peak, error, sigma);
 
 	//Want to write timesum information to tree for accessing later in program, also to save to csv such that
 	//ts info for all runs can be accessed at later dates without rerunning code
 	treeTS.Write();
 
 	//Checks timesums are within 2sigma of fitted peak
-	void checkTimeSums(DataSet* data, TTree* treeTS);
+	checkTimeSums(data, fits);
 
 	rootapp->Run();
 
