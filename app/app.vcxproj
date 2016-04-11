@@ -150,10 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configlayers.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="DataSet.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="FitData.h" />
+    <ClInclude Include="FitSet.h" />
     <ClInclude Include="Group.h" />
-    <ClInclude Include="Layers.h" />
     <ClInclude Include="HistogramPair.h" />
     <ClInclude Include="HistogramTimeSums.h" />
     <ClInclude Include="Hit.h" />
@@ -164,7 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="app.cpp" />
+    <ClCompile Include="Constants.cpp" />
     <ClCompile Include="DataSet.cpp" />
+    <ClCompile Include="FitSet.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="stdafx.cpp">
