@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../140815.root");
+	TFile* rawFile = TFile::Open("../NewParsed.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	//TTree* tree = readWriteTree(rawTree);
 
@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
 	treeTS.Write();
 
 	//Checks timesums are within 2sigma of fitted peak
-	checkTimeSums(data, fits);
+	//checkTimeSums(data, fits);
 
 	rootapp->Run();
 
