@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Hit.h"
 #include "Event.h"
+#include "Constants.h"
 
 
 //constructor mcp is the uniquely associated mcp hit
@@ -34,6 +35,17 @@ void Event::storeHitInfo(double tdiff, ChannelID channel) {
 	case ChannelID::w2:
 		// want to add tdiff to the vector u1
 		w2.push_back(tdiff);
+		break;
+	}
+}
+
+void Event::storePair(Layer layer, double hit1, double hit2){
+	LayerHit pair;
+	pair.line1 = hit1;
+	pair.line2 = hit2;
+	switch (layer) {
+	case Layer::u:
+		uPairs.push_back(pair);
 		break;
 	}
 }
