@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
 	treeTS.Write();
 
 	//Checks timesums are within 2sigma of fitted peak
-	//checkTimeSums(data, fits);
+	checkTimeSums(data, fits);
 
 	rootapp->Run();
 

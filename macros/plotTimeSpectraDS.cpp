@@ -10,8 +10,8 @@ HistogramPair plotTimeSpectraDS(DataSet* data) {
 
 	//Histogram both positive and negative MCP detector pulses, all relative to positron time
 	HistogramPair histograms;
-	histograms.positive = new TH1D("hpos", "TimeSpectrum positive", 200, -2000, 32000);
-	histograms.negative = new TH1D("hneg", "TimeSpectrum negative", 200, -2000, 32000);
+	histograms.positive = new TH1D("hpos", "TimeSpectrum positive", 1000, -2000, 32000);
+	histograms.negative = new TH1D("hneg", "TimeSpectrum negative", 1000, -2000, 32000);
 
 
 	for (Group* g : *data) {

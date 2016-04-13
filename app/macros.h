@@ -5,6 +5,7 @@
 #include "DataSet.h"
 #include "HistogramPair.h"
 #include "HistogramTimeSums.h"
+#include "FitSet.h"
 
 
 TTree* readWriteTree(TTree* tree);
@@ -14,4 +15,4 @@ HistogramPair plotTimeSpectraDS(DataSet* data);
 void constructEvents(DataSet* data);
 HistogramTimeSums calculateTimeSums(DataSet* data);
 void plotTimeSums(HistogramTimeSums timesums);
-void checkTimeSums(DataSet* data, TTree* treeTS);
+void checkTimeSums(DataSet* data, FitSet fits);
