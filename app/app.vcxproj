@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configlayers.h" />
+    <ClInclude Include="configparticletimes.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DataSet.h" />
     <ClInclude Include="Event.h" />

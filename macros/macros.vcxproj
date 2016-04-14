@@ -127,6 +127,7 @@
     <ClCompile Include="plotTimeSpectraEvents.cpp" />
     <ClCompile Include="plotTimeSums.cpp" />
     <ClCompile Include="ReadWriteTree.cpp" />
+    <ClCompile Include="checkIons.cpp" />
     <ClCompile Include="treeIO.cpp" />
   </ItemGroup>
   <ItemGroup>
