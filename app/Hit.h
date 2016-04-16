@@ -28,7 +28,7 @@ enum DetectorID
 struct Hit
 {
     ChannelID channel;
-    DetectorID detector;
+    DetectorID detector; 
     int bins;
     double time;
 };

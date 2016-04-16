@@ -13,11 +13,11 @@ using namespace std;
 */
 enum ParticleID
 {
-	ParticleID_unknown,
-	ParticleID_positron,
-	ParticleID_electron,
-	ParticleID_ion1,
-	ParticleID_ion2
+	other,
+	positron,
+	electron,
+	ion1,
+	ion2
 };
 
 /*

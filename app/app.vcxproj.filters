@@ -63,6 +63,9 @@
     <ClInclude Include="configparticletimes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MCPTDiff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FitSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCPTDiff.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

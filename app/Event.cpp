@@ -2,7 +2,7 @@
 #include "Hit.h"
 #include "Event.h"
 #include "Constants.h"
-
+#include "MCPTDiff.h"
 
 //constructor mcp is the uniquely associated mcp hit
 Event::Event(Hit* _mcp) {
@@ -48,4 +48,9 @@ void Event::storePair(Layer layer, double hit1, double hit2){
 		uPairs.push_back(pair);
 		break;
 	}
+}
+
+
+void Event::storeMCPTDiff(ParticleID particle, DetectorID detector, double timediff) {
+
 }

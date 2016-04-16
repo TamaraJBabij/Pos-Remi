@@ -4,6 +4,8 @@
 #include "Hit.h"
 #include "LayerHit.h"
 #include "Constants.h"
+#include "MCPTDiff.h"
+
 
 //stores the associated layer hits for the mcp hit 
 //layer hit object - store layer hits with appropriate timesums
@@ -22,6 +24,7 @@ public:
 	Event(Hit* mcp);
 	void storeHitInfo(double tdiff, ChannelID channel);
 	void storePair(Layer layer, double line1, double line2);
+	void storeMCPTDiff(ParticleID particle, DetectorID detector, double time);
 	Hit* mcp;
 	vector<double> u1;
 	vector<double> u2;
@@ -29,5 +32,12 @@ public:
 	vector<double> v2;
 	vector<double> w1;
 	vector<double> w2;
+	//time relative to positron
+	// for positron hits this will be zero  
+	//assuming positron is first hit on the detector
+	vector<MCPTDiff> pos;
+	vector<MCPTDiff> ion;
+	vector<MCPTDiff> other;
+	vector<MCPTDiff> elec;
 
 };
