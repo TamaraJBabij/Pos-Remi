@@ -47,10 +47,21 @@ void Event::storePair(Layer layer, double hit1, double hit2){
 	case Layer::u:
 		uPairs.push_back(pair);
 		break;
+	case Layer::v:
+		vPairs.push_back(pair);
+		break;
+	case Layer::w:
+		wPairs.push_back(pair);
+		break;
 	}
 }
 
 
-void Event::storeMCPTDiff(ParticleID particle, DetectorID detector, double timediff) {
+
+void Event::storeMCPTDiff(ParticleID particle, double timediff) {
 	//store particle and timediff in some reasonable variables
+	MCPTDiff reltimediff;
+	reltimediff.particle = particle;
+	reltimediff.timediff = timediff;
+
 }

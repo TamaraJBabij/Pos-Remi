@@ -60,9 +60,6 @@
     <ClInclude Include="FitSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="configparticletimes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MCPTDiff.h">
       <Filter>Header Files</Filter>
     </ClInclude>

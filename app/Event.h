@@ -24,7 +24,7 @@ public:
 	Event(Hit* mcp);
 	void storeHitInfo(double tdiff, ChannelID channel);
 	void storePair(Layer layer, double line1, double line2);
-	void storeMCPTDiff(ParticleID particle, DetectorID detector, double time);
+	void storeMCPTDiff(ParticleID particle, double timediff);
 	Hit* mcp;
 	vector<double> u1;
 	vector<double> u2;
@@ -35,9 +35,11 @@ public:
 	//time relative to positron
 	// for positron hits this will be zero  
 	//assuming positron is first hit on the detector
-	vector<MCPTDiff> pos;
-	vector<MCPTDiff> ion;
-	vector<MCPTDiff> other;
-	vector<MCPTDiff> elec;
+	//vector<MCPTDiff> pos;
+	//vector<MCPTDiff> ion;
+	//vector<MCPTDiff> other;
+	//vector<MCPTDiff> elec;
+
+	vector<MCPTDiff> reltimediff;
 
 };

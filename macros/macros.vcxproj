@@ -122,6 +122,7 @@
     <ClCompile Include="checkTimeSums.cpp" />
     <ClCompile Include="constructEvents.cpp" />
     <ClCompile Include="firstCut.cpp" />
+    <ClCompile Include="identifyAndTime.cpp" />
     <ClCompile Include="plotTimeSpectra.cpp" />
     <ClCompile Include="plotTimeSpectraDS.cpp" />
     <ClCompile Include="plotTimeSpectraEvents.cpp" />
@@ -131,6 +132,7 @@
     <ClCompile Include="treeIO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\app\configparticletimes.h" />
     <ClInclude Include="configuration.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -48,9 +48,15 @@
     <ClCompile Include="checkIons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="identifyAndTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configuration.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\configparticletimes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
