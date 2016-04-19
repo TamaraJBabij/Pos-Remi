@@ -14,6 +14,17 @@ enum Charge {
 	negative
 };
 
+/*
+Enum for each possible particle type
+*/
+enum ParticleID
+{
+	other,
+	positron,
+	electron,
+	ion1,
+	ion2
+};
 
 struct Constants {
 	static const vector<Layer> layers;

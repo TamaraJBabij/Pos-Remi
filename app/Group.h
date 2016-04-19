@@ -1,24 +1,12 @@
 #ifndef GROUP_H
 #define GROUP_H
 
+#include "stdafx.h"
 #include <vector>
 #include <string>
 #include "Hit.h"
 #include "Event.h"
 
-
-using namespace std;
-/*
-	Enum for each possible particle type
-*/
-enum ParticleID
-{
-	other,
-	positron,
-	electron,
-	ion1,
-	ion2
-};
 
 /*
 	Reconstructed particle with position and time data

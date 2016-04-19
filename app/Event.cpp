@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Hit.h"
-#include "Event.h"
 #include "Constants.h"
+#include "Group.h"
 #include "MCPTDiff.h"
 
 //constructor mcp is the uniquely associated mcp hit

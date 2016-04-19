@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Hit.h"
-#include "group.h"
+#include "Group.h"
 #include "Constants.h"
 
 

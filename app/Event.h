@@ -11,7 +11,6 @@
 //layer hit object - store layer hits with appropriate timesums
 //appropriate timesum is defined as nsigma within peak as fitted by gaus
 
-using namespace std;
 
 class Event
 {
