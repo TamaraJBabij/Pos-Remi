@@ -16,3 +16,4 @@ void constructEvents(DataSet* data);
 HistogramTimeSums calculateTimeSums(DataSet* data);
 void plotTimeSums(HistogramTimeSums timesums);
 void checkTimeSums(DataSet* data, FitSet fits);
+void identifyAndTime(DataSet* data);

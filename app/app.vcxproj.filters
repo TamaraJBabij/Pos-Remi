@@ -86,8 +86,5 @@
     <ClCompile Include="FitSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCPTDiff.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

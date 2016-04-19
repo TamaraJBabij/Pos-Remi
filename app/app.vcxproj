@@ -172,7 +172,6 @@
     <ClCompile Include="FitSet.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Event.cpp" />
-    <ClCompile Include="MCPTDiff.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
