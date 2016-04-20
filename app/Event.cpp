@@ -60,7 +60,6 @@ void Event::storePair(Layer layer, double hit1, double hit2){
 
 void Event::storeMCPTDiff(ParticleID particle, double timediff) {
 	//store particle and timediff in some reasonable variables
-	MCPTDiff reltimediff;
 	reltimediff.particle = particle;
 	reltimediff.timediff = timediff;
 

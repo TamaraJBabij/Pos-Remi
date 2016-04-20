@@ -17,14 +17,29 @@
 void selectPosIonElec(DataSet* data) {
 	// want to index number of particles and bool triple for each each group
 	for (Group* g : *data) {
-		double PosCheck = 0;
-		double ElecCheck = 0;
-		double IonCheck = 0;
-		double UnidentCheck = 0;
+		int PosCheck = 0;
+		int ElecCheck = 0;
+		int Ion1Check = 0;
+		int Ion2Check = 0;
+		int UnidentCheck = 0;
 		for (Event e : g->events) {
 			//index particle ids
-			switch (e.reltimediff) {
-
+			switch (e.reltimediff.particle) {
+			case positron:
+				PosCheck++;
+				break;
+			case electron:
+				ElecCheck++;
+				break;
+			case ion1:
+				Ion1Check++;
+				break;
+			case ion2:
+				Ion2Check++;
+				break;
+			default:
+				UnidentCheck++;
+				break;
 			}	
 		}
 	}

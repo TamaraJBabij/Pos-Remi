@@ -41,6 +41,6 @@ public:
 	
 
 
-	vector<MCPTDiff> reltimediff;
+	MCPTDiff reltimediff;
 
 };
