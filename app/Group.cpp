@@ -55,3 +55,13 @@ vector<Hit*>::iterator Group::end() {
 vector<Hit*>* Group::getHits(){
 	return &rawData;
 }
+
+void Group::storeTripleCheck(double PosCheck, double ElecCheck, double IonCheck, double UnidentCheck, bool TripleCoinc) {
+	//store number of particle types and whether group fits triple coincidence criteria 
+	TripleCheck particles;
+	particles.PosCheck = PosCheck;
+	particles.ElecCheck = ElecCheck;
+	particles.IonCheck = IonCheck;
+	particles.UnidentCheck = UnidentCheck;
+	particles.TripleCoinc = TripleCoinc;
+}

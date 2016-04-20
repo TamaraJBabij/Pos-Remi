@@ -63,6 +63,9 @@
     <ClInclude Include="MCPTDiff.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TripleCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

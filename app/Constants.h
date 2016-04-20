@@ -19,7 +19,7 @@ Enum for each possible particle type
 */
 enum ParticleID
 {
-	other,
+	unidentified,
 	positron,
 	electron,
 	ion1,
