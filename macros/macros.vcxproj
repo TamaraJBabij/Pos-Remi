@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\app\checkReconstructable.cpp" />
     <ClCompile Include="calculateTimeSums.cpp" />
     <ClCompile Include="checkTimeSums.cpp" />
     <ClCompile Include="constructEvents.cpp" />

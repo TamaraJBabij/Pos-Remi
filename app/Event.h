@@ -5,6 +5,8 @@
 #include "LayerHit.h"
 #include "Constants.h"
 #include "MCPTDiff.h"
+#include "ReconBool.h"
+
 
 
 //stores the associated layer hits for the mcp hit 
@@ -24,6 +26,8 @@ public:
 	void storeHitInfo(double tdiff, ChannelID channel);
 	void storePair(Layer layer, double line1, double line2);
 	void storeMCPTDiff(ParticleID particle, double timediff);
+	void Event::storeReconBool(bool reconstructable);
+
 	Hit* mcp;
 	vector<double> u1;
 	vector<double> u2;
@@ -39,7 +43,6 @@ public:
 	//vector<MCPTDiff> other;
 	//vector<MCPTDiff> elec;
 	
-
 
 	MCPTDiff reltimediff;
 

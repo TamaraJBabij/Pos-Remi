@@ -3,6 +3,7 @@
 #include "Constants.h"
 #include "Group.h"
 #include "MCPTDiff.h"
+#include "ReconBool.h"
 
 //constructor mcp is the uniquely associated mcp hit
 Event::Event(Hit* _mcp) {
@@ -63,4 +64,9 @@ void Event::storeMCPTDiff(ParticleID particle, double timediff) {
 	reltimediff.particle = particle;
 	reltimediff.timediff = timediff;
 
+}
+
+void Event::storeReconBool(bool recon) {
+	//store the boolean
+	reconPos.reconInfo = recon;
 }

@@ -16,6 +16,8 @@
  
 void selectPosIonElec(DataSet* data) {
 	// want to index number of particles and bool triple for each each group
+	//Should first check that each event has enough layer hits to be reconstructed 
+	//if ion then set bool to true automatically, otherwise check layer hits
 	for (Group* g : *data) {
 		int PosCheck = 0;
 		int ElecCheck = 0;

@@ -17,3 +17,4 @@ HistogramTimeSums calculateTimeSums(DataSet* data);
 void plotTimeSums(HistogramTimeSums timesums);
 void checkTimeSums(DataSet* data, FitSet fits);
 void identifyAndTime(DataSet* data);
+void selectPosIonElec(DataSet* data);
