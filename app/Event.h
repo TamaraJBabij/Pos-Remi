@@ -17,9 +17,7 @@
 class Event
 {
 private:
-	vector<LayerHit> uPairs;
-	vector<LayerHit> vPairs;
-	vector<LayerHit> wPairs;
+
 
 public:
 	Event(Hit* mcp);
@@ -42,7 +40,11 @@ public:
 	//vector<MCPTDiff> ion;
 	//vector<MCPTDiff> other;
 	//vector<MCPTDiff> elec;
+	vector<LayerHit> uPairs;
+	vector<LayerHit> vPairs;
+	vector<LayerHit> wPairs;
 	
+	ReconBool reconPos;
 
 	MCPTDiff reltimediff;
 
