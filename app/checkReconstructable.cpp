@@ -13,9 +13,10 @@
 //any pos or elec need to have atleast two layer hits
 //if true assign a bool to event
 
-void checkReconstrutable(DataSet* data) {
+void checkReconstructable(DataSet* data) {
+	//checks has enough layer hits to reconstruct a position
 	for (Group* g : *data) {
-			for (Event e : g->events) {
+		for (Event e : g->events) {
 			//index particle ids
 			//Want these values to reset for each event, bette rplacement here
 			int uCheck = 0;
@@ -26,16 +27,47 @@ void checkReconstrutable(DataSet* data) {
 				e.storeReconBool(true);
 			}
 			if (e.reltimediff.particle == positron) {
-				//need to nwo somehow check that ther eis atleast to LayerHits 
+				//need to know somehow check that there is atleast two LayerHits 
 				//(and in each layer hit there is no more than 1 set)
 				//is switch best way of doing this?
 				//get vector size, want 2
-				
+				//switch (e.uPairs.size())
+					//case 2:
+					//uCheck++;
+					//case >2:
+				int uSize = e.uPairs.size();
+				int vSize = e.vPairs.size();
+				int wSize = e.wPairs.size();
+				if (uSize == 2) {
+					//adds to ucheck +1
+					uCheck++;
+				}
+				if (vSize == 2) {
+					vCheck++;
+				}
+				if (wSize == 2) {
+					wCheck++;
+				}
+				if (uCheck + vCheck + wCheck >= 2) {
+					e.storeReconBool(true);
+				}
 			}
-			if (e.reltimediff.particle == electron) {
-
+				if (e.reltimediff.particle == electron) {
+					int uSize = e.uPairs.size();
+					int vSize = e.vPairs.size();
+					int wSize = e.wPairs.size();
+					if (uSize == 2) {
+						//adds to ucheck +1
+						uCheck++;
+					}
+					if (vSize == 2) {
+						vCheck++;
+					}
+					if (wSize == 2) {
+						wCheck++;
+					}
+				}
 			}
-		}
 	}
 }
 

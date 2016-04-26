@@ -8,6 +8,7 @@
 #include <vector>
 #include "Constants.h"
 #include "MCPTDiff.h"
+#include "..\app\macros.h"
 
 //selects out events with a pos, ion and elec 
 //(still need to make sure elec and pos have enough info to reconstruct position)
@@ -46,3 +47,4 @@ void selectPosIonElec(DataSet* data) {
 		}
 	}
 }
+

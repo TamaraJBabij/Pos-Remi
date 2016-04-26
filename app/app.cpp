@@ -143,7 +143,7 @@ int main(int argc, char* argv[]) {
 	treeTS.Fill();
 	fits.setFit(v, negative, peak, error, sigma);
 
-	c2.cd(6);
+	c2.cd(6); 
 	timesums.layer_wneg->Draw();
 	timesums.layer_wneg->Fit("gaus");
 	TF1 *fitwn = timesums.layer_wneg->GetFunction("gaus");
@@ -169,6 +169,15 @@ int main(int argc, char* argv[]) {
 	// want to index number of particles and bool triple for each each group
 	selectPosIonElec(data);
 
+	//check each particle hit has enough information to reconstruct X Y position
+	//not needed for ion
+	checkReconstructable(data);
+
+	//now need to check for all three particles (ion, pos, elec) and that the pos and elec have a reconBool
+
+	//calculate pitch propogation
+
+	//Convert time to position info
 
 	rootapp->Run();
 

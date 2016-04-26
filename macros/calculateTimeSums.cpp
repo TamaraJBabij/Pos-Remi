@@ -36,7 +36,7 @@ HistogramTimeSums calculateTimeSums(DataSet* data) {
 	for (Group* g : *data) {
 		for (Event e : g->events) {
 			//positive detector layer hits
-			if (e.mcp->detector == pos) {
+ 			if (e.mcp->detector == pos) {
 				for (double u1tdiff : e.u1) {
 					for (double u2tdiff : e.u2) {
 						timesums.layer_upos->Fill(u1tdiff + u2tdiff);

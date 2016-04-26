@@ -6,6 +6,7 @@
 #include "HistogramPair.h"
 #include "HistogramTimeSums.h"
 #include "FitSet.h"
+#include "Event.h"
 
 
 TTree* readWriteTree(TTree* tree);
@@ -18,3 +19,6 @@ void plotTimeSums(HistogramTimeSums timesums);
 void checkTimeSums(DataSet* data, FitSet fits);
 void identifyAndTime(DataSet* data);
 void selectPosIonElec(DataSet* data);
+void checkReconstructable(DataSet* data);
+
+
