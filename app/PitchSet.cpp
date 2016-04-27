@@ -3,30 +3,25 @@
 #include <vector>
 #include "Constants.h"
 
-PitchPropSet::PitchPropSet() {
-	posPitch = vector<PitchPropData>(3, PitchPropData());
-	negPitch = vector<PitchPropData>(3, PitchPropData());
-}
-
-void PitchPropSet::setPitchProp(Layer layer, Charge charge, double ulayer, double vlayer, double wlayer) {
+void PitchPropSet::setPitchProp(Charge charge, double ulayer, double vlayer, double wlayer) {
 	PitchPropData data;
 	data.ulayer = ulayer;
 	data.vlayer = vlayer;
 	data.wlayer = wlayer;
 
 	if (charge == positive) {
-		posPitch[layer] = data;
+		posPitch = data;
 	}
 	else {
-		negPitch[layer] = data;
+		negPitch = data;
 	}
 }
 
-PitchPropData PitchPropSet::getPitchProp(Layer layer, Charge charge) {
+PitchPropData PitchPropSet::getPitchProp(Charge charge) {
 	if (charge == positive) {
-		return posPitch.at(layer);
+		return posPitch;
 	}
 	else {
-		return negPitch.at(layer);
+		return negPitch;
 	}
 }

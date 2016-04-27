@@ -10,10 +10,9 @@ using namespace std;
 
 class PitchPropSet {
 private:
-	vector<PitchPropData> posPitch;
-	vector<PitchPropData> negPitch;
+	PitchPropData posPitch;
+	PitchPropData negPitch;
 public:
-	PitchPropSet();
-	void setPitchProp(Layer layer, Charge charge, double peak, double error, double sigma);
-	PitchPropData getPitchProp(Layer layer, Charge charge);
+	void setPitchProp(Charge charge, double ulayer, double vlayer, double wlayer);
+	PitchPropData getPitchProp(Charge charge);
 };
