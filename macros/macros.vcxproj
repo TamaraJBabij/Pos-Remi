@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="..\app\configparticletimes.h" />
     <ClInclude Include="configuration.h" />
+    <ClInclude Include="LayerLengthsConfig.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

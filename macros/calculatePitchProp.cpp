@@ -4,15 +4,19 @@
 #include "Hit.h"
 #include "Event.h"
 #include "stdafx.h"
-#include "configparticletimes.h"
+#include "LayerLengthsConfig.h"
 #include <vector>
 #include "Constants.h"
 #include "MCPTDiff.h"
 #include "FitSet.h"
-#include "FitSet.h"
 #include "FitData.h"
+#include "PitchPropSet.h"
+#include "PitchData.h"
+
 
 //caluculates pitch propogation required for reconstruction of coordinates
-void calculatePitchProp(DataSet* data, FitSet fits) {
-	// rought calculation for pitch propogation
+PitchPropData* calculatePitchProp(FitSet fits) {
+	// rough calculation for pitch propogation
+	//need to getFits to make info public
+
 }

@@ -68,5 +68,8 @@
     <ClInclude Include="..\app\configparticletimes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="LayerLengthsConfig.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -69,6 +69,12 @@
     <ClInclude Include="ReconBool.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="PitchPropSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PitchData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -90,6 +96,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FitSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PitchSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

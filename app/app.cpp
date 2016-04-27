@@ -176,6 +176,7 @@ int main(int argc, char* argv[]) {
 	//now need to check for all three particles (ion, pos, elec) and that the pos and elec have a reconBool
 
 	//calculate pitch propogation
+	//calculatePitchProp(data, fits);
 
 	//Convert time to position info
 

@@ -20,5 +20,6 @@ void checkTimeSums(DataSet* data, FitSet fits);
 void identifyAndTime(DataSet* data);
 void selectPosIonElec(DataSet* data);
 void checkReconstructable(DataSet* data);
+//void calculatePitchProp(Dataset* data, FitSet fits);
 
 
