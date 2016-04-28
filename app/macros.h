@@ -7,6 +7,7 @@
 #include "HistogramTimeSums.h"
 #include "FitSet.h"
 #include "Event.h"
+#include "PitchPropSet.h"
 
 
 TTree* readWriteTree(TTree* tree);
@@ -20,6 +21,6 @@ void checkTimeSums(DataSet* data, FitSet fits);
 void identifyAndTime(DataSet* data);
 void selectPosIonElec(DataSet* data);
 void checkReconstructable(DataSet* data);
-//void calculatePitchProp(Dataset* data, FitSet fits);
+PitchPropSet calculatePitchProp(FitSet fits);
 
 

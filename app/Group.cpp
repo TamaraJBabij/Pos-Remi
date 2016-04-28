@@ -44,7 +44,7 @@ void Group::addEvent(Event e)
 
 //as defined in header file (see comments for explanation)
 // when using an object as a data container end and begin functions must exist (in c++)
-// allows looping through trhe dataset which loops through the groups in the vector
+// allows looping through the dataset which loops through the groups in the vector
 vector<Hit*>::iterator Group::begin() {
 	return rawData.begin();
 }
@@ -56,12 +56,13 @@ vector<Hit*>* Group::getHits(){
 	return &rawData;
 }
 
-void Group::storeTripleCheck(double PosCheck, double ElecCheck, double IonCheck, double UnidentCheck, bool TripleCoinc) {
+void Group::storeTripleCheck(double PosCheck, double ElecCheck, double Ion1Check, double Ion2Check, double UnidentCheck, bool TripleCoinc) {
 	//store number of particle types and whether group fits triple coincidence criteria 
 	TripleCheck particles;
 	particles.PosCheck = PosCheck;
 	particles.ElecCheck = ElecCheck;
-	particles.IonCheck = IonCheck;
+	particles.Ion1Check = Ion1Check;
+	particles.Ion2Check = Ion2Check;
 	particles.UnidentCheck = UnidentCheck;
 	particles.TripleCoinc = TripleCoinc;
 }

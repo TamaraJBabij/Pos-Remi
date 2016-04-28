@@ -25,6 +25,7 @@ void selectPosIonElec(DataSet* data) {
 		int Ion1Check = 0;
 		int Ion2Check = 0;
 		int UnidentCheck = 0;
+		bool TripleCoinc;
 		for (Event e : g->events) {
 			//index particle ids
 			switch (e.reltimediff.particle) {
@@ -43,8 +44,15 @@ void selectPosIonElec(DataSet* data) {
 			default:
 				UnidentCheck++;
 				break;
-			}	
+			}
 		}
+		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 && UnidentCheck == 0) {
+			TripleCoinc = true;
+		}
+		else {
+			TripleCoinc = false;
+		}
+		g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
 	}
 }
 

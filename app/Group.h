@@ -66,7 +66,7 @@ public:
 	// allows for easy looping through Group
 	vector<Hit*>::iterator begin();
 	vector<Hit*>::iterator end();
-	void storeTripleCheck(double PosCheck, double ElecCheck, double IonCheck, double OtherCheck, bool TripleCoinc);
+	void storeTripleCheck(double PosCheck, double ElecCheck, double Ion1Check, double Ion2Check, double OtherCheck, bool TripleCoinc);
 
 	vector<TripleCheck> particles;
 };

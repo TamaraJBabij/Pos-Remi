@@ -15,7 +15,7 @@
 
 
 //caluculates pitch propogation required for reconstruction of coordinates
-PitchPropSet* calculatePitchProp(FitSet fits) {
+PitchPropSet calculatePitchProp(FitSet fits) {
 	// rough calculation for pitch propogation
 	//need to getFits to make info public
 	double upospitch;
@@ -25,7 +25,7 @@ PitchPropSet* calculatePitchProp(FitSet fits) {
 	double vnegpitch;
 	double wnegpitch;
 
-	PitchPropSet* Pitches;
+	PitchPropSet Pitches;
 
 	//pitch prop for positive detector, u layer
 	FitData uposfit = fits.getFit(u, positive);
@@ -45,8 +45,8 @@ PitchPropSet* calculatePitchProp(FitSet fits) {
 	//pitch prop for negative detector, w layer
 	FitData wnegfit = fits.getFit(w, negative);
 	wnegpitch = LENGTH_eW / wnegfit.peak;
-	Pitches->setPitchProp(positive, upospitch, vpospitch, wpospitch);
-	Pitches->setPitchProp(negative, unegpitch, vnegpitch, wnegpitch);
+	Pitches.setPitchProp(positive, upospitch, vpospitch, wpospitch);
+	Pitches.setPitchProp(negative, unegpitch, vnegpitch, wnegpitch);
 	return Pitches;
 
 }

@@ -66,6 +66,9 @@ void checkReconstructable(DataSet* data) {
 					if (wSize == 2) {
 						wCheck++;
 					}
+					if (uCheck + vCheck + wCheck >= 2) {
+						e.storeReconBool(true);
+					}
 				}
 			}
 	}

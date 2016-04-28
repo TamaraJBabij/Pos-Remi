@@ -8,7 +8,8 @@ struct TripleCheck
 {
 	double PosCheck;
 	double ElecCheck;
-	double IonCheck;
+	double Ion1Check;
+	double Ion2Check;
 	double UnidentCheck;
 	bool TripleCoinc;
 };

@@ -161,7 +161,7 @@ int main(int argc, char* argv[]) {
 	//Checks timesums are within 2sigma of fitted peak
 	checkTimeSums(data, fits);
 
-	//takes timedifferences of MCP hits for each event wqithin a group
+	//takes timedifferences of MCP hits for each event within a group
 	//identifies particle and stores in MCPTDiff double
 	//stored is the particleID and timedifference relative to positron
 	identifyAndTime(data);
@@ -176,7 +176,7 @@ int main(int argc, char* argv[]) {
 	//now need to check for all three particles (ion, pos, elec) and that the pos and elec have a reconBool
 
 	//calculate pitch propogation
-	//calculatePitchProp(data, fits);
+	calculatePitchProp(fits);
 
 	//Convert time to position info
 

@@ -60,6 +60,15 @@
     <ClCompile Include="calculatePitchProp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="positionPos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="positionElec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sortReconData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configuration.h">
