@@ -37,7 +37,7 @@ private:
     int id;
 
 	//Final particle information
-	Particle electron, positron, ion;
+	//Particle electron, positron, ion;
 
 	//Raw data of Hits from file
 	vector<Hit*> rawData;
@@ -69,5 +69,9 @@ public:
 	void storeTripleCheck(double PosCheck, double ElecCheck, double Ion1Check, double Ion2Check, double OtherCheck, bool TripleCoinc);
 
 	TripleCheck particles;
+
+	Particle electron;
+	Particle positron;
+	Particle ion;
 };
 #endif

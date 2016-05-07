@@ -123,6 +123,8 @@
     <ClCompile Include="calculateTimeSums.cpp" />
     <ClCompile Include="checkTimeSums.cpp" />
     <ClCompile Include="constructEvents.cpp" />
+    <ClCompile Include="convertCartesian.cpp" />
+    <ClCompile Include="convertLayerPosition.cpp" />
     <ClCompile Include="firstCut.cpp" />
     <ClCompile Include="identifyAndTime.cpp" />
     <ClCompile Include="plotTimeSpectra.cpp" />

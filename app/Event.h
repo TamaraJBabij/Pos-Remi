@@ -49,4 +49,8 @@ public:
 
 	MCPTDiff reltimediff;
 
+	double U;
+	double V;
+	double W;
+
 };
