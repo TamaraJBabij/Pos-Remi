@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../02102015.root");
+	TFile* rawFile = TFile::Open("../09102015.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	//TTree* tree = readWriteTree(rawTree);
 
@@ -178,7 +178,15 @@ int main(int argc, char* argv[]) {
 	//calculate pitch propogation
 	calculatePitchProp(fits);
 
-	//Convert time to position info
+	//Copy over triple coincidences with reconstrutable particle hits to new dataset
+
+
+
+	/** 
+	 * Convert time to position info
+	 *First off need to get U,V,W from u1 u2, v1 v2, w1 w2
+	 *
+	 */
 
 	rootapp->Run();
 

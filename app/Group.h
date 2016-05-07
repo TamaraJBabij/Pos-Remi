@@ -68,6 +68,6 @@ public:
 	vector<Hit*>::iterator end();
 	void storeTripleCheck(double PosCheck, double ElecCheck, double Ion1Check, double Ion2Check, double OtherCheck, bool TripleCoinc);
 
-	vector<TripleCheck> particles;
+	TripleCheck particles;
 };
 #endif

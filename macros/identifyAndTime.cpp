@@ -72,6 +72,10 @@ void identifyAndTime(DataSet* data) {
 						}
 
 					}
+					//implemented incase multiple positrons
+					//when finds positron stops looping through events in group 
+					//(other events associated with positron still looped through)
+					break;
 				}
 			}
 		}

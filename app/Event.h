@@ -24,7 +24,8 @@ public:
 	void storeHitInfo(double tdiff, ChannelID channel);
 	void storePair(Layer layer, double line1, double line2);
 	void storeMCPTDiff(ParticleID particle, double timediff);
-	void Event::storeReconBool(bool reconstructable);
+	//As recon info public
+	//void Event::storeReconInfo(bool reconstructable);
 
 	Hit* mcp;
 	vector<double> u1;
@@ -44,7 +45,7 @@ public:
 	vector<LayerHit> vPairs;
 	vector<LayerHit> wPairs;
 	
-	ReconBool reconPos;
+	ReconInfoStruct reconstructInfo;
 
 	MCPTDiff reltimediff;
 

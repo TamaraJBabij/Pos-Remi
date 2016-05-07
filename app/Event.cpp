@@ -66,7 +66,7 @@ void Event::storeMCPTDiff(ParticleID particle, double timediff) {
 
 }
 
-void Event::storeReconBool(bool recon) {
+//void Event::storeReconBool(bool recon) {
 	//store the boolean
-	reconPos.reconInfo = recon;
-}
+	//reconPos.reconInfo = recon;
+//}

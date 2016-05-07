@@ -24,7 +24,27 @@ void checkReconstructable(DataSet* data) {
 			int wCheck = 0;
 			if (e.reltimediff.particle == ion1) {
 				//dont need any position info, just need mco hit therefore is reconstructable
-				e.storeReconBool(true);
+				int uSize = e.uPairs.size();
+				int vSize = e.vPairs.size();
+				int wSize = e.wPairs.size();
+				//As vector of layerhits (where layehits contains u1, u2)
+				//want vector length of 1!!
+				if (uSize == 1) {
+					//adds to ucheck +1
+					uCheck = 1;
+				}
+				if (vSize == 1) {
+					vCheck = 1;
+				}
+				if (wSize == 1) {
+					wCheck = 1;
+				}
+				if (uCheck + vCheck + wCheck >= 2) {
+					e.reconstructInfo = reconstructable;
+				}
+				else {
+					e.reconstructInfo = ionNoPosition;
+				}
 			}
 			if (e.reltimediff.particle == positron) {
 				//need to know somehow check that there is atleast two LayerHits 
@@ -38,36 +58,44 @@ void checkReconstructable(DataSet* data) {
 				int uSize = e.uPairs.size();
 				int vSize = e.vPairs.size();
 				int wSize = e.wPairs.size();
-				if (uSize == 2) {
+				//As vector of layerhits (where layehits contains u1, u2)
+				//want vector length of 1!!
+				if (uSize == 1) {
 					//adds to ucheck +1
-					uCheck++;
+					uCheck = 1;
 				}
-				if (vSize == 2) {
-					vCheck++;
+				if (vSize == 1) {
+					vCheck = 1;
 				}
-				if (wSize == 2) {
-					wCheck++;
+				if (wSize == 1) {
+					wCheck = 1;
 				}
 				if (uCheck + vCheck + wCheck >= 2) {
-					e.storeReconBool(true);
+					e.reconstructInfo = reconstructable;
+				}
+				else {
+					e.reconstructInfo = notReconstructable;
 				}
 			}
 				if (e.reltimediff.particle == electron) {
 					int uSize = e.uPairs.size();
 					int vSize = e.vPairs.size();
 					int wSize = e.wPairs.size();
-					if (uSize == 2) {
+					if (uSize == 1) {
 						//adds to ucheck +1
-						uCheck++;
+						uCheck = 1;
 					}
-					if (vSize == 2) {
-						vCheck++;
+					if (vSize == 1) {
+						vCheck = 1;
 					}
-					if (wSize == 2) {
-						wCheck++;
+					if (wSize == 1) {
+						wCheck = 1;
 					}
 					if (uCheck + vCheck + wCheck >= 2) {
-						e.storeReconBool(true);
+						e.reconstructInfo = reconstructable;
+					}
+					else {
+						e.reconstructInfo = notReconstructable;
 					}
 				}
 			}
