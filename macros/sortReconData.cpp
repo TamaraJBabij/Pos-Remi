@@ -14,6 +14,8 @@
 //creates a new dataset with reconstructable data
 DataSet sortReconData(DataSet* data) {
 	DataSet reconData;
+
+
 	return reconData;
 	//sort out useful data groups
 	for (Group* g : *data) {
