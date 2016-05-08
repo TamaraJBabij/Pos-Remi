@@ -176,17 +176,19 @@ int main(int argc, char* argv[]) {
 	//now need to check for all three particles (ion, pos, elec) and that the pos and elec have a reconBool
 
 	//calculate pitch propogation
-	calculatePitchProp(fits);
+	PitchPropSet Pitches = calculatePitchProp(fits);
 
 	//Copy over triple coincidences with reconstrutable particle hits to new dataset
 
 
-
+	DataSet *reconData = sortReconData(DataSet *data);
 	/** 
 	 * Convert time to position info
 	 *First off need to get U,V,W from u1 u2, v1 v2, w1 w2
 	 *
 	 */
+	convertLayerPosition(*reconData, Pitches);
+
 
 	rootapp->Run();
 

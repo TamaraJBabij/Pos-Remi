@@ -22,7 +22,7 @@ void identifyAndTime(DataSet* data);
 void selectPosIonElec(DataSet* data);
 void checkReconstructable(DataSet* data);
 PitchPropSet calculatePitchProp(FitSet fits);
-DataSet sortReconData(DataSet* data);
+DataSet* sortReconData(DataSet* data);
 void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches);
 void convertCartesianPosition(DataSet* reconData);
 

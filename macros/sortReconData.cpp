@@ -12,11 +12,10 @@
 #include "TripleCheck.h"
 
 //creates a new dataset with reconstructable data
-DataSet sortReconData(DataSet* data) {
-	DataSet reconData;
+DataSet* sortReconData(DataSet* data) {
+	DataSet* reconData = new DataSet();
 
 
-	return reconData;
 	//sort out useful data groups
 	for (Group* g : *data) {
 		if (g->particles.TripleCoinc) {
@@ -31,8 +30,10 @@ DataSet sortReconData(DataSet* data) {
 			 if (recon == true) {
 				 //stores a pointer to the group
 				 //therefore reconData wiull contains pointers to all relevant groups
-				 reconData.addGroup(g);
+				 reconData->addGroup(g);
 			 }
 		}
 	}
+
+	return reconData;
 }
