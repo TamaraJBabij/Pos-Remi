@@ -28,6 +28,7 @@ void identifyAndTime(DataSet* data) {
 					reltimezero = e.mcp->time;
 					double postime = 0;
 					e.storeMCPTDiff(positron, postime);
+					//cout << "positron identified" << endl;
 					//now go through all other event mcp times and identify and find rel pos time
 					for (Event other : g->events) {
 						//loops through all events in group g that are NOT the positron
@@ -46,12 +47,14 @@ void identifyAndTime(DataSet* data) {
 									double ion1time;
 									ion1time = reltimezero - other.mcp->time;
 									other.storeMCPTDiff(ion1, ion1time);
+									//cout << "ion1 identified" << endl;
 								}
 								else if (other.mcp->time < ION2_TIME_MAX && other.mcp->time > ION2_TIME_MIN) {
 									//is Ar++
 									double ion2time;
 									ion2time = reltimezero - other.mcp->time;
 									other.storeMCPTDiff(ion2, ion2time);
+									//cout << "ion2 identified" << endl;
 								}
 								else
 								{
@@ -59,6 +62,7 @@ void identifyAndTime(DataSet* data) {
 									double unidenttime;
 									unidenttime = reltimezero - other.mcp->time;
 									other.storeMCPTDiff(unidentified, unidenttime);
+									//cout << "unidentified" << endl;
 								}
 							}
 							else if (other.mcp->detector == neg) {
@@ -68,6 +72,7 @@ void identifyAndTime(DataSet* data) {
 								electime = reltimezero - other.mcp->time;
 								//store relative electron time and particleID
 								other.storeMCPTDiff(electron, electime);
+								//cout << "electron identified" << endl;
 							}
 						}
 

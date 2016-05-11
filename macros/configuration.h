@@ -38,8 +38,7 @@
 #define CFG_DELAY_ELEC_W2_S 18
 
 //setting max and min positron times
-#define POS_MAX_NS 2100
-#define POS_MIN_NS 1900
+
 
 //setting max and min ion times
 

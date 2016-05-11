@@ -1,6 +1,6 @@
 #pragma once
 //layer lengths
-//lengths are in cm
+//lengths are in mm
 //perpendicular distance
 
 #define LENGTH_pU 81.2

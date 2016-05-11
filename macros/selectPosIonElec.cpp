@@ -30,7 +30,8 @@ void selectPosIonElec(DataSet* data) {
 			//index particle ids
 			switch (e.reltimediff.particle) {
 			case positron:
-				PosCheck++;
+				PosCheck++; 
+				cout << "positron identified" << endl;
 				break;
 			case electron:
 				ElecCheck++;
@@ -48,9 +49,11 @@ void selectPosIonElec(DataSet* data) {
 		}
 		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 && UnidentCheck == 0) {
 			TripleCoinc = true;
+			cout << "triple coinc true" << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
 		}
 		else {
 			TripleCoinc = false;
+			cout << "triple coinc false" << PosCheck << ElecCheck << Ion1Check << Ion2Check << UnidentCheck << endl;
 		}
 		g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
 	}

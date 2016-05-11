@@ -158,6 +158,7 @@
     <ClInclude Include="Group.h" />
     <ClInclude Include="HistogramPair.h" />
     <ClInclude Include="HistogramTimeSums.h" />
+    <ClInclude Include="HistogramXY.h" />
     <ClInclude Include="Hit.h" />
     <ClInclude Include="LayerHit.h" />
     <ClInclude Include="macros.h" />

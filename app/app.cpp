@@ -19,6 +19,7 @@
 #include "TObject.h"
 #include "Event.h"
 #include "HistogramTimeSums.h"
+#include "HistogramXY.h"
 #include "configlayers.h"
 #include "Constants.h"
 #include "FitSet.h"
@@ -181,14 +182,21 @@ int main(int argc, char* argv[]) {
 	//Copy over triple coincidences with reconstrutable particle hits to new dataset
 
 
-	DataSet *reconData = sortReconData(DataSet *data);
+	DataSet *reconData = sortReconData(data);
 	/** 
 	 * Convert time to position info
 	 *First off need to get U,V,W from u1 u2, v1 v2, w1 w2
 	 *
 	 */
-	convertLayerPosition(*reconData, Pitches);
+	convertLayerPosition(reconData, Pitches);
 
+	convertCartesianPosition(reconData);
+
+	//histogram detector images with 2D histogram
+	HistogramXY XYpositions = histogramXYPositions(reconData);
+	//draw the detector images
+	TCanvas c3("c3", "Third Canvas");
+	XYpositions.positronDET->Draw();
 
 	rootapp->Run();
 

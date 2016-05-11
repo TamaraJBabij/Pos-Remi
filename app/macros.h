@@ -5,6 +5,7 @@
 #include "DataSet.h"
 #include "HistogramPair.h"
 #include "HistogramTimeSums.h"
+#include "HistogramXY.h"
 #include "FitSet.h"
 #include "Event.h"
 #include "PitchPropSet.h"
@@ -25,4 +26,4 @@ PitchPropSet calculatePitchProp(FitSet fits);
 DataSet* sortReconData(DataSet* data);
 void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches);
 void convertCartesianPosition(DataSet* reconData);
-
+HistogramXY histogramXYPositions(DataSet *reconData);
