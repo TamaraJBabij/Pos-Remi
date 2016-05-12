@@ -11,20 +11,20 @@
 #include "..\app\macros.h"
 #include "TripleCheck.h"
 
-using namespace std;
 //creates a new dataset with reconstructable data
 DataSet* sortReconData(DataSet* data) {
 	DataSet* reconData = new DataSet();
-
+	cout << "recon program run" << endl;
 
 	//sort out useful data groups
 	for (Group* g : *data) {
-		
-		if (g->particles.TripleCoinc) {
+		int check = g->particles.ElecCheck;
+		cout << check << endl;
+		if (g->particles.TripleCoinc == true) {
 			 bool recon = true;
-			 cout << "recon group" << endl;
-			 for (Event e : g->events) {
-				 if (e.reconstructInfo == notReconstructable) {
+			 cout << " maybe recon group" << endl;
+			 for (Event* e : g->events) {
+				 if (e->reconstructInfo == notReconstructable) {
 					 recon = false;
 					 break;
 				 }
@@ -38,6 +38,5 @@ DataSet* sortReconData(DataSet* data) {
 			 }
 		}
 	}
-
 	return reconData;
 }

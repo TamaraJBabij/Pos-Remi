@@ -49,13 +49,13 @@ public:
 	Group();
 	
 	//Events
- 	vector<Event> events;
+ 	vector<Event*> events;
 
 	//Destructor - do everything you need to when you destroy a Group object
 	~Group();
 
 	void addHit(Hit* h);
-	void addEvent(Event e);
+	void addEvent(Event* e);
 
 	int getId();
 

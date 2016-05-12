@@ -4,7 +4,6 @@
 #include "Hit.h"
 #include "Event.h"
 #include "stdafx.h"
-#include "configparticletimes.h"
 #include <vector>
 #include "Constants.h"
 #include "MCPTDiff.h"
@@ -26,12 +25,13 @@ void selectPosIonElec(DataSet* data) {
 		int Ion2Check = 0;
 		int UnidentCheck = 0;
 		bool TripleCoinc;
-		for (Event e : g->events) {
+		for (Event* e : g->events) {
 			//index particle ids
-			switch (e.reltimediff.particle) {
+			//previous switch (e.reltimediff.particle)
+			switch (e->particletype) {
 			case positron:
 				PosCheck++; 
-				cout << "positron identified" << endl;
+				//cout << "positron identified" << endl;
 				break;
 			case electron:
 				ElecCheck++;
@@ -42,18 +42,18 @@ void selectPosIonElec(DataSet* data) {
 			case ion2:
 				Ion2Check++;
 				break;
-			default:
+			case unidentified:
 				UnidentCheck++;
 				break;
 			}
 		}
 		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 && UnidentCheck == 0) {
 			TripleCoinc = true;
-			cout << "triple coinc true" << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
+			cout << "triple coinc true " << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
 		}
 		else {
 			TripleCoinc = false;
-			cout << "triple coinc false" << PosCheck << ElecCheck << Ion1Check << Ion2Check << UnidentCheck << endl;
+			cout << "triple coinc false " << PosCheck << ElecCheck << Ion1Check << Ion2Check << UnidentCheck << endl;
 		}
 		g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
 	}

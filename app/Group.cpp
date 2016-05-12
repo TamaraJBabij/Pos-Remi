@@ -35,7 +35,7 @@ void Group::addHit(Hit* h)
 
 //stores an event object in the set of groups.
 
-void Group::addEvent(Event e)
+void Group::addEvent(Event* e)
 {
 	events.push_back(e);
 }

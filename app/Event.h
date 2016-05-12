@@ -49,6 +49,11 @@ public:
 
 	MCPTDiff reltimediff;
 
+	//implemented to test if issue with MCPTDiff
+	ParticleID particletype;
+	double timefrompos;
+
+	// layers
 	double U;
 	double V;
 	double W;

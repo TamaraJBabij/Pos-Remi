@@ -14,27 +14,27 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 	PitchPropData posPitches = Pitches.getPitchProp(positive);
 	PitchPropData negPitches = Pitches.getPitchProp(negative);
 	for (Group* g : *reconData) {
-		for (Event e : g->events) {
-			if (e.mcp->detector == pos) {
-				if (e.uPairs.size() == 1) {
-					e.U = (posPitches.ulayer / 2)*(e.uPairs.front().line1 - e.uPairs.front().line1);
+		for (Event* e : g->events) {
+			if (e->mcp->detector == pos) {
+				if (e->uPairs.size() == 1) {
+					e->U = (posPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line1);
 				}
-				if (e.vPairs.size() == 1) {
-					e.V = (posPitches.vlayer / 2)*(e.vPairs.front().line1 - e.vPairs.front().line1);
+				if (e->vPairs.size() == 1) {
+					e->V = (posPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line1);
 				}
-				if (e.wPairs.size() == 1) {
-					e.W = (posPitches.wlayer / 2)*(e.wPairs.front().line1 - e.wPairs.front().line1);
+				if (e->wPairs.size() == 1) {
+					e->W = (posPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line1);
 				}
 			}
-			if (e.mcp->detector == neg) {
-				if (e.uPairs.size() == 1) {
-					e.U = (negPitches.ulayer / 2)*(e.uPairs.front().line1 - e.uPairs.front().line1);
+			if (e->mcp->detector == neg) {
+				if (e->uPairs.size() == 1) {
+					e->U = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line1);
 				}
-				if (e.vPairs.size() == 1) {
-					e.V = (negPitches.vlayer / 2)*(e.vPairs.front().line1 - e.vPairs.front().line1);
+				if (e->vPairs.size() == 1) {
+					e->V = (negPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line1);
 				}
-				if (e.wPairs.size() == 1) {
-					e.W = (negPitches.wlayer / 2)*(e.wPairs.front().line1 - e.wPairs.front().line1);
+				if (e->wPairs.size() == 1) {
+					e->W = (negPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line1);
 				}
 			}
 		}

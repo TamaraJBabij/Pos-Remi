@@ -19,11 +19,12 @@ Enum for each possible particle type
 */
 enum ParticleID
 {
-	unidentified,
+
 	positron,
 	electron,
 	ion1,
-	ion2
+	ion2,
+	unidentified
 };
 
 struct Constants {
