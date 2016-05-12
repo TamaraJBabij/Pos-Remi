@@ -18,14 +18,15 @@ DataSet* sortReconData(DataSet* data) {
 
 	//sort out useful data groups
 	for (Group* g : *data) {
-		int check = g->particles.ElecCheck;
-		cout << check << endl;
-		if (g->particles.TripleCoinc == true) {
+		//int check = g->ElecCheck;
+		//cout << check << endl;
+		if (g->TripleCoinc == true) {
 			 bool recon = true;
-			 cout << " maybe recon group" << endl;
+			 //cout << " maybe recon group" << endl;
 			 for (Event* e : g->events) {
 				 if (e->reconstructInfo == notReconstructable) {
 					 recon = false;
+					 //cout << " not recon group" << endl;
 					 break;
 				 }
 			 }
@@ -34,7 +35,7 @@ DataSet* sortReconData(DataSet* data) {
 				 //stores a pointer to the group
 				 //therefore reconData wiull contains pointers to all relevant groups
 				 reconData->addGroup(g);
-				 cout << "recon group" << endl;
+				 //cout << "recon group" << endl;
 			 }
 		}
 	}

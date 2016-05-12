@@ -14,7 +14,7 @@ HistogramXY histogramXYPositions(DataSet *reconData) {
 	//sort for particle type using 
 	//Particle is subset of event and contains time and x, y
 	HistogramXY XYpositions;
-	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 2000, -1000, 1000, 2000, -1000, 1000);
+	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 2000, -60, 60, 2000, -60, 60);
 	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 2000, -450, 450, 2000, -450, 450);
 	XYpositions.ionDET = new TH2D("ionDET", "Ions", 2000, -4.50, 4.50, 2000, -4.50, 4.50);
 

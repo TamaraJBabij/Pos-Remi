@@ -50,12 +50,24 @@ void selectPosIonElec(DataSet* data) {
 		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 && UnidentCheck == 0) {
 			TripleCoinc = true;
 			cout << "triple coinc true " << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
+			g->PosCheck = PosCheck;
+			g->ElecCheck = ElecCheck;
+			g->Ion1Check = Ion1Check;
+			g->Ion2Check = Ion2Check;
+			g->UnidentCheck = UnidentCheck;
+			g->TripleCoinc = TripleCoinc;
 		}
 		else {
 			TripleCoinc = false;
-			cout << "triple coinc false " << PosCheck << ElecCheck << Ion1Check << Ion2Check << UnidentCheck << endl;
+			//cout << "triple coinc false " << PosCheck << ElecCheck << Ion1Check << Ion2Check << UnidentCheck << endl;
+			g->PosCheck = PosCheck;
+			g->ElecCheck = ElecCheck;
+			g->Ion1Check = Ion1Check;
+			g->Ion2Check = Ion2Check;
+			g->UnidentCheck = UnidentCheck;
+			g->TripleCoinc = TripleCoinc;
 		}
-		g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
+		//g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
 	}
 }
 

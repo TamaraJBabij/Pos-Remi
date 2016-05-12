@@ -17,24 +17,28 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 		for (Event* e : g->events) {
 			if (e->mcp->detector == pos) {
 				if (e->uPairs.size() == 1) {
-					e->U = (posPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line1);
+					e->U = (posPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2);
+					//cout << e->uPairs.front().line1 << endl;
+					//cout << "U layer: " << e->U << endl;
 				}
 				if (e->vPairs.size() == 1) {
-					e->V = (posPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line1);
+					e->V = (posPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line2);
+					//cout << "V layer: " << e->V << endl;
 				}
 				if (e->wPairs.size() == 1) {
-					e->W = (posPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line1);
+					e->W = (posPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line2);
+					//cout << "W layer: " << e->W << endl;
 				}
 			}
 			if (e->mcp->detector == neg) {
 				if (e->uPairs.size() == 1) {
-					e->U = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line1);
+					e->U = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2);
 				}
 				if (e->vPairs.size() == 1) {
-					e->V = (negPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line1);
+					e->V = (negPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line2);
 				}
 				if (e->wPairs.size() == 1) {
-					e->W = (negPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line1);
+					e->W = (negPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line2);
 				}
 			}
 		}

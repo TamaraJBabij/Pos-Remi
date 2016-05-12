@@ -30,6 +30,14 @@ struct Set
 	Hit mcp, x1, x2, y1, y2, z1, z2;
 };
 
+//struct TripleCheck {
+	//double PosCheck;
+	//double ElecCheck;
+	//double Ion1Check;
+	//double Ion2Check;
+	//double UnidentCheck;
+	//bool TripleCoinc;
+//};
 
 class Group {
 private:
@@ -69,6 +77,13 @@ public:
 	void storeTripleCheck(double PosCheck, double ElecCheck, double Ion1Check, double Ion2Check, double OtherCheck, bool TripleCoinc);
 
 	TripleCheck particles;
+
+	double PosCheck;
+	double ElecCheck;
+	double Ion1Check;
+	double Ion2Check;
+	double UnidentCheck;
+	bool TripleCoinc;
 
 	Particle electron;
 	Particle positron;

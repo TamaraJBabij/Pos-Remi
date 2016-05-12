@@ -27,7 +27,7 @@ void convertCartesianPosition(DataSet* reconData) {
 			switch (e->reltimediff.particle) {
 			case positron:
 				g->positron = p;
-				//cout << "positron" << endl;
+				//cout << "positron" << " x: " << p.x << " y: " << p.y << endl;
 			case electron:
 				g->electron = p;
 				//cout << "electron" << endl;
