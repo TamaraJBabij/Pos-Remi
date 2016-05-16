@@ -45,9 +45,6 @@
     <ClCompile Include="plotTimeSpectraEvents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="checkIons.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="identifyAndTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,12 +55,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="calculatePitchProp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="positionPos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="positionElec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sortReconData.cpp">

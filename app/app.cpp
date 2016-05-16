@@ -198,6 +198,12 @@ int main(int argc, char* argv[]) {
 	TCanvas c3("c3", "Third Canvas");
 	XYpositions.positronDET->Draw();
 
+	TCanvas c4("c4", "Fourth Canvas");
+	XYpositions.electronDET->Draw();
+
+	TCanvas c5("c5", "Fifth Canvas");
+	XYpositions.ionDET->Draw();
+
 	rootapp->Run();
 
 

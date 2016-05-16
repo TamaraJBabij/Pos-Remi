@@ -9,7 +9,7 @@
 #include "Constants.h"
 
 
-//takes timedifferences of MCP hits for each event wqithin a group
+//takes timedifferences of MCP hits for each event within a group
 //identifies particle and stores in MCPTDiff double
 //stored is the particleID and timedifference relative to positron
 
@@ -30,7 +30,6 @@ void identifyAndTime(DataSet* data) {
 					e->storeMCPTDiff(positron, postime);
 					e->particletype = positron;
 					e->timefrompos = postime;
-					//cout << "positron identified" << endl;
 					//now go through all other event mcp times and identify and find rel pos time
 					for (Event* other : g->events) {
 						//loops through all events in group g that are NOT the positron
@@ -49,7 +48,6 @@ void identifyAndTime(DataSet* data) {
 									double ion1time;
 									ion1time = reltimezero - other->mcp->time;
 									other->storeMCPTDiff(ion1, ion1time);
-									//cout << "ion1 identified" << endl;
 									other->particletype = ion1;
 									other->timefrompos = ion1time;
 								}
@@ -58,7 +56,6 @@ void identifyAndTime(DataSet* data) {
 									double ion2time;
 									ion2time = reltimezero - other->mcp->time;
 									other->storeMCPTDiff(ion2, ion2time);
-									//cout << "ion2 identified" << endl;
 									other->particletype = ion2;
 									other->timefrompos = ion2time;
 								}
@@ -68,7 +65,6 @@ void identifyAndTime(DataSet* data) {
 									double unidenttime;
 									unidenttime = reltimezero - other->mcp->time;
 									other->storeMCPTDiff(unidentified, unidenttime);
-									//cout << "unidentified" << endl;
 									other->particletype = unidentified;
 									other->timefrompos = unidenttime;
 								}
@@ -80,7 +76,6 @@ void identifyAndTime(DataSet* data) {
 								electime = reltimezero - other->mcp->time;
 								//store relative electron time and particleID
 								other->storeMCPTDiff(electron, electime);
-								//cout << "electron identified" << endl;
 								other->particletype = electron;
 								other->timefrompos = electime;
 							}

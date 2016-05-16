@@ -7,7 +7,9 @@
 #include "math.h"
 
 void convertCartesianPosition(DataSet* reconData) {
+	cout << "convertCartesianPosition" << endl;
 	for (Group* g : *reconData) {
+		cout << "Group:" << endl;
 		for (Event* e : g->events) {
 			Particle p;
 			p.t = e->reltimediff.timediff;
@@ -27,13 +29,16 @@ void convertCartesianPosition(DataSet* reconData) {
 			switch (e->reltimediff.particle) {
 			case positron:
 				g->positron = p;
-				//cout << "positron" << " x: " << p.x << " y: " << p.y << endl;
+				cout << " - positron" << " x: " << p.x << " y: " << p.y << endl;
+				break;
 			case electron:
 				g->electron = p;
-				//cout << "electron" << endl;
+				cout << " - electron" << " x: " << p.x << " y: " << p.y << endl;
+				break;
 			case ion1:
 				g->ion = p;
-				//cout << "ion" << endl;
+				cout << " - ion" << " x: " << p.x << " y: " << p.y << endl;
+				break;
 			}
 
 			 

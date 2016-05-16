@@ -24,13 +24,13 @@ DataSet* sortReconData(DataSet* data) {
 			 bool recon = true;
 			 //cout << " maybe recon group" << endl;
 			 for (Event* e : g->events) {
-				 if (e->reconstructInfo == notReconstructable) {
+				 if (e->reconstructInfo == notReconstructable || e->reconstructInfo == ionNoPosition) {
 					 recon = false;
 					 //cout << " not recon group" << endl;
 					 break;
 				 }
 			 }
-			 //If the group contains reconstructable particles cope over to new dataset
+			 //If the group contains reconstructable particles copy over to new dataset
 			 if (recon == true) {
 				 //stores a pointer to the group
 				 //therefore reconData wiull contains pointers to all relevant groups
