@@ -23,6 +23,7 @@
 #include "configlayers.h"
 #include "Constants.h"
 #include "FitSet.h"
+#include <TStyle.h>
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -191,12 +192,16 @@ int main(int argc, char* argv[]) {
 	convertLayerPosition(reconData, Pitches);
 
 	convertCartesianPosition(reconData);
-
+	
+	gStyle->SetPalette(1);
 	//histogram detector images with 2D histogram
 	HistogramXY XYpositions = histogramXYPositions(reconData);
 	//draw the detector images
 	TCanvas c3("c3", "Third Canvas");
-	XYpositions.positronDET->Draw();
+	//works better with more runs and a contour plot, 
+	//since plotting individual runs intensity is 1, need to implement contours
+	//XYpositions.positronDET->Draw("colz");
+	XYpositions.positronDET->Draw("cont0");
 
 	TCanvas c4("c4", "Fourth Canvas");
 	XYpositions.electronDET->Draw();

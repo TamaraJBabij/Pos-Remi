@@ -29,13 +29,16 @@ PitchPropSet calculatePitchProp(FitSet fits) {
 
 	//pitch prop for positive detector, u layer
 	FitData uposfit = fits.getFit(u, positive);
-	upospitch = LENGTH_pU / uposfit.peak;
+	//upospitch = LENGTH_pU / uposfit.peak;
+	upospitch = LENGTH_pU / 140.42;
 	//pitch prop for positive detector, v layer
 	FitData vposfit = fits.getFit(v, positive);
-	vpospitch = LENGTH_pV / vposfit.peak;
+	//vpospitch = LENGTH_pV / vposfit.peak;
+	vpospitch = LENGTH_pV / 136.27;
 	//pitch prop for positive detector, w layer
 	FitData wposfit = fits.getFit(w, positive);
-	wpospitch = LENGTH_pW / wposfit.peak;
+	//wpospitch = LENGTH_pW / wposfit.peak;
+	wpospitch = LENGTH_pW / 132.62;
 	//pitch prop for negative detector, u layer
 	FitData unegfit = fits.getFit(u, negative);
 	unegpitch = LENGTH_eU / unegfit.peak;

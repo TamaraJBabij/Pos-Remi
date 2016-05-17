@@ -49,7 +49,7 @@ void selectPosIonElec(DataSet* data) {
 		}
 		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 && UnidentCheck == 0) {
 			TripleCoinc = true;
-			cout << "triple coinc true " << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
+			//cout << "triple coinc true " << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
 			g->PosCheck = PosCheck;
 			g->ElecCheck = ElecCheck;
 			g->Ion1Check = Ion1Check;
