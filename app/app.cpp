@@ -206,8 +206,8 @@ int main(int argc, char* argv[]) {
 	TCanvas c4("c4", "Fourth Canvas");
 	XYpositions.electronDET->Draw();
 
-	TCanvas c5("c5", "Fifth Canvas");
-	XYpositions.ionDET->Draw();
+	//TCanvas c5("c5", "Fifth Canvas");
+	//XYpositions.ionDET->Draw();
 
 	rootapp->Run();
 

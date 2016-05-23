@@ -47,8 +47,6 @@ void convertCartesianPosition(DataSet* reconData) {
 				p.t = e->reltimediff.timediff;
 				if (e->uPairs.size() == 1 && e->vPairs.size() == 1) {
 					//g->positron = Particle(32,23123,2341)
-					//ELEC DET V AND W LAYERS SWAPPED
-					//but this might be accounted for in electronics
 					p.x = e->U;
 					p.y = (1 / sqrt(3))*(e->U - 2 * e->V);
 				}
@@ -59,8 +57,8 @@ void convertCartesianPosition(DataSet* reconData) {
 				else {
 					p.x = e->V + e->W;
 					p.y = (1 / sqrt(3))*(e->W - e->V);
+					//cout << " - electron" << " x: " << p.x << " y: " << p.y << endl;
 				}
-				//cout << " - electron" << " x: " << p.x << " y: " << p.y << endl;
 				g->electron = p;
 			}
 		}

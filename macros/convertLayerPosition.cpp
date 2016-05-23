@@ -36,30 +36,30 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 					double Unogap = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2);
 					//cout << "U layer: " << Unogap << endl;
 					if (Unogap <= 0) {
-						e->U = Unogap - 3.5;
+						e->U = Unogap - 4.5;
 					}
 					else {
-						e->U = Unogap + 5.5;
+						e->U = Unogap + 3.5;
 					}
 				}
 				if (e->vPairs.size() == 1) {
-					double Vnogap = (negPitches.vlayer / 2)*(e->vPairs.front().line2 - e->vPairs.front().line1);
+					double Vnogap = (negPitches.vlayer / 2)*(e->vPairs.front().line1 - e->vPairs.front().line2);
 					//cout << "V layer: " << Vnogap << endl;
 					if (Vnogap <= 0) {
-						e->V = Vnogap - 3.5;
+						e->V = Vnogap - 4;
 					}
 					else {
-						e->V = Vnogap + 4.5;
+						e->V = Vnogap + 4;
 					}
 				}
 				if (e->wPairs.size() == 1) {
-					double Wnogap = (negPitches.wlayer / 2)*(e->wPairs.front().line2 - e->wPairs.front().line1);
+					double Wnogap = (negPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line2);
 					//cout << "W layer: " << Wnogap << endl;
 					if (Wnogap <= 0) {
-						e->W = Wnogap -4;
+						e->W = Wnogap -3.5;
 					}
 					else {
-						e->W = Wnogap + 4;
+						e->W = Wnogap + 5.5;
 					}
 				}
 			}
