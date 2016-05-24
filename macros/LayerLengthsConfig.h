@@ -11,6 +11,6 @@
 #define LENGTH_pW 81.4
 //U layer changed from outermost to innermost
 //W layer changed from innermost to outermost
-#define LENGTH_eU 71
-#define LENGTH_eV 72
-#define LENGTH_eW 70
+#define LENGTH_eU 70
+#define LENGTH_eV 71
+#define LENGTH_eW 71

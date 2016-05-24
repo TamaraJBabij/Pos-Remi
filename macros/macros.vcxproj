@@ -128,6 +128,7 @@
     <ClCompile Include="firstCut.cpp" />
     <ClCompile Include="histogramXYPositions.cpp" />
     <ClCompile Include="identifyAndTime.cpp" />
+    <ClCompile Include="loadFromTreeExistingDataset.cpp" />
     <ClCompile Include="plotTimeSpectra.cpp" />
     <ClCompile Include="plotTimeSpectraDS.cpp" />
     <ClCompile Include="plotTimeSpectraEvents.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="treeIO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\app\configlayers.h" />
     <ClInclude Include="..\app\configparticletimes.h" />
     <ClInclude Include="configuration.h" />
     <ClInclude Include="LayerLengthsConfig.h" />

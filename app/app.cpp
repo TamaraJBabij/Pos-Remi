@@ -31,14 +31,41 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../09102015.root");
+	TFile* rawFile = TFile::Open("../01102015.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
+	DataSet* data = loadFromTree(rawTree);
+	rawFile->Close();
 	//TTree* tree = readWriteTree(rawTree);
 
+	TFile* raw2File = TFile::Open("../02102015.root");
+	TTree* raw2Tree = (TTree*)raw2File->Get("T");
+	loadFromTreeDataSet(raw2Tree, data);
+	raw2File->Close();
 
-	DataSet* data = loadFromTree(rawTree);
+	TFile* raw3File = TFile::Open("../03102015.root");
+	TTree* raw3Tree = (TTree*)raw3File->Get("T");
+	loadFromTreeDataSet(raw3Tree, data);
+	raw3File->Close();
 
-	rawFile->Close();
+	TFile* raw4File = TFile::Open("../06102015.root");
+	TTree* raw4Tree = (TTree*)raw4File->Get("T");
+	loadFromTreeDataSet(raw4Tree, data);
+	raw4File->Close();
+
+	TFile* raw5File = TFile::Open("../07102015.root");
+	TTree* raw5Tree = (TTree*)raw5File->Get("T");
+	loadFromTreeDataSet(raw5Tree, data);
+	raw5File->Close();
+
+	TFile* raw6File = TFile::Open("../08102015.root");
+	TTree* raw6Tree = (TTree*)raw6File->Get("T");
+	loadFromTreeDataSet(raw6Tree, data);
+	raw6File->Close();
+
+	TFile* raw7File = TFile::Open("../09102015.root");
+	TTree* raw7Tree = (TTree*)raw7File->Get("T");
+	loadFromTreeDataSet(raw7Tree, data);
+	raw7File->Close();
 
 	//tree->Draw("Time");
 	HistogramPair hists = plotTimeSpectraDS(data);
@@ -204,10 +231,10 @@ int main(int argc, char* argv[]) {
 	XYpositions.positronDET->Draw("cont0");
 
 	TCanvas c4("c4", "Fourth Canvas");
-	XYpositions.electronDET->Draw();
+	XYpositions.electronDET->Draw("cont0");
 
-	//TCanvas c5("c5", "Fifth Canvas");
-	//XYpositions.ionDET->Draw();
+	TCanvas c5("c5", "Fifth Canvas");
+	XYpositions.ionDET->Draw("cont0");
 
 	rootapp->Run();
 

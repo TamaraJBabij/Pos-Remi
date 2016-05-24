@@ -16,8 +16,8 @@
 #define CFG_CHANNEL_ELEC_U2_S 28
 #define CFG_CHANNEL_ELEC_V1_S 25
 #define CFG_CHANNEL_ELEC_V2_S 26
-#define CFG_CHANNEL_ELEC_W1_S 30
-#define CFG_CHANNEL_ELEC_W2_S 29
+#define CFG_CHANNEL_ELEC_W1_S 29
+#define CFG_CHANNEL_ELEC_W2_S 30
 
 // External delays given by cabling from the detector potential divider to the NIM-ECL-NIM unit in ns NOT bins
 // Positron detector
@@ -30,12 +30,12 @@
 #define CFG_DELAY_POS_W2_S 10
 // 10 detector
 #define CFG_DELAY_ELEC_CP2 16.2
-#define CFG_DELAY_ELEC_U1_S 37.6
-#define CFG_DELAY_ELEC_U2_S 37.6
-#define CFG_DELAY_ELEC_V1_S 37.4
-#define CFG_DELAY_ELEC_V2_S 37.2
-#define CFG_DELAY_ELEC_W1_S 20.4
-#define CFG_DELAY_ELEC_W2_S 18
+#define CFG_DELAY_ELEC_U1_S 20.4
+#define CFG_DELAY_ELEC_U2_S 18
+#define CFG_DELAY_ELEC_V1_S 37.6
+#define CFG_DELAY_ELEC_V2_S 37.6
+#define CFG_DELAY_ELEC_W1_S 37.4
+#define CFG_DELAY_ELEC_W2_S 37.2
 
 //setting max and min positron times
 

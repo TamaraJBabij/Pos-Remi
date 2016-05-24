@@ -69,6 +69,9 @@
     <ClCompile Include="histogramXYPositions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="loadFromTreeExistingDataset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configuration.h">
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="LayerLengthsConfig.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\configlayers.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -48,15 +48,15 @@ void convertCartesianPosition(DataSet* reconData) {
 				if (e->uPairs.size() == 1 && e->vPairs.size() == 1) {
 					//g->positron = Particle(32,23123,2341)
 					p.x = e->U;
-					p.y = (1 / sqrt(3))*(e->U - 2 * e->V);
+					p.y = (1 / sqrt(3))*(e->U) - (2 / sqrt(3))*(e->V);
 				}
 				else if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
 					p.x = e->U;
-					p.y = (1 / sqrt(3))*(2 * e->W - e->U);
+					p.y = (1 / sqrt(3))*(e->W) - (2 / sqrt(3))*(e->U);
 				}
 				else {
-					p.x = e->V + e->W;
-					p.y = (1 / sqrt(3))*(e->W - e->V);
+					p.x = e->V - e->W;
+					p.y = - ( 1 / sqrt(3))*(e->W + e->V);
 					//cout << " - electron" << " x: " << p.x << " y: " << p.y << endl;
 				}
 				g->electron = p;

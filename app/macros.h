@@ -13,6 +13,7 @@
 
 TTree* readWriteTree(TTree* tree);
 DataSet* loadFromTree(TTree* tree);
+void loadFromTreeDataSet(TTree* tree, DataSet* data);
 TH1D* plotTimeSpectra(TTree* tree);
 HistogramPair plotTimeSpectraDS(DataSet* data);
 void constructEvents(DataSet* data);
