@@ -31,40 +31,41 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../01102015.root");
-	TTree* rawTree = (TTree*)rawFile->Get("T");
-	DataSet* data = loadFromTree(rawTree);
-	rawFile->Close();
+	//TFile* rawFile = TFile::Open("../01102015.root");
+	//TTree* rawTree = (TTree*)rawFile->Get("T");
+	//DataSet* data = loadFromTree(rawTree);
+	//rawFile->Close();
 	//TTree* tree = readWriteTree(rawTree);
 
-	TFile* raw2File = TFile::Open("../02102015.root");
-	TTree* raw2Tree = (TTree*)raw2File->Get("T");
-	loadFromTreeDataSet(raw2Tree, data);
-	raw2File->Close();
+	//TFile* raw2File = TFile::Open("../02102015.root");
+	//TTree* raw2Tree = (TTree*)raw2File->Get("T");
+	//loadFromTreeDataSet(raw2Tree, data);
+	//raw2File->Close();
 
-	TFile* raw3File = TFile::Open("../03102015.root");
-	TTree* raw3Tree = (TTree*)raw3File->Get("T");
-	loadFromTreeDataSet(raw3Tree, data);
-	raw3File->Close();
+	///TFile* raw3File = TFile::Open("../03102015.root");
+	//TTree* raw3Tree = (TTree*)raw3File->Get("T");
+	//loadFromTreeDataSet(raw3Tree, data);
+	//raw3File->Close();
 
-	TFile* raw4File = TFile::Open("../06102015.root");
-	TTree* raw4Tree = (TTree*)raw4File->Get("T");
-	loadFromTreeDataSet(raw4Tree, data);
-	raw4File->Close();
+	//TFile* raw4File = TFile::Open("../06102015.root");
+	//TTree* raw4Tree = (TTree*)raw4File->Get("T");
+	//loadFromTreeDataSet(raw4Tree, data);
+	//raw4File->Close();
 
-	TFile* raw5File = TFile::Open("../07102015.root");
-	TTree* raw5Tree = (TTree*)raw5File->Get("T");
-	loadFromTreeDataSet(raw5Tree, data);
-	raw5File->Close();
+	//TFile* raw5File = TFile::Open("../07102015.root");
+	//TTree* raw5Tree = (TTree*)raw5File->Get("T");
+	//loadFromTreeDataSet(raw5Tree, data);
+	//raw5File->Close();
 
-	TFile* raw6File = TFile::Open("../08102015.root");
-	TTree* raw6Tree = (TTree*)raw6File->Get("T");
-	loadFromTreeDataSet(raw6Tree, data);
-	raw6File->Close();
+	//TFile* raw6File = TFile::Open("../08102015.root");
+	//TTree* raw6Tree = (TTree*)raw6File->Get("T");
+	//loadFromTreeDataSet(raw6Tree, data);
+	//raw6File->Close();
 
 	TFile* raw7File = TFile::Open("../09102015.root");
 	TTree* raw7Tree = (TTree*)raw7File->Get("T");
-	loadFromTreeDataSet(raw7Tree, data);
+	//loadFromTreeDataSet(raw7Tree, data);
+	DataSet* data = loadFromTree(raw7Tree);
 	raw7File->Close();
 
 	//tree->Draw("Time");
@@ -224,17 +225,17 @@ int main(int argc, char* argv[]) {
 	//histogram detector images with 2D histogram
 	HistogramXY XYpositions = histogramXYPositions(reconData);
 	//draw the detector images
-	TCanvas c3("c3", "Third Canvas");
+	//TCanvas c3("c3", "Third Canvas");
 	//works better with more runs and a contour plot, 
 	//since plotting individual runs intensity is 1, need to implement contours
 	//XYpositions.positronDET->Draw("colz");
-	XYpositions.positronDET->Draw("cont0");
+	//XYpositions.positronDET->Draw("cont0");
 
 	TCanvas c4("c4", "Fourth Canvas");
-	XYpositions.electronDET->Draw("cont0");
+	XYpositions.electronDET->Draw();
 
-	TCanvas c5("c5", "Fifth Canvas");
-	XYpositions.ionDET->Draw("cont0");
+	//TCanvas c5("c5", "Fifth Canvas");
+	//XYpositions.ionDET->Draw("cont0");
 
 	rootapp->Run();
 

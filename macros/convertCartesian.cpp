@@ -45,19 +45,27 @@ void convertCartesianPosition(DataSet* reconData) {
 			else if (e->mcp->detector == neg) {
 				Particle p;
 				p.t = e->reltimediff.timediff;
+				p.x = 0;
+				p.y = 0;
+				int count = 0;
 				if (e->uPairs.size() == 1 && e->vPairs.size() == 1) {
 					//g->positron = Particle(32,23123,2341)
-					p.x = e->U;
-					p.y = (1 / sqrt(3))*(e->U - 2 * e->V);
+					p.x += e->U;
+					p.y += (1 / sqrt(3))*( - e->U + 2 * e->V);
+					count++;
 				}
-				else if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
-					p.x = e->U;
-					p.y = (1 / sqrt(3))*(2 * e->W - e->U);
+				if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
+					p.x += e->U;
+					p.y += (1 / sqrt(3))*( - 2 * e->W + e->U);
+					count++;
+   				}
+				if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
+					p.x += e->V + e->W;
+					p.y += (1 / sqrt(3))*( - e->W + e->V);
+					count++;
 				}
-				else {
-					p.x = e->V + e->W;
-					p.y = (1 / sqrt(3))*(e->W - e->V);
-				}
+				p.x = p.x / count;
+				p.y = p.y / count;
 				g->electron = p;
 			}
 		}
