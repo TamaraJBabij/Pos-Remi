@@ -24,6 +24,9 @@
 #include "Constants.h"
 #include "FitSet.h"
 #include <TStyle.h>
+#include "histogramElecLayers.h"
+#include <TGraph.h>
+#include <TLegend.h>
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -222,25 +225,38 @@ int main(int argc, char* argv[]) {
 	convertCartesianPosition(reconData);
 	
 	gStyle->SetPalette(1);
+	double_t w = 800;
+	double_t h = 800;
+
 	//histogram detector images with 2D histogram
 	HistogramXY XYpositions = histogramXYPositions(reconData);
 	//draw the detector images
-	//TCanvas c3("c3", "Third Canvas");
+	TCanvas c3("c3", "Third Canvas", w, h);
 	//works better with more runs and a contour plot, 
 	//since plotting individual runs intensity is 1, need to implement contours
 	//XYpositions.positronDET->Draw("colz");
-	//XYpositions.positronDET->Draw("cont0");
+	XYpositions.positronDET->Draw("cont0");
 
-	TCanvas c4("c4", "Fourth Canvas");
-	XYpositions.electronDET->Draw();
+	TCanvas c4("c4", "Fourth Canvas", w, h);
+	XYpositions.electronDET->Draw("cont0");
 
-	//TCanvas c5("c5", "Fifth Canvas");
-	//XYpositions.ionDET->Draw("cont0");
+	TCanvas c5("c5", "Fifth Canvas", w, h);
+	XYpositions.ionDET->Draw("cont0");
+
+	HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
+
+	TCanvas c6("c6", "Sixth Canvas", w, h);
+	UVWlayers.UVlayers->SetMarkerColor(kBlue);
+	UVWlayers.UVlayers->Draw("hist");
+	UVWlayers.UWlayers->SetMarkerColor(kRed);
+	UVWlayers.UWlayers->Draw("SameHist");
+	UVWlayers.VWlayers->Draw("SameHist");
+	//TLegend leg(0.1,0.7,0.3,0.9, "Layers");
+	//leg->AddEntry();
+	c6.Update();
 
 	rootapp->Run();
-
-
-
+	
     return 0;
 }
 

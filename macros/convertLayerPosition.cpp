@@ -31,6 +31,8 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 				}
 			}
 			if (e->mcp->detector == neg) {
+				//see logbook 9 page 114 for diagram of electron detector
+				//including gap sizes
 				if (e->uPairs.size() == 1) {
 					//line2 - line 1 as u1 and u2 reversed (u2 on right hand side) x = righthandside-lefthandside
 					double Unogap = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2);
@@ -53,6 +55,7 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 					}
 				}
 				if (e->wPairs.size() == 1) {
+					//line2 0 lin1 due to electronics configuration
 					double Wnogap = (negPitches.wlayer / 2)*(e->wPairs.front().line2 - e->wPairs.front().line1);
 					//cout << "W layer: " << Wnogap << endl;
 					if (Wnogap < 0) {

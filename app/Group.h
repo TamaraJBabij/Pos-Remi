@@ -17,6 +17,12 @@ struct Particle
 	double x;
 	double y;
 	double t;
+	double x_uv;
+	double y_uv;
+	double x_uw;
+	double y_uw;
+	double x_vw;
+	double y_vw;
 };
 
 /*

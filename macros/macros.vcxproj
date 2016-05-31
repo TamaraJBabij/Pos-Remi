@@ -126,6 +126,7 @@
     <ClCompile Include="convertCartesian.cpp" />
     <ClCompile Include="convertLayerPosition.cpp" />
     <ClCompile Include="firstCut.cpp" />
+    <ClCompile Include="histogramElectronLayers.cpp" />
     <ClCompile Include="histogramXYPositions.cpp" />
     <ClCompile Include="identifyAndTime.cpp" />
     <ClCompile Include="loadFromTreeExistingDataset.cpp" />

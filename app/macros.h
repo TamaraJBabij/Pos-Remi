@@ -6,6 +6,7 @@
 #include "HistogramPair.h"
 #include "HistogramTimeSums.h"
 #include "HistogramXY.h"
+#include "histogramElecLayers.h"
 #include "FitSet.h"
 #include "Event.h"
 #include "PitchPropSet.h"
@@ -28,3 +29,4 @@ DataSet* sortReconData(DataSet* data);
 void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches);
 void convertCartesianPosition(DataSet* reconData);
 HistogramXY histogramXYPositions(DataSet *reconData);
+HistogramElecLayers histogramElectronLayers(DataSet *reconData);
