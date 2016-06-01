@@ -23,6 +23,12 @@ struct Particle
 	double y_uw;
 	double x_vw;
 	double y_vw;
+	double x_uv_uw;
+	double y_uv_uw;
+	double x_uv_vw;
+	double y_uv_vw;
+	double x_uw_vw;
+	double y_uw_vw;
 };
 
 /*

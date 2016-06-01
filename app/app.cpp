@@ -247,13 +247,22 @@ int main(int argc, char* argv[]) {
 
 	TCanvas c6("c6", "Sixth Canvas", w, h);
 	UVWlayers.UVlayers->SetMarkerColor(kBlue);
+	UVWlayers.UVlayers->SetLineColor(kBlue);
 	UVWlayers.UVlayers->Draw("hist");
 	UVWlayers.UWlayers->SetMarkerColor(kRed);
+	UVWlayers.UWlayers->SetLineColor(kRed);
 	UVWlayers.UWlayers->Draw("SameHist");
-	UVWlayers.VWlayers->Draw("SameHist");
-	//TLegend leg(0.1,0.7,0.3,0.9, "Layers");
-	//leg->AddEntry();
+	//UVWlayers.VWlayers->SetLineColor(kBlack);
+	//UVWlayers.VWlayers->Draw("SameHist");
+	c6.SetTitle("UVW Layers Combined; x (mm); y (mm)");
+	TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
+	leg->Draw();
+	leg->AddEntry(UVWlayers.UVlayers, "UV layer");
+	leg->AddEntry(UVWlayers.UWlayers, "UW layer");
+	//leg->AddEntry(UVWlayers.VWlayers, "WV layer");
 	c6.Update();
+
+	differenceOfLayers(reconData);
 
 	rootapp->Run();
 	

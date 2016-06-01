@@ -30,3 +30,4 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches);
 void convertCartesianPosition(DataSet* reconData);
 HistogramXY histogramXYPositions(DataSet *reconData);
 HistogramElecLayers histogramElectronLayers(DataSet *reconData);
+void differenceOfLayers(DataSet* reconData);
