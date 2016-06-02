@@ -10,6 +10,7 @@
 #include "FitSet.h"
 #include "Event.h"
 #include "PitchPropSet.h"
+#include "HistElecDifferences.h"
 
 
 TTree* readWriteTree(TTree* tree);
@@ -31,3 +32,4 @@ void convertCartesianPosition(DataSet* reconData);
 HistogramXY histogramXYPositions(DataSet *reconData);
 HistogramElecLayers histogramElectronLayers(DataSet *reconData);
 void differenceOfLayers(DataSet* reconData);
+HistogramDIFF histogramElecLayerDiff(DataSet *reconData);

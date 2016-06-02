@@ -57,7 +57,7 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 				}
 				if (e->wPairs.size() == 1) {
 					//line2 0 lin1 due to electronics configuration
-					double Wnogap = (negPitches.wlayer / 2)*(e->wPairs.front().line2 - e->wPairs.front().line1);
+					double Wnogap = (negPitches.wlayer / 2)*(e->wPairs.front().line1 - e->wPairs.front().line2);
 					//cout << "W layer: " << Wnogap << endl;
 					if (Wnogap < -0.5) {
 						e->W = Wnogap - (8/2);

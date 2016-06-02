@@ -156,6 +156,7 @@
     <ClInclude Include="FitData.h" />
     <ClInclude Include="FitSet.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="HistElecDifferences.h" />
     <ClInclude Include="histogramElecLayers.h" />
     <ClInclude Include="HistogramPair.h" />
     <ClInclude Include="HistogramTimeSums.h" />

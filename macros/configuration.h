@@ -29,13 +29,13 @@
 #define CFG_DELAY_POS_W1_S 10
 #define CFG_DELAY_POS_W2_S 10
 // 10 detector
-#define CFG_DELAY_ELEC_CP2 16.2
-#define CFG_DELAY_ELEC_U1_S 20.4
-#define CFG_DELAY_ELEC_U2_S 18
-#define CFG_DELAY_ELEC_V1_S 37.6
-#define CFG_DELAY_ELEC_V2_S 37.6
-#define CFG_DELAY_ELEC_W1_S 37.4
-#define CFG_DELAY_ELEC_W2_S 37.2
+#define CFG_DELAY_ELEC_CP2 41.2355
+#define CFG_DELAY_ELEC_U1_S 47.1645
+#define CFG_DELAY_ELEC_U2_S 43.5455
+#define CFG_DELAY_ELEC_V1_S 67.694
+#define CFG_DELAY_ELEC_V2_S 66.969
+#define CFG_DELAY_ELEC_W1_S 63.0815
+#define CFG_DELAY_ELEC_W2_S 63.993
 
 //setting max and min positron times
 
