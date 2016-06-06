@@ -281,6 +281,8 @@ int main(int argc, char* argv[]) {
 
 	rootapp->Run();
 	
+	//should print out metafile of setup, AND csv dump of data. 
+
     return 0;
 }
 
