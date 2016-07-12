@@ -246,38 +246,29 @@ int main(int argc, char* argv[]) {
 
 	HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
 
-	TCanvas c6("c6", "Sixth Canvas", w, h);
-	UVWlayers.UVlayers->SetMarkerColor(kBlue);
-	UVWlayers.UVlayers->SetLineColor(kBlue);
-	UVWlayers.UVlayers->Draw("hist");
-	UVWlayers.UWlayers->SetMarkerColor(kRed);
-	UVWlayers.UWlayers->SetLineColor(kRed);
-	UVWlayers.UWlayers->Draw("SameHist");
-	UVWlayers.VWlayers->SetLineColor(kBlack);
-	UVWlayers.VWlayers->Draw("SameHist");
-	c6.SetTitle("UVW Layers Combined; x (mm); y (mm)");
-	TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
-	leg->Draw();
-	leg->AddEntry(UVWlayers.UVlayers, "UV layer");
-	leg->AddEntry(UVWlayers.UWlayers, "UW layer");
-	leg->AddEntry(UVWlayers.VWlayers, "WV layer");
-	c6.Update();
+	
+	//TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
+	//leg->Draw();
+	//leg->AddEntry(UVWlayers.UVlayers, "UV layer");
+	//leg->AddEntry(UVWlayers.UWlayers, "UW layer");
+	//leg->AddEntry(UVWlayers.VWlayers, "WV layer");
+	//c6.Update();
 
-	differenceOfLayers(reconData);
+	//differenceOfLayers(reconData);
 
-	HistogramDIFF UVWdifferences = histogramElecLayerDiff(reconData);
-	TCanvas c7("c7", "Layer Differences");
-	c7.Divide(2, 3);
-	c7.cd(1);
-	UVWdifferences.ydiffuv_uw->Draw();
-	c7.cd(2);
-	UVWdifferences.ydiffuv_vw->Draw();
-	c7.cd(3);
-	UVWdifferences.xdiffuv_vw->Draw();
-	c7.cd(4);
-	UVWdifferences.ydiffuw_vw->Draw();
-	c7.cd(5);
-	UVWdifferences.xdiffuw_vw->Draw();
+	//HistogramDIFF UVWdifferences = histogramElecLayerDiff(reconData);
+	//TCanvas c7("c7", "Layer Differences");
+	//c7.Divide(2, 3);
+	//c7.cd(1);
+	//UVWdifferences.ydiffuv_uw->Draw();
+	//c7.cd(2);
+	//UVWdifferences.ydiffuv_vw->Draw();
+	//c7.cd(3);
+	//UVWdifferences.xdiffuv_vw->Draw();
+	//c7.cd(4);
+	//UVWdifferences.ydiffuw_vw->Draw();
+	//c7.cd(5);
+	//UVWdifferences.xdiffuw_vw->Draw();
 
 	rootapp->Run();
 	

@@ -14,19 +14,42 @@ void convertCartesianPosition(DataSet* reconData) {
 			if (e->mcp->detector == pos) {
 				Particle p;
 				p.t = e->reltimediff.timediff;
+				p.x = 0;
+				p.y = 0;
+				p.xy_uv = false;
+				p.xy_uw = false;
+				p.xy_vw = false;
+				int count = 0;
 				if (e->uPairs.size() == 1 && e->vPairs.size() == 1) {
 					//g->positron = Particle(32,23123,2341)
-					p.x = e->U;
-					p.y = (1 / sqrt(3))*(e->U - 2 * e->V);
+					p.x_uv = e->U;
+					//p.y = (1 / sqrt(3))*(e->U - 2 * e->V);
+					p.y_uv = (1 / sqrt(3))*(-e->U + 2 * e->V);
+					p.x += p.x_uv;
+					p.y += p.y_uv;
+					count++;
+					p.xy_uv = true;
 				}
 				else if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
-					p.x = e->U;
-					p.y = (1 / sqrt(3))*(2 * e->W - e->U);
+					p.x_uw = e->U;
+					//p.y_uw = (1 / sqrt(3))*(2 * e->W - e->U);
+					p.y_uw = (1 / sqrt(3))*(-2 * e->W + e->U);
+					p.x += p.x_uw;
+					p.y += p.y_uw;
+					count++;
+					p.xy_uw = true;
 				}
-				else {
-					p.x = e->V + e->W;
-					p.y = (1 / sqrt(3))*(e->W - e->V);
+				else if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
+					p.x_vw = e->V + e->W;
+					//p.y_vw = (1 / sqrt(3))*(e->W - e->V);
+					p.y_vw = (1 / sqrt(3))*(-e->W + e->V);
+					p.x += p.x_vw;
+					p.y += p.y_vw;
+					count++;
+					p.xy_vw = true;
 				}
+				p.x = p.x / count;
+				p.y = p.y / count;
 				switch (e->reltimediff.particle) {
 				case positron:
 					g->positron = p;
