@@ -216,6 +216,8 @@ int main(int argc, char* argv[]) {
 
 
 	DataSet *reconData = sortReconData(data);
+
+	delete data;
 	/** 
 	 * Convert time to position info
 	 *First off need to get U,V,W from u1 u2, v1 v2, w1 w2
@@ -245,6 +247,8 @@ int main(int argc, char* argv[]) {
 	XYpositions.ionDET->Draw("cont0");
 
 	HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
+
+
 
 	
 	//TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
