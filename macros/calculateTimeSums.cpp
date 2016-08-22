@@ -14,15 +14,8 @@ using namespace std;
 // split histograms for each layer by dector id
 // All Timesums are summed for each possible combination in each associated event. 
 
-HistogramTimeSums calculateTimeSums(DataSet* data) {
+void calculateTimeSums(DataSet* data, HistogramTimeSums timesums) {
 
-	HistogramTimeSums timesums;
-	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 80, 120);
-	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 80, 120);
-	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 80, 120);
-	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 50, 140);
-	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 50, 150);
-	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 50, 200);
 	//Shared ptr, stops memory leaks
 	//timesums.test = std::make_shared<TH1D>("wneg", "TimeSum wneg layer", 200, 0, 1000);
 	//timesums.layer_upos = std::make_unique<TH1D>("upos", "TimeSum upos layer", 200, 50, 200);
@@ -73,5 +66,4 @@ HistogramTimeSums calculateTimeSums(DataSet* data) {
 			}
 		}
 	}
-	return timesums;
 }

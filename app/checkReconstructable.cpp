@@ -15,6 +15,7 @@
 
 void checkReconstructable(DataSet* data) {
 	//checks has enough layer hits to reconstruct a position
+	
 	for (Group* g : *data) {
 		for (Event* e : g->events) {
 			//index particle ids
@@ -39,6 +40,9 @@ void checkReconstructable(DataSet* data) {
 				if (wSize == 1) {
 					wCheck = 1;
 				}
+				//cout << "U check: " << uCheck << endl;
+				//cout << "V check: " << vCheck << endl;
+				//cout << "W check: " << wCheck << endl;
 				if (uCheck + vCheck + wCheck >= 2) {
 					e->reconstructInfo = reconstructable;
 				}
@@ -56,8 +60,11 @@ void checkReconstructable(DataSet* data) {
 					//uCheck++;
 					//case >2:
 				int uSize = e->uPairs.size();
+				cout << "U pairs size: " << uSize << endl;
 				int vSize = e->vPairs.size();
+				cout << "V pairs size: " << vSize << endl;
 				int wSize = e->wPairs.size();
+				cout << "W pairs size: " << wSize << endl;
 				//As vector of layerhits (where layehits contains u1, u2)
 				//want vector length of 1!!
 				if (uSize == 1) {
@@ -76,6 +83,9 @@ void checkReconstructable(DataSet* data) {
 				else {
 					e->reconstructInfo = notReconstructable;
 				}
+				//cout << "U check: " << uCheck << endl;
+				//cout << "V check: " << vCheck << endl;
+				//cout << "W check: " << wCheck << endl;
 			}
 				if (e->reltimediff.particle == electron) {
 					int uSize = e->uPairs.size();

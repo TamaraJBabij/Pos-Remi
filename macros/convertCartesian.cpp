@@ -5,8 +5,11 @@
 #include "PitchPropSet.h"
 #include "PitchData.h"
 #include "math.h"
+#include <TF1.h>
+#include <TH2D.h>
+#include "HistogramXY.h"
 
-void convertCartesianPosition(DataSet* reconData) {
+void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 	//cout << "convertCartesianPosition" << endl;
 	for (Group* g : *reconData) {
 		//cout << "Group:" << endl;
@@ -34,7 +37,7 @@ void convertCartesianPosition(DataSet* reconData) {
 					p.x_uw = - e->U;
 					//p.y_uw = (1 / sqrt(3))*(2 * e->W - e->U);
 					p.y_uw = (1 / sqrt(3))*(2 * e->W - e->U);
-					p.x += p.x_uw;
+					p.x += p.x_uw; 
 					p.y += p.y_uw;
 					count++;
 					p.xy_uw = true;
@@ -42,7 +45,7 @@ void convertCartesianPosition(DataSet* reconData) {
 				else if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
 					p.x_vw = - e->V - e->W;
 					//p.y_vw = (1 / sqrt(3))*(e->W - e->V);
-					p.y_vw = (1 / sqrt(3))*(e->W - e->V);
+					p.y_vw = (1 / sqrt(3))*(e->W + e->V);
 					p.x += p.x_vw;
 					p.y += p.y_vw;
 					count++;
@@ -110,5 +113,8 @@ void convertCartesianPosition(DataSet* reconData) {
 				g->electron = p;
 			}
 		}
+		XYpositions->positronDET->Fill(g->positron.x, g->positron.y);
+		XYpositions->electronDET->Fill(g->electron.x, g->electron.y);
+		XYpositions->ionDET->Fill(g->ion.x, g->ion.y);
 	}
 }

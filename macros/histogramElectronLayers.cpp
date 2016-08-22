@@ -10,13 +10,10 @@
 // takes the X,Y positions and makes a 2D histogram for each detector
 // hist for positrons, ions and electrons separately
 
-HistogramElecLayers histogramElectronLayers(DataSet *reconData) {
+void histogramElectronLayers(DataSet *reconData, HistogramElecLayers UVWlayers) {
 	//sort for particle type using 
 	//Particle is subset of event and contains time and x, y
-	HistogramElecLayers UVWlayers;
-	UVWlayers.UVlayers = new TH2D("electronDet", "UV layer", 2000, -60, 60, 2000, -60, 60);
-	UVWlayers.UWlayers = new TH2D("electronDET", "UW layer", 2000, -60, 60, 2000, -60, 60);
-	UVWlayers.VWlayers = new TH2D("electronDET", "VW layer", 2000, -60, 60, 2000, -60, 60);
+	
 
 	for (Group* g : *reconData) {
 		if (g->electron.xy_uv == true) {
@@ -29,6 +26,4 @@ HistogramElecLayers histogramElectronLayers(DataSet *reconData) {
 			UVWlayers.VWlayers->Fill(g->electron.x_vw, g->electron.y_vw);
 		}
 	}
-
-	return UVWlayers;
 }

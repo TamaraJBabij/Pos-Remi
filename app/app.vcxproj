@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%ROOTSYS%\include;..\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%ROOTSYS%\include;..\;include;C:\Users\Tamara\Documents\GitHub\Pos-Remi\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -13,16 +13,21 @@
 //constructor where id is passed in as group number from raw tree
 Group::Group(int _id)
 {
-    id = _id;
+	id = _id;
 }
-Group::Group(){}
+Group::Group() {}
 //destructor
-Group::~Group()
-{
+Group::~Group() {
+	for (Hit* h : rawData) {
+		delete h;
+	}
+	for (Event* e : events) {
+		delete e;
+	}
 }
 
 //gets ID of current group
-int Group::getId(){
+int Group::getId() {
 	return id;
 }
 
@@ -52,7 +57,7 @@ vector<Hit*>::iterator Group::end() {
 	return rawData.end();
 }
 
-vector<Hit*>* Group::getHits(){
+vector<Hit*>* Group::getHits() {
 	return &rawData;
 }
 

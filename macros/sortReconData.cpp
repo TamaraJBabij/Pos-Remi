@@ -12,9 +12,9 @@
 #include "TripleCheck.h"
 
 //creates a new dataset with reconstructable data
-DataSet* sortReconData(DataSet* data) {
+DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
 	DataSet* reconData = new DataSet();
-	cout << "recon program run" << endl;
+	//cout << "recon program run" << endl;
 
 	//sort out useful data groups
 	for (Group* g : *data) {
@@ -35,9 +35,12 @@ DataSet* sortReconData(DataSet* data) {
 				 //stores a pointer to the group
 				 //therefore reconData wiull contains pointers to all relevant groups
 				 reconData->addGroup(g);
-				 //cout << "recon group" << endl;
+				 reconTriplesCount++;
+				
+
 			 }
 		}
 	}
+	cout << "number of triples: " << reconTriplesCount << endl;
 	return reconData;
 }

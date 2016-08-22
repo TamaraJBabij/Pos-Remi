@@ -1,15 +1,17 @@
 #include "stdafx.h"
 #include "DataSet.h"
 #include <vector>
- 
+
 //code for the constructor
-DataSet::DataSet(){
+DataSet::DataSet() {
 
 }
 
 //code for the destructor
-DataSet::~DataSet(){
-
+DataSet::~DataSet() {
+	for (Group* g : data) {
+		delete g;
+	}
 }
 
 

@@ -24,7 +24,7 @@ void checkTimeSums(DataSet* data, FitSet fits) {
 	//check errors of fits, cout error if error of fits over threshold
 	//need to add this in later when more data is put through code
 	//error for each layer compared to errormax in configlayers 
-
+	int checkTimeSumcounter = 0;
 
 	for (Group* g : *data) {
 		for (Event* e : g->events) {
@@ -44,6 +44,7 @@ void checkTimeSums(DataSet* data, FitSet fits) {
 							//put timesums that are within 2 sigma (threshold) of the fit
 							// into paired layers struct
 							e->storePair(u, u1tdiff, u2tdiff);
+							checkTimeSumcounter++;
 						}
 					}
 				}
@@ -60,6 +61,7 @@ void checkTimeSums(DataSet* data, FitSet fits) {
 							//put timesums that are within 2 sigma (threshold) of the fit
 							// into paired layers struct
 							e->storePair(v, v1tdiff, v2tdiff);
+							checkTimeSumcounter++;
 						}
 					}
 				}
@@ -76,6 +78,7 @@ void checkTimeSums(DataSet* data, FitSet fits) {
 							//put timesums that are within 2 sigma (threshold) of the fit
 							// into paired layers struct
 							e->storePair(w, w1tdiff, w2tdiff);
+							checkTimeSumcounter++;
 						}
 					}
 				}
@@ -137,4 +140,5 @@ void checkTimeSums(DataSet* data, FitSet fits) {
 			}
 		}
 	}
+	cout << "Correct timesums per tree for positive detector: " << checkTimeSumcounter << endl;
 };

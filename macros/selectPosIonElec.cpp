@@ -15,10 +15,12 @@
 // if group has any other unident particles then no good
  
 void selectPosIonElec(DataSet* data) {
+	int triplespertree = 0;
 	// want to index number of particles and bool triple for each each group
 	//Should first check that each event has enough layer hits to be reconstructed 
 	//if ion then set bool to true automatically, otherwise check layer hits
 	for (Group* g : *data) {
+		
 		int PosCheck = 0;
 		int ElecCheck = 0;
 		int Ion1Check = 0;
@@ -47,8 +49,9 @@ void selectPosIonElec(DataSet* data) {
 				break;
 			}
 		}
-		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 && UnidentCheck == 0) {
+		if (PosCheck == 1 && ElecCheck == 1 && Ion1Check == 1 && Ion2Check == 0 ) {
 			TripleCoinc = true;
+			//&& UnidentCheck == 0
 			//cout << "triple coinc true " << PosCheck << ElecCheck<< Ion1Check<< Ion2Check << UnidentCheck << endl;
 			g->PosCheck = PosCheck;
 			g->ElecCheck = ElecCheck;
@@ -56,6 +59,8 @@ void selectPosIonElec(DataSet* data) {
 			g->Ion2Check = Ion2Check;
 			g->UnidentCheck = UnidentCheck;
 			g->TripleCoinc = TripleCoinc;
+			//cout << "triple coinc" << endl;
+			triplespertree++;
 		}
 		else {
 			TripleCoinc = false;
@@ -69,5 +74,6 @@ void selectPosIonElec(DataSet* data) {
 		}
 		//g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
 	}
+	cout << "Triples per tree: " << triplespertree << endl;
 }
 
