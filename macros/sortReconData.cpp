@@ -24,7 +24,8 @@ DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
 			 bool recon = true;
 			 //cout << " maybe recon group" << endl;
 			 for (Event* e : g->events) {
-				 if (e->reconstructInfo == notReconstructable || e->reconstructInfo == ionNoPosition) {
+				 if (e->reconstructInfo == notReconstructable) {
+					 // || e->reconstructInfo == ionNoPosition
 					 recon = false;
 					 //cout << " not recon group" << endl;
 					 break;
@@ -36,11 +37,9 @@ DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
 				 //therefore reconData wiull contains pointers to all relevant groups
 				 reconData->addGroup(g);
 				 reconTriplesCount++;
-				
-
 			 }
 		}
 	}
-	cout << "number of triples: " << reconTriplesCount << endl;
+	cout << "number of reconstructable triples: " << reconTriplesCount << endl;
 	return reconData;
 }

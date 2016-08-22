@@ -61,6 +61,18 @@ void selectPosIonElec(DataSet* data) {
 			g->TripleCoinc = TripleCoinc;
 			//cout << "triple coinc" << endl;
 			triplespertree++;
+			for (Event* e : g->events) {
+				/*
+				int uSize = e->uPairs.size();
+				int vSize = e->vPairs.size();
+				int wSize = e->wPairs.size();
+				cout << "uSize: " << uSize << endl;
+				cout << "vSize: " << vSize << endl;
+				cout << "wSize: " << wSize << endl;
+				*/
+				//cout << "u1: " << e->uPairs.front().line1 << endl;
+				//cout << "u2: " << e->uPairs.front().line2 << endl;
+			}
 		}
 		else {
 			TripleCoinc = false;

@@ -15,6 +15,12 @@
 
 void checkReconstructable(DataSet* data) {
 	//checks has enough layer hits to reconstruct a position
+	int checkuTimeSumcounter = 0;
+	int checkvTimeSumcounter = 0;
+	int checkwTimeSumcounter = 0;
+	int checkelecuTimeSumcounter = 0;
+	int checkelecvTimeSumcounter = 0;
+	int checkelecwTimeSumcounter = 0;
 	
 	for (Group* g : *data) {
 		for (Event* e : g->events) {
@@ -60,25 +66,32 @@ void checkReconstructable(DataSet* data) {
 					//uCheck++;
 					//case >2:
 				int uSize = e->uPairs.size();
-				cout << "U pairs size: " << uSize << endl;
+				//cout << "U pairs size: " << uSize << endl;
+				
 				int vSize = e->vPairs.size();
-				cout << "V pairs size: " << vSize << endl;
+				//cout << "V pairs size: " << vSize << endl;
+				
 				int wSize = e->wPairs.size();
-				cout << "W pairs size: " << wSize << endl;
+				//cout << "W pairs size: " << wSize << endl;
+				
 				//As vector of layerhits (where layehits contains u1, u2)
 				//want vector length of 1!!
 				if (uSize == 1) {
 					//adds to ucheck +1
 					uCheck = 1;
+					checkuTimeSumcounter++;
 				}
 				if (vSize == 1) {
 					vCheck = 1;
+					checkvTimeSumcounter++;
 				}
 				if (wSize == 1) {
 					wCheck = 1;
+					checkwTimeSumcounter++;
 				}
 				if (uCheck + vCheck + wCheck >= 2) {
 					e->reconstructInfo = reconstructable;
+					//cout << "event is reconstructable" << endl;
 				}
 				else {
 					e->reconstructInfo = notReconstructable;
@@ -94,12 +107,15 @@ void checkReconstructable(DataSet* data) {
 					if (uSize == 1) {
 						//adds to ucheck +1
 						uCheck = 1;
+						checkelecuTimeSumcounter++;
 					}
 					if (vSize == 1) {
 						vCheck = 1;
+						checkelecvTimeSumcounter++;
 					}
 					if (wSize == 1) {
 						wCheck = 1;
+						checkelecwTimeSumcounter++;
 					}
 					if (uCheck + vCheck + wCheck >= 2) {
 						e->reconstructInfo = reconstructable;
@@ -110,5 +126,11 @@ void checkReconstructable(DataSet* data) {
 				}
 			}
 	}
+	cout << "Correct upairs per tree: " << checkuTimeSumcounter << endl;
+	cout << "Correct vpairs per tree: " << checkvTimeSumcounter << endl;
+	cout << "Correct wpairs per tree: " << checkwTimeSumcounter << endl;
+	cout << "Correct uelecpairs per tree: " << checkelecuTimeSumcounter << endl;
+	cout << "Correct velecpairs per tree: " << checkelecvTimeSumcounter << endl;
+	cout << "Correct welecpairs per tree: " << checkelecwTimeSumcounter << endl;
 }
 
