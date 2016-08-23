@@ -13,9 +13,11 @@
 
 //creates a new dataset with reconstructable data
 DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
+
 	DataSet* reconData = new DataSet();
 	//cout << "recon program run" << endl;
-
+	int nonReconEvents = 0;
+	int nonReconGroups = 0;
 	//sort out useful data groups
 	for (Group* g : *data) {
 		//int check = g->ElecCheck;
@@ -24,9 +26,10 @@ DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
 			 bool recon = true;
 			 //cout << " maybe recon group" << endl;
 			 for (Event* e : g->events) {
-				 if (e->reconstructInfo == notReconstructable) {
+				 if ((e->particletype == positron || e->particletype == electron) && e->reconstructInfo == notReconstructable) {
 					 // || e->reconstructInfo == ionNoPosition
 					 recon = false;
+					 nonReconEvents++;
 					 //cout << " not recon group" << endl;
 					 break;
 				 }
@@ -38,8 +41,14 @@ DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
 				 reconData->addGroup(g);
 				 reconTriplesCount++;
 			 }
+			 else {
+				 nonReconGroups++;
+			 }
 		}
 	}
 	cout << "number of reconstructable triples: " << reconTriplesCount << endl;
+	cout << "number of non reconstructable triples: " << nonReconGroups << endl;
+	cout << "number of non reconstructable events: " << nonReconEvents << endl;
+
 	return reconData;
 }
