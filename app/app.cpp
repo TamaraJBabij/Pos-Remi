@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include "macros.h"
 #include <TFile.h>
 #include <TTree.h>
@@ -130,6 +131,13 @@ int main(int argc, char* argv[]) {
 	dir = opendir(fileLocation.c_str());
 	bool firstFile = true;
 	vector<char*> files;
+
+	ofstream tripleData;
+	int tripleCount = 0;
+	tripleData.open(fileLocation + "tripleData.csv");
+
+	tripleData << "Number of electrons identified, Event number, X pos (m), Y pos (m), X elec (m), Y elec (m)" << endl;
+
 	//Sets up loop through all files
 	if (dir != NULL) {
 		while (pdir = readdir(dir)) {
@@ -293,6 +301,14 @@ int main(int argc, char* argv[]) {
 
 				convertCartesianPosition(reconData, &XYpositions);
 
+				for (Group* g : *reconData) {
+					tripleData << "1," << tripleCount << ",";
+					tripleData << g->positron.x / 1000 << "," << g->positron.y / 1000 << ",";
+					tripleData << g->electron.x / 1000 << "," << g->electron.y / 1000 << endl;
+					tripleCount++;
+					
+				}
+
 				delete data;
 
 				//histogram detector images with 2D histogram
@@ -347,6 +363,8 @@ int main(int argc, char* argv[]) {
 	c1.Update();
 
 	rootapp->Draw();
+
+	tripleData.close();
 
 	rootapp->Run();
 
