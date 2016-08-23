@@ -45,7 +45,7 @@ void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 				else if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
 					p.x_vw = - e->V - e->W;
 					//p.y_vw = (1 / sqrt(3))*(e->W - e->V);
-					p.y_vw = (1 / sqrt(3))*(e->W + e->V);
+					p.y_vw = (1 / sqrt(3))*(e->W - e->V);
 					p.x += p.x_vw;
 					p.y += p.y_vw;
 					count++;

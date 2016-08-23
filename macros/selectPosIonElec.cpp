@@ -16,6 +16,7 @@
  
 void selectPosIonElec(DataSet* data) {
 	int triplespertree = 0;
+	int tripleeventid = 0;
 	// want to index number of particles and bool triple for each each group
 	//Should first check that each event has enough layer hits to be reconstructed 
 	//if ion then set bool to true automatically, otherwise check layer hits
@@ -61,15 +62,20 @@ void selectPosIonElec(DataSet* data) {
 			g->TripleCoinc = TripleCoinc;
 			//cout << "triple coinc" << endl;
 			triplespertree++;
+			tripleeventid++;
+			cout << "Event ID: " << tripleeventid << endl;
 			for (Event* e : g->events) {
-				/*
+				
+				cout << "Particle type: " << e->particletype << endl;
+				cout << "Particle time from positron: " << e->timefrompos << endl;
+				
 				int uSize = e->uPairs.size();
 				int vSize = e->vPairs.size();
 				int wSize = e->wPairs.size();
 				cout << "uSize: " << uSize << endl;
 				cout << "vSize: " << vSize << endl;
 				cout << "wSize: " << wSize << endl;
-				*/
+				
 				//cout << "u1: " << e->uPairs.front().line1 << endl;
 				//cout << "u2: " << e->uPairs.front().line2 << endl;
 			}

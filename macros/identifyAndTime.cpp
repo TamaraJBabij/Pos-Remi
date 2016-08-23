@@ -46,7 +46,7 @@ void identifyAndTime(DataSet* data) {
 								if (other->mcp->time < ION1_TIME_MAX && other->mcp->time > ION1_TIME_MIN) {
 									//is Ar+
 									double ion1time;
-									ion1time = reltimezero - other->mcp->time;
+									ion1time = other->mcp->time - reltimezero;
 									other->storeMCPTDiff(ion1, ion1time);
 									other->particletype = ion1;
 									other->timefrompos = ion1time;
@@ -54,7 +54,7 @@ void identifyAndTime(DataSet* data) {
 								else if (other->mcp->time < ION2_TIME_MAX && other->mcp->time > ION2_TIME_MIN) {
 									//is Ar++
 									double ion2time;
-									ion2time = reltimezero - other->mcp->time;
+									ion2time = other->mcp->time - reltimezero;
 									other->storeMCPTDiff(ion2, ion2time);
 									other->particletype = ion2;
 									other->timefrompos = ion2time;
@@ -63,7 +63,7 @@ void identifyAndTime(DataSet* data) {
 								{
 									//must be background (perhaps other positron)
 									double unidenttime;
-									unidenttime = reltimezero - other->mcp->time;
+									unidenttime = other->mcp->time - reltimezero;
 									other->storeMCPTDiff(unidentified, unidenttime);
 									other->particletype = unidentified;
 									other->timefrompos = unidenttime;
@@ -73,7 +73,7 @@ void identifyAndTime(DataSet* data) {
 								//must be an electron
 								double electime;
 								//find relative time of electron
-								electime = reltimezero - other->mcp->time;
+								electime = other->mcp->time - reltimezero;
 								//store relative electron time and particleID
 								other->storeMCPTDiff(electron, electime);
 								other->particletype = electron;
