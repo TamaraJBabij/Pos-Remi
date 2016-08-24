@@ -17,8 +17,9 @@ void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 			if (e->mcp->detector == pos) {
 				Particle p;
 				p.t = e->reltimediff.timediff;
-				p.x = 0;
-				p.y = 0;
+				p.x = 0.00;
+				p.y = 0.00;
+				p.r = 0.00;
 				p.xy_uv = false;
 				p.xy_uw = false;
 				p.xy_vw = false;
@@ -53,6 +54,8 @@ void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 				}
 				p.x = p.x / count;
 				p.y = p.y / count;
+				p.r = sqrt(pow(p.x, 2) + pow(p.x, 2));
+
 				switch (e->reltimediff.particle) {
 				case positron:
 					g->positron = p;
@@ -71,8 +74,9 @@ void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 			else if (e->mcp->detector == neg) {
 				Particle p;
 				p.t = e->reltimediff.timediff;
-				p.x = 0;
-				p.y = 0;
+				p.x = 0.00;
+				p.y = 0.00;
+				p.r = 0.00;
 				//setting these bools allows for layers to be plotted separately 
 				//as the corresponding doubles are set up in the group.h they exist
 				//makes hard to sort for UV and VW and UW constructions
@@ -110,6 +114,7 @@ void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 				}
 				p.x = p.x / count;
 				p.y = p.y / count;
+				p.r = sqrt(pow(p.x, 2) + pow(p.x, 2));
 				g->electron = p;
 			}
 		}

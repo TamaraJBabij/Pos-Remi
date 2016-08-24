@@ -82,9 +82,9 @@ int main(int argc, char* argv[]) {
 	treeTS.Branch("Error", &error);
 
 	HistogramTimeSums timesums;
-	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 100, 180);
+	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 80, 180);
 	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 0, 200);
-	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 100, 180);
+	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 0, 180);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 40, 180);
 	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 40, 120);
 	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 0, 200);
@@ -136,7 +136,7 @@ int main(int argc, char* argv[]) {
 	int tripleCount = 0;
 	tripleData.open(fileLocation + "tripleData.csv");
 
-	tripleData << "Number of electrons identified, Event number, X pos (m), Y pos (m), X elec (m), Y elec (m)" << endl;
+	tripleData << "Number of electrons identified, Event number, X pos (m), Y pos (m), X elec (m), Y elec (m), Rpos (m), Relec (m)" << endl;
 
 	//Sets up loop through all files
 	if (dir != NULL) {
@@ -304,7 +304,8 @@ int main(int argc, char* argv[]) {
 				for (Group* g : *reconData) {
 					tripleData << "1," << tripleCount << ",";
 					tripleData << g->positron.x / 1000 << "," << g->positron.y / 1000 << ",";
-					tripleData << g->electron.x / 1000 << "," << g->electron.y / 1000 << endl;
+					tripleData << g->electron.x / 1000 << "," << g->electron.y / 1000 << ",";
+					tripleData << g->positron.r / 1000 << "," << g->electron.r / 1000 << endl;
 					tripleCount++;
 					
 				}
