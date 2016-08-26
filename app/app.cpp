@@ -35,7 +35,7 @@ using namespace std;
 
 /* Pos-Remi Full analysis 
 * Author: Tamara J Babij
-* Version control of software found on: https://github.com/TamaraJBabij/CalibrateDetectors/
+* Version control of software found on: https://github.com/TamaraJBabij/Pos-Remi
 */
 
 int main(int argc, char* argv[]) {
@@ -82,9 +82,9 @@ int main(int argc, char* argv[]) {
 	treeTS.Branch("Error", &error);
 
 	HistogramTimeSums timesums;
-	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 80, 180);
+	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 110, 180);
 	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 0, 200);
-	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 0, 180);
+	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 100, 180);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 40, 180);
 	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 40, 120);
 	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 0, 200);
@@ -92,9 +92,9 @@ int main(int argc, char* argv[]) {
 	TCanvas c2("c2", "Second Canvas");
 
 	HistogramXY XYpositions;
-	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 2000, -60, 60, 2000, -60, 60);
-	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 2000, -60, 60, 2000, -60, 60);
-	XYpositions.ionDET = new TH2D("ionDET", "Ions", 2000, -60, 60, 2000, -60, 60);
+	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 250, -60, 60,250, -60, 60);
+	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 250, -60, 60, 250, -60, 60);
+	XYpositions.ionDET = new TH2D("ionDET", "Ions", 250, -60, 60, 250, -60, 60);
 	/*
 	Histograms electron layers
 	HistogramElecLayers UVWlayers;
