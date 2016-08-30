@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
 	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 100, 180);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 40, 180);
 	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 40, 120);
-	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 0, 200);
+	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 40, 110);
 
 	TCanvas c2("c2", "Second Canvas");
 
@@ -132,12 +132,20 @@ int main(int argc, char* argv[]) {
 	bool firstFile = true;
 	vector<char*> files;
 
+	//Prints out triple coincidence info to .csv
 	ofstream tripleData;
 	int tripleCount = 0;
 	tripleData.open(fileLocation + "tripleData.csv");
-
 	tripleData << "Number of electrons identified, Event number, X pos (m), Y pos (m), X elec (m), Y elec (m), Rpos (m), Relec (m)" << endl;
 
+	//Due to the large number of background now that certain logic has been removed from the DAW harware, 
+	// want to be able to investigate the particle identifcation and how much background each event has
+	// printing this to .csv allows for investigation easil
+	ofstream tripleIdInfo;
+	int tripleIdcount = 0;
+	tripleIdInfo.open(fileLocation + "tripleIdInfo.csv");
+	tripleIdInfo << "Group ID, Particle ID, TOF, u pairs, v pairs, w pairs, recon event" << endl;
+	
 	//Sets up loop through all files
 	if (dir != NULL) {
 		while (pdir = readdir(dir)) {
@@ -301,6 +309,7 @@ int main(int argc, char* argv[]) {
 
 				convertCartesianPosition(reconData, &XYpositions);
 
+				//write triple info to a .csv, to be parsed into erics code
 				for (Group* g : *reconData) {
 					tripleData << "1," << tripleCount << ",";
 					tripleData << g->positron.x / 1000 << "," << g->positron.y / 1000 << ",";
@@ -309,6 +318,20 @@ int main(int argc, char* argv[]) {
 					tripleCount++;
 					
 				}
+
+				for (Group* g : *data) {
+					if (g->TripleCoinc ==  true) {
+						for (Event *e : g->events) {
+							tripleIdInfo << tripleIdcount << ",";
+							tripleIdInfo << e->particletype << "," << e->timefrompos << ",";
+							tripleIdInfo << e->uPairs.size() << "," << e->vPairs.size() << ",";
+							tripleIdInfo << e->wPairs.size() << "," << g->recon << endl;
+						}
+						tripleIdcount++;
+					}	
+				}
+
+
 
 				delete data;
 
@@ -360,16 +383,18 @@ int main(int argc, char* argv[]) {
 
 	closedir(dir);
 
+	//updates modifed canvas
 	c1.Modified();
 	c1.Update();
 
 	rootapp->Draw();
 
+	//closes csv file once all events have been written
 	tripleData.close();
+	tripleIdInfo.close();
 
+	//allows for root graphs to be interactive, can zoom in etc
 	rootapp->Run();
-
-	//should print out metafile of setup, AND csv dump of data. 
 
 	return 0;
 }

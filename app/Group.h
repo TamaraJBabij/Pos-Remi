@@ -100,6 +100,7 @@ public:
 	double Ion2Check;
 	double UnidentCheck;
 	bool TripleCoinc;
+	bool recon;
 
 	Particle electron;
 	Particle positron;

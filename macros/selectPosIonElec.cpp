@@ -60,21 +60,23 @@ void selectPosIonElec(DataSet* data) {
 			g->Ion2Check = Ion2Check;
 			g->UnidentCheck = UnidentCheck;
 			g->TripleCoinc = TripleCoinc;
+			cout << "BackgroundTriple: " << UnidentCheck << endl;
 			//cout << "triple coinc" << endl;
 			triplespertree++;
 			tripleeventid++;
-			cout << "Event ID: " << tripleeventid << endl;
+			//cout << "Event ID: " << tripleeventid << endl;
 			for (Event* e : g->events) {
 				
-				cout << "Particle type: " << e->particletype << endl;
-				cout << "Particle time from positron: " << e->timefrompos << endl;
+				//cout << "Particle type: " << e->particletype << endl;
+				//cout << "Particle time from positron: " << e->timefrompos << endl;
 				
-				int uSize = e->uPairs.size();
-				int vSize = e->vPairs.size();
-				int wSize = e->wPairs.size();
-				cout << "uSize: " << uSize << endl;
-				cout << "vSize: " << vSize << endl;
-				cout << "wSize: " << wSize << endl;
+				//for checking the reconstructable events and their associated layer hits
+				//int uSize = e->uPairs.size();
+				//int vSize = e->vPairs.size();
+				//int wSize = e->wPairs.size();
+				//cout << "uSize: " << uSize << endl;
+				//cout << "vSize: " << vSize << endl;
+				//cout << "wSize: " << wSize << endl;
 				
 				//cout << "u1: " << e->uPairs.front().line1 << endl;
 				//cout << "u2: " << e->uPairs.front().line2 << endl;
@@ -89,6 +91,13 @@ void selectPosIonElec(DataSet* data) {
 			g->Ion2Check = Ion2Check;
 			g->UnidentCheck = UnidentCheck;
 			g->TripleCoinc = TripleCoinc;
+			
+			if (PosCheck > 1) {
+				cout << "Background: " << UnidentCheck << " Pos: " << PosCheck << " Elec: " << ElecCheck << endl;
+			}
+			else {
+				//cout <<  " Pos: " << PosCheck << " Elec: " << ElecCheck << endl;
+			}
 		}
 		//g->storeTripleCheck(PosCheck, ElecCheck, Ion1Check, Ion2Check, UnidentCheck, TripleCoinc);
 	}

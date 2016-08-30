@@ -23,19 +23,19 @@ DataSet* sortReconData(DataSet* data, int reconTriplesCount) {
 		//int check = g->ElecCheck;
 		//cout << check << endl;
 		if (g->TripleCoinc == true) {
-			 bool recon = true;
+			 g->recon = true;
 			 //cout << " maybe recon group" << endl;
 			 for (Event* e : g->events) {
 				 if ((e->particletype == positron || e->particletype == electron) && e->reconstructInfo == notReconstructable) {
 					 // || e->reconstructInfo == ionNoPosition
-					 recon = false;
+					 g->recon = false;
 					 nonReconEvents++;
 					 //cout << " not recon group" << endl;
 					 break;
 				 }
 			 }
 			 //If the group contains reconstructable particles copy over to new dataset
-			 if (recon == true) {
+			 if (g->recon == true) {
 				 //stores a pointer to the group
 				 //therefore reconData wiull contains pointers to all relevant groups
 				 reconData->addGroup(g);
