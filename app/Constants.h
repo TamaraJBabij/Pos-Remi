@@ -27,6 +27,11 @@ enum ParticleID
 	unidentified
 };
 
+enum posremiLoadType {
+	reconTreeWrite,
+	reconTreeLoad
+};
+
 struct Constants {
 	static const vector<Layer> layers;
 	static const vector<Charge> charges;

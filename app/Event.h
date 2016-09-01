@@ -49,9 +49,12 @@ public:
 
 	MCPTDiff reltimediff;
 
-	//implemented to test if issue with MCPTDiff
+	//Particle type, either positron, electron, ion1 (Ar+), ion2 (Ar++) or unknown
 	ParticleID particletype;
+	//All particle TOF are made relative to the positron
 	double timefrompos;
+	//Time of the MCP hit in absolute normal time
+	//double mcptimeabs;
 
 	// layers
 	double U;

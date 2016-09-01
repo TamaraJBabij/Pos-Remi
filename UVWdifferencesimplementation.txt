@@ -1,0 +1,28 @@
+/** 
+	 * Convert time to position info
+	 *First off need to get U,V,W from u1 u2, v1 v2, w1 w2
+	 *
+	 */
+	
+	//TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
+	//leg->Draw();
+	//leg->AddEntry(UVWlayers.UVlayers, "UV layer");
+	//leg->AddEntry(UVWlayers.UWlayers, "UW layer");
+	//leg->AddEntry(UVWlayers.VWlayers, "WV layer");
+	//c6.Update();
+
+	//differenceOfLayers(reconData);
+
+	//HistogramDIFF UVWdifferences = histogramElecLayerDiff(reconData);
+	//TCanvas c7("c7", "Layer Differences");
+	//c7.Divide(2, 3);
+	//c7.cd(1);
+	//UVWdifferences.ydiffuv_uw->Draw();
+	//c7.cd(2);
+	//UVWdifferences.ydiffuv_vw->Draw();
+	//c7.cd(3);
+	//UVWdifferences.xdiffuv_vw->Draw();
+	//c7.cd(4);
+	//UVWdifferences.ydiffuw_vw->Draw();
+	//c7.cd(5);
+	//UVWdifferences.xdiffuw_vw->Draw();

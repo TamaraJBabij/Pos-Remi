@@ -27,9 +27,6 @@
     <ClCompile Include="plotTimeSpectraDS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="firstCut.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="constructEvents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
