@@ -93,7 +93,7 @@ void selectPosIonElec(DataSet* data) {
 			g->TripleCoinc = TripleCoinc;
 			
 			if (PosCheck > 1) {
-				cout << "Background: " << UnidentCheck << " Pos: " << PosCheck << " Elec: " << ElecCheck << endl;
+				//cout << "Background: " << UnidentCheck << " Pos: " << PosCheck << " Elec: " << ElecCheck << endl;
 			}
 			else {
 				//cout <<  " Pos: " << PosCheck << " Elec: " << ElecCheck << endl;

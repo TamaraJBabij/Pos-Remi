@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 	//Initial function to set up the debug environment
 	int setUpDebugEnvironment();
 	//initialises root app
-	TApplication* rootapp = new TApplication("example", &argc, argv);
+	TApplication* rootapp = new TApplication("C:/Users/Tamara/Documents/GitHub/Pos-Remi/", &argc, argv);
 
 	//Two possible options, this allows for sorting through raw DAQ trees for valid events only once
 	// while still allowing for many iterations of X,Y imaging of valid triple events
@@ -185,25 +185,27 @@ int main(int argc, char* argv[]) {
 		//Prepare reconTree
 		//reconTree will save info for all valid triple hits, such that they can be reanalysed faster
 		//Declare trees to write to
+		
 		TTree reconTriplesTree("Reconstructable Triples Tree", "Tree that stores valid triple hits");
 		bool ULayer = false;
 		bool VLayer = false;
 		bool WLayer = false;
-		Double_t u1Time, u2Time, v1Time, v2Time, w1Time, w2Time, TimeFromPos, RelTimeDiff;
-		Int_t GroupNumber = 1;
+		//AbsTOF is the absolute time of flight of the particles
+		Double_t u1Time, u2Time, v1Time, v2Time, w1Time, w2Time, TimeFromPos, AbsTOF;
+		Int_t GroupNumber = 0;
 		Int_t DetectorType, ParticleType;
 		//set up tree branches
 		reconTriplesTree.Branch("GroupNumber", &GroupNumber);
 		reconTriplesTree.Branch("Detector", &DetectorType);
 		reconTriplesTree.Branch("Particle", &ParticleType);
 		reconTriplesTree.Branch("Time (rel)", &TimeFromPos);
-		reconTriplesTree.Branch("Time (abs)", &RelTimeDiff);
+		reconTriplesTree.Branch("Time (abs)", &AbsTOF);
 		reconTriplesTree.Branch("ULayer", &ULayer);
 		reconTriplesTree.Branch("u1Time", &u1Time);
 		reconTriplesTree.Branch("u2Time", &u2Time);
 		reconTriplesTree.Branch("VLayer", &VLayer);
 		reconTriplesTree.Branch("v1Time", &v1Time);
-		reconTriplesTree.Branch("v2Time", &v2Time);
+		reconTriplesTree.Branch("v2Time", &v2Time); 
 		reconTriplesTree.Branch("WLayer", &WLayer);
 		reconTriplesTree.Branch("w1Time", &w1Time);
 		reconTriplesTree.Branch("w2Time", &w2Time);
@@ -363,46 +365,9 @@ int main(int argc, char* argv[]) {
 					//Copy over triple coincidences with reconstrutable particle hits to new dataset
 					DataSet *reconData = sortReconData(data, reconTriplesCount);
 
-					//Want to save valid triples in to a reconTree such that data can quickly be reanlysed
-					// as electron detectors are not calibrated this is neccasary
-					for (Group* g : *reconData) {
-						for (Event* e : g->events) {
-							if (e->mcp->detector == pos) {
-								if (e->uPairs.size() == 1) {
-									ULayer = true;
-									u1Time = e->uPairs.front().line1;
-									u2Time = e->uPairs.front().line2;
-								}
-								else {
-									ULayer = false;
-									u1Time = 0;
-									u2Time = 0;
-								}
-								if (e->vPairs.size() == 1) {
-									VLayer = true;
-									v1Time = e->vPairs.front().line1;
-									v2Time = e->vPairs.front().line2;
-								}
-								else {
-									VLayer = false;
-									v1Time = 0;
-									v2Time = 0;
-								}
-								if (e->wPairs.size() == 1) {
-									WLayer = true;
-									w1Time = e->wPairs.front().line1;
-									w2Time = e->wPairs.front().line2;
-								}
-								else {
-									WLayer = false;
-									w1Time = 0;
-									w2Time = 0;
-								}
-								reconTriplesTree.Fill();
-							}
-						}
-					}
-					GroupNumber++;
+					
+
+					
 
 
 					convertLayerPosition(reconData, Pitches);
@@ -442,6 +407,59 @@ int main(int argc, char* argv[]) {
 						}
 					}
 
+					//Want to save valid triples in to a reconTree such that data can quickly be reanlysed
+					// as electron detectors are not calibrated this is neccasary
+					TFile reconTriplesFile("reconTriplesTree.root", "recreate");
+					reconTriplesTree.Write();
+					for (Group* g : *reconData) {
+						GroupNumber++;
+						for (Event* e : g->events) {
+							if (e->mcp->detector == pos) {
+								DetectorType = 0;
+							}
+							else {
+								DetectorType = 1;
+							}
+							if (e->uPairs.size() == 1) {
+								ULayer = true;
+								u1Time = e->uPairs.front().line1;
+								u2Time = e->uPairs.front().line2;
+							}
+							else {
+								ULayer = false;
+								u1Time = 0;
+								u2Time = 0;
+							}
+							if (e->vPairs.size() == 1) {
+								VLayer = true;
+								v1Time = e->vPairs.front().line1;
+								v2Time = e->vPairs.front().line2;
+							}
+							else {
+								VLayer = false;
+								v1Time = 0;
+								v2Time = 0;
+							}
+							if (e->wPairs.size() == 1) {
+								WLayer = true;
+								w1Time = e->wPairs.front().line1;
+								w2Time = e->wPairs.front().line2;
+							}
+							else {
+								WLayer = false;
+								w1Time = 0;
+								w2Time = 0;
+							}
+							ParticleType = e->particletype;
+							cout << "Particle Type: " << ParticleType << endl;
+							TimeFromPos = e->timefrompos;
+							cout << "Time From Pos: " << TimeFromPos << endl;
+							AbsTOF = e->reltimediff.timediff;
+							cout << "Abs TOF: " << AbsTOF << endl;
+							reconTriplesTree.Fill();
+						}
+					}
+
 					delete data;
 
 					//histogram detector images with 2D histogram
@@ -461,16 +479,17 @@ int main(int argc, char* argv[]) {
 
 				}
 			}
-			TFile reconTriplesFile("reconTriplesTree.root", "recreate");
-			reconTriplesTree.Write();
+			
 		}
+		
 	}
 	
 	closedir(dir);
 
 	//loads valid triple events from the reconTree
-	if (sessionOption == PositionTreeErrorCalibrate) {
-		//attempts to calibrate detector by minimising error function
+	if (sessionOption == reconTreeLoad) {
+		//loads from rawpositionstrees
+		//so far no calibration implemented
 		DataSet* reconData = new DataSet();
 		TFile* positionsFile = TFile::Open("C:/Users/Tamara/Documents/GitHub/CalibrateDetectors/app/RawPositionInfoTree.root");
 		TTree* positionsTree = (TTree*)positionsFile->Get("Position Info for Detectors");
@@ -478,11 +497,13 @@ int main(int argc, char* argv[]) {
 			cout << "File not found" << endl;
 		}
 		if (positionsTree == 0) {
-			cout << "no tree" << endl;
+			cout << "No position tree could be loaded" << endl;
 		}
 
-		positionsTreeToDataSet(positionsTree, reconData, userDet);
+		//positionsTreeToDataSet(positionsTree, reconData, userDet);
+
 		positionsFile->Close();
+	}
 
 	//updates modifed canvas
 	c1.Modified();

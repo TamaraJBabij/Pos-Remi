@@ -47,6 +47,7 @@ public:
 	
 	ReconInfoStruct reconstructInfo;
 
+	//Not actually a relative time difference, need to be changed to absolute timing
 	MCPTDiff reltimediff;
 
 	//Particle type, either positron, electron, ion1 (Ar+), ion2 (Ar++) or unknown
