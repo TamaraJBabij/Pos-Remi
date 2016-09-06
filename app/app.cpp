@@ -185,7 +185,8 @@ int main(int argc, char* argv[]) {
 		//Prepare reconTree
 		//reconTree will save info for all valid triple hits, such that they can be reanalysed faster
 		//Declare trees to write to
-		
+
+		TFile reconTriplesFile("reconTriplesTree2.root", "recreate");
 		TTree reconTriplesTree("Reconstructable Triples Tree", "Tree that stores valid triple hits");
 		bool ULayer = false;
 		bool VLayer = false;
@@ -459,11 +460,6 @@ int main(int argc, char* argv[]) {
 							reconTriplesTree.Fill();
 						}
 					}
-					TFile reconTriplesFile("reconTriplesTree.root", "recreate");
-					reconTriplesTree.ResetBranchAddresses();
-					reconTriplesTree.Write();
-					reconTriplesTree.Print();
-					reconTriplesFile.Close();
 					delete data;
 
 					//histogram detector images with 2D histogram
@@ -485,6 +481,12 @@ int main(int argc, char* argv[]) {
 			}
 			
 		}
+		reconTriplesFile.cd();
+		reconTriplesTree.ResetBranchAddresses();
+		reconTriplesTree.Write();
+		reconTriplesTree.Print();
+		reconTriplesFile.Close();
+		
 		
 	}
 	
