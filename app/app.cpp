@@ -198,8 +198,8 @@ int main(int argc, char* argv[]) {
 		reconTriplesTree.Branch("GroupNumber", &GroupNumber);
 		reconTriplesTree.Branch("Detector", &DetectorType);
 		reconTriplesTree.Branch("Particle", &ParticleType);
-		reconTriplesTree.Branch("Time (rel)", &TimeFromPos);
-		reconTriplesTree.Branch("Time (abs)", &AbsTOF);
+		reconTriplesTree.Branch("TimeRel", &TimeFromPos);
+		reconTriplesTree.Branch("TimeAbs", &AbsTOF);
 		reconTriplesTree.Branch("ULayer", &ULayer);
 		reconTriplesTree.Branch("u1Time", &u1Time);
 		reconTriplesTree.Branch("u2Time", &u2Time);
@@ -409,8 +409,8 @@ int main(int argc, char* argv[]) {
 
 					//Want to save valid triples in to a reconTree such that data can quickly be reanlysed
 					// as electron detectors are not calibrated this is neccasary
-					TFile reconTriplesFile("reconTriplesTree.root", "recreate");
-					reconTriplesTree.Write();
+					
+					
 					for (Group* g : *reconData) {
 						GroupNumber++;
 						for (Event* e : g->events) {
@@ -459,7 +459,11 @@ int main(int argc, char* argv[]) {
 							reconTriplesTree.Fill();
 						}
 					}
-
+					TFile reconTriplesFile("reconTriplesTree.root", "recreate");
+					reconTriplesTree.ResetBranchAddresses();
+					reconTriplesTree.Write();
+					reconTriplesTree.Print();
+					reconTriplesFile.Close();
 					delete data;
 
 					//histogram detector images with 2D histogram
