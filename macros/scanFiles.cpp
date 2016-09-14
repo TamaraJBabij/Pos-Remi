@@ -12,6 +12,7 @@
 #include <string.h>
 
 //scans folder and loads all tree ( .root) files into the dataset
+/*
 DataSet* scanFiles() {
 	
 	string fileLocation;
@@ -52,3 +53,4 @@ DataSet* scanFiles() {
 
 	return data;
 }
+*/

@@ -78,7 +78,7 @@
     <ClCompile Include="histogramDifferenceElecLayers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scanFiles.cpp">
+    <ClCompile Include="reconTreeToDataSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

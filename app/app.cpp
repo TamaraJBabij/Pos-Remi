@@ -61,6 +61,12 @@ int main(int argc, char* argv[]) {
 		sessionOption = reconTreeLoad;
 	}
 
+	//scans folder created by the DAQ software and loads all tree ( .root) files into the dataset
+	//not currently neccasary for the load options
+	string fileLocation;
+	cout << "what is the directory? remember to add a backslash at the end" << endl;
+	cin >> fileLocation;
+
 	//Set up canvas
 	gStyle->SetPalette(1);
 	double_t width = 800;
@@ -147,15 +153,6 @@ int main(int argc, char* argv[]) {
 
 	FitSet fits;
 
-	
-
-
-	//scans folder created by the DAQ software and loads all tree ( .root) files into the dataset
-	//not currently neccasary for the load options
-	string fileLocation;
-	cout << "what is the directory? remember to add a backslash at the end" << endl;
-	cin >> fileLocation;
-
 	//Need to iterate through each tree, only do timesums 
 
 	int filenumber = 0;
@@ -178,6 +175,9 @@ int main(int argc, char* argv[]) {
 	int tripleIdcount = 0;
 	tripleIdInfo.open(fileLocation + "tripleIdInfo.csv");
 	tripleIdInfo << "Group ID, Particle ID, TOF, u pairs, v pairs, w pairs, recon event" << endl;
+
+	//calculate pitch propogation
+	PitchPropSet Pitches = calculatePitchProp();
 	
 	//Sets up loop through all files
 	if (sessionOption == reconTreeWrite) {
@@ -359,17 +359,11 @@ int main(int argc, char* argv[]) {
 					//not needed for ion
 					checkReconstructable(data);
 
-					//calculate pitch propogation
-					PitchPropSet Pitches = calculatePitchProp();
+					
 
 					//now need to check for all three particles (ion, pos, elec) and that the pos and elec have a reconBool
 					//Copy over triple coincidences with reconstrutable particle hits to new dataset
 					DataSet *reconData = sortReconData(data, reconTriplesCount);
-
-					
-
-					
-
 
 					convertLayerPosition(reconData, Pitches);
 
@@ -425,6 +419,7 @@ int main(int argc, char* argv[]) {
 								ULayer = true;
 								u1Time = e->uPairs.front().line1;
 								u2Time = e->uPairs.front().line2;
+								//cout << "u true" << endl;
 							}
 							else {
 								ULayer = false;
@@ -445,6 +440,7 @@ int main(int argc, char* argv[]) {
 								WLayer = true;
 								w1Time = e->wPairs.front().line1;
 								w2Time = e->wPairs.front().line2;
+								//cout << "w true" << endl;
 							}
 							else {
 								WLayer = false;
@@ -457,6 +453,7 @@ int main(int argc, char* argv[]) {
 							cout << "Time From Pos: " << TimeFromPos << endl;
 							AbsTOF = e->reltimediff.timediff;
 							cout << "Abs TOF: " << AbsTOF << endl;
+							cout << "U layer: " << ULayer << "VLayer: " << VLayer << "W Layer: " << WLayer << endl;
 							reconTriplesTree.Fill();
 						}
 					}
@@ -490,25 +487,48 @@ int main(int argc, char* argv[]) {
 		
 	}
 	
-	closedir(dir);
-
 	//loads valid triple events from the reconTree
 	if (sessionOption == reconTreeLoad) {
-		//loads from rawpositionstrees
-		//so far no calibration implemented
-		DataSet* reconData = new DataSet();
-		TFile* positionsFile = TFile::Open("C:/Users/Tamara/Documents/GitHub/CalibrateDetectors/app/RawPositionInfoTree.root");
-		TTree* positionsTree = (TTree*)positionsFile->Get("Position Info for Detectors");
-		if (positionsFile == 0) {
-			cout << "File not found" << endl;
-		}
-		if (positionsTree == 0) {
-			cout << "No position tree could be loaded" << endl;
-		}
+		if (dir != NULL) {
+			while (pdir = readdir(dir)) {
+				char* fileName = pdir->d_name;
+				if (strlen(fileName) > 5 && !strcmp(fileName + strlen(fileName) - 5, ".root")) {
+					//Intialise storage container for data from tree
+					DataSet* reconData = new DataSet();
+					//using string Folder Name acquire intiial tree
+					//Initial tree is given by ReMinumber with no underscore number
+					//cout << fileName << endl;
+					char str[256];
+					strcpy(str, fileLocation.c_str());
+					strcat(str, fileName);
+					cout << filenumber << endl;
+					filenumber++;
+					//Loops through all .root files in the selected folder
+					TFile* rawFile = TFile::Open(str);
+					TTree* rawTree = (TTree*)rawFile->Get("Reconstructable Triples Tree");
+					//loadFromTreeDataSet(rawTree, reconData);
+					//takes the reconTree and loads it into a dataset that the code can process
+					positionsTreeToDataSet(rawTree, reconData);
+					
+					rawFile->Close();
 
-		//positionsTreeToDataSet(positionsTree, reconData, userDet);
+					convertLayerPosition(reconData, Pitches);
 
-		positionsFile->Close();
+					convertCartesianPosition(reconData, &XYpositions);
+
+					c2.Modified();
+					c2.Update();
+					c3.Modified();
+					c3.Update();
+					c4.Modified();
+					c4.Update();
+					c5.Modified();
+					c5.Update();
+
+	
+				}
+			}
+		}
 	}
 
 	//updates modifed canvas
@@ -521,6 +541,7 @@ int main(int argc, char* argv[]) {
 	//closes csv file once all events have been written
 	tripleData.close();
 	tripleIdInfo.close();
+	closedir(dir);
 
 	//allows for root graphs to be interactive, can zoom in etc
 	rootapp->Run();

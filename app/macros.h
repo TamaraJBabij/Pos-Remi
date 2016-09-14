@@ -33,3 +33,4 @@ void histogramXYPositions(DataSet *reconData, HistogramXY *XYpositions);
 void histogramElectronLayers(DataSet *reconData, HistogramElecLayers UVWlayers);
 void differenceOfLayers(DataSet* reconData);
 HistogramDIFF histogramElecLayerDiff(DataSet *reconData);
+void positionsTreeToDataSet(TTree* tree, DataSet* data);
