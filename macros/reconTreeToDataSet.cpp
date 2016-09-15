@@ -53,15 +53,39 @@ void positionsTreeToDataSet(TTree* tree, DataSet* data) {
 
 		if (DetectorType == 0) {
 			h->detector = DetectorID::pos;
+			cout << "Pos" << endl;
 		}
 		else if (DetectorType == 1) {
 			h->detector = DetectorID::neg;
+			cout << "neg" << endl;
 		}
 		h->time = AbsTOF;
 		currentGroup->addHit(h);
 
+		if (h->detector == pos) {
+			cout << "pos" << endl;
+		}
+
 		Event* e = new Event(h);
 		e->reltimediff.timediff = TimeFromPos;
+		//convert from int_t to numerated value for particletype
+		switch (ParticleType) {
+		case 0:
+			e->particletype = positron;
+			break;
+		case 1:
+			e->particletype = electron;
+			break;
+		case 2:
+			e->particletype = ion1;
+			break;
+		case 3: 
+			e->particletype = ion2;
+			break;
+		case 4: 
+			e->particletype = unidentified;
+			break;
+		}
 		//make the Hit object by loading the values from the tree according to the config file
 		if (ULayer != 0) {
 			e->storePair(u, u1Time, u2Time);
