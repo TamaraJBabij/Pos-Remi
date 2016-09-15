@@ -12,7 +12,6 @@ void positionsTreeToDataSet(TTree* tree, DataSet* data) {
 	Double_t u1Time, u2Time, v1Time, v2Time, w1Time, w2Time, TimeFromPos, AbsTOF;
 	bool ULayer = false, VLayer = false, WLayer = false;
 	Int_t GroupNumber, DetectorType, ParticleType;
-	Hit* h = new Hit();
 	//Set up the tree to store values from each entry of the raw data tree
 	tree->SetBranchAddress("GroupNumber", &GroupNumber);
 	tree->SetBranchAddress("Detector", &DetectorType);
@@ -48,23 +47,20 @@ void positionsTreeToDataSet(TTree* tree, DataSet* data) {
 			currentGroup = new Group(GroupNumber);
 		}
 
-		//Hit* h = new Hit();
+		Hit* h = new Hit();
 		h->channel = ChannelID::mcp;
 
 		if (DetectorType == 0) {
 			h->detector = DetectorID::pos;
-			cout << "Pos" << endl;
+			//cout << "Pos" << endl;
 		}
 		else if (DetectorType == 1) {
 			h->detector = DetectorID::neg;
-			cout << "neg" << endl;
+			//cout << "neg" << endl;
 		}
 		h->time = AbsTOF;
 		currentGroup->addHit(h);
 
-		if (h->detector == pos) {
-			cout << "pos" << endl;
-		}
 
 		Event* e = new Event(h);
 		e->reltimediff.timediff = TimeFromPos;
