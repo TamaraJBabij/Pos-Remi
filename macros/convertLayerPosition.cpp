@@ -20,15 +20,15 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches) {
 				if (e->uPairs.size() == 1) {
 					e->U = (posPitches.uPitchProp / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2) + posPitches.uOffset;
 					//cout << e->uPairs.front().line1 << endl;
-					cout << "U layer: " << e->U << endl;
+					//cout << "U layer: " << e->U << endl;
 				}
 				if (e->vPairs.size() == 1) {
 					e->V = (posPitches.vPitchProp / 2)*(e->vPairs.front().line1 - e->vPairs.front().line2) + posPitches.vOffset;
-					cout << "V layer: " << e->V << endl;
+					//cout << "V layer: " << e->V << endl;
 				}
 				if (e->wPairs.size() == 1) {
 					e->W = (posPitches.wPitchProp / 2)*(e->wPairs.front().line1 - e->wPairs.front().line2) + posPitches.wOffset;
-					cout << "W layer: " << e->W << endl;
+					//cout << "W layer: " << e->W << endl;
 				}
 			}
 			if (e->mcp->detector == neg) {

@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
 	treeTS.Branch("Error", &error);
 
 	HistogramTimeSums timesums;
-	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 110, 180);
+	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 140, 160);
 	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 100, 180);
 	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 100, 180);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 40, 180);
@@ -143,13 +143,13 @@ int main(int argc, char* argv[]) {
 	//works better with more runs and a contour plot, 
 	//since plotting individual runs intensity is 1, need to implement contours
 	//XYpositions.positronDET->Draw("colz");
-	XYpositions.positronDET->Draw("cont0");
+	XYpositions.positronDET->Draw("colz");
 
 	TCanvas c4("c4", "Fourth Canvas", width, height);
-	XYpositions.electronDET->Draw("cont0");
+	XYpositions.electronDET->Draw("colz");
 
 	TCanvas c5("c5", "Fifth Canvas", width, height);
-	XYpositions.ionDET->Draw("cont0");
+	XYpositions.ionDET->Draw("colz");
 
 	FitSet fits;
 
@@ -168,13 +168,19 @@ int main(int argc, char* argv[]) {
 	tripleData.open(fileLocation + "tripleData.csv");
 	tripleData << "Number of electrons identified, Event number, X pos (m), Y pos (m), X elec (m), Y elec (m), Rpos (m), Relec (m)" << endl;
 
-	//Due to the large number of background now that certain logic has been removed from the DAW harware, 
+	//Due to the large number of background now that certain logic has been removed from the DAQ hardware, 
 	// want to be able to investigate the particle identifcation and how much background each event has
-	// printing this to .csv allows for investigation easil
+	// printing this to .csv allows for investigation easily
 	ofstream tripleIdInfo;
 	int tripleIdcount = 0;
 	tripleIdInfo.open(fileLocation + "tripleIdInfo.csv");
 	tripleIdInfo << "Group ID, Particle ID, TOF, u pairs, v pairs, w pairs, recon event" << endl;
+
+	//Want to monitor triples rate per tree, this csv will print out the triple count for each tree
+	ofstream tripleTreeRate;
+	tripleTreeRate.open(fileLocation + "tripleTreeRate.csv");
+	tripleTreeRate << "Triples per tree" << endl;
+
 
 	//calculate pitch propogation
 	PitchPropSet Pitches = calculatePitchProp();
@@ -365,6 +371,8 @@ int main(int argc, char* argv[]) {
 					//Copy over triple coincidences with reconstrutable particle hits to new dataset
 					DataSet *reconData = sortReconData(data, reconTriplesCount);
 
+					
+
 					convertLayerPosition(reconData, Pitches);
 
 					convertCartesianPosition(reconData, &XYpositions);
@@ -408,6 +416,7 @@ int main(int argc, char* argv[]) {
 					
 					for (Group* g : *reconData) {
 						GroupNumber++;
+						reconTriplesCount++;
 						for (Event* e : g->events) {
 							if (e->mcp->detector == pos) {
 								DetectorType = 0;
@@ -457,6 +466,10 @@ int main(int argc, char* argv[]) {
 							reconTriplesTree.Fill();
 						}
 					}
+
+					tripleTreeRate << reconTriplesCount << endl;
+					cout << "True Triples per tree rate: " << reconTriplesCount << endl;
+					reconTriplesCount = 0;
 					delete data;
 
 					//histogram detector images with 2D histogram
@@ -541,6 +554,7 @@ int main(int argc, char* argv[]) {
 	//closes csv file once all events have been written
 	tripleData.close();
 	tripleIdInfo.close();
+	tripleTreeRate.close();
 	closedir(dir);
 
 	//allows for root graphs to be interactive, can zoom in etc
