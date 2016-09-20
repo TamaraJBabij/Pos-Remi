@@ -67,7 +67,6 @@ void convertCartesianPosition(DataSet* reconData, HistogramXY *XYpositions) {
 						//break;
 				case ion1:
 					g->ion = p;
-					//cout << " - ion" << " x: " << p.x << " y: " << p.y << endl;
 					break;
 				}
 			}

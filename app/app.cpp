@@ -102,7 +102,6 @@ int main(int argc, char* argv[]) {
 	TOFTriples.cd(2);
 	TripleTOFHist.negative->Draw();
 
-	
 	//Store fit parameters into a tree for later accessing
 	//setting up tree
 	TFile file("TimeSumTree.root", "recreate");

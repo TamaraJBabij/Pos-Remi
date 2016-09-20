@@ -82,6 +82,7 @@ void positionsTreeToDataSet(TTree* tree, DataSet* data) {
 			e->particletype = unidentified;
 			break;
 		}
+		e->reltimediff.particle = e->particletype;
 		//make the Hit object by loading the values from the tree according to the config file
 		if (ULayer != 0) {
 			e->storePair(u, u1Time, u2Time);
