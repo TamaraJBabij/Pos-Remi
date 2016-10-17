@@ -117,19 +117,19 @@ int main(int argc, char* argv[]) {
 	treeTS.Branch("Error", &error);
 
 	HistogramTimeSums timesums;
-	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 140, 160);
-	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 100, 180);
-	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 100, 180);
+	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 60, 160);
+	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 60, 180);
+	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 60, 180);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 40, 180);
-	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 40, 120);
-	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 40, 110);
+	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 40, 100);
+	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 40, 100);
 
 	TCanvas c2("c2", "Second Canvas");
 
 	HistogramXY XYpositions;
-	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 250, -60, 60,250, -60, 60);
-	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 250, -60, 60, 250, -60, 60);
-	XYpositions.ionDET = new TH2D("ionDET", "Ions", 250, -60, 60, 250, -60, 60);
+	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 200, -60, 60,200, -60, 60);
+	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 200, -60, 60, 200, -60, 60);
+	XYpositions.ionDET = new TH2D("ionDET", "Ions", 200, -60, 60, 200, -60, 60);
 	/*
 	Histograms electron layers
 	HistogramElecLayers UVWlayers;
@@ -465,6 +465,7 @@ int main(int argc, char* argv[]) {
 							reconTriplesTree.Fill();
 						}
 					}
+					
 
 					tripleTreeRate << reconTriplesCount << endl;
 					cout << "True Triples per tree rate: " << reconTriplesCount << endl;

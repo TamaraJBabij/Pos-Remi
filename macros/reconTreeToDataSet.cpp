@@ -96,8 +96,10 @@ void positionsTreeToDataSet(TTree* tree, DataSet* data) {
 			e->storePair(w, w1Time, w2Time);
 			//cout << "W Layer" << endl;
 		}
+		e->reltimediff.particle = e->particletype;
 		currentGroup->addEvent(e);
 		//cout << "event added" << endl;
+		
 	}
 }
 
