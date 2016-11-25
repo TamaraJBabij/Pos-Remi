@@ -102,9 +102,3 @@ void positionsTreeToDataSet(TTree* tree, DataSet* data) {
 		
 	}
 }
-
-/*FIRST ENTRY: make a new group and remember group id
-NEW ID: store current group into dataset, make a new group and remember group ID
-SAME ID: nothing
-
-ALL 3: add hit to current group*/

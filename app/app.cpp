@@ -364,13 +364,9 @@ int main(int argc, char* argv[]) {
 					//not needed for ion
 					checkReconstructable(data);
 
-					
-
 					//now need to check for all three particles (ion, pos, elec) and that the pos and elec have a reconBool
 					//Copy over triple coincidences with reconstrutable particle hits to new dataset
 					DataSet *reconData = sortReconData(data, reconTriplesCount);
-
-					
 
 					convertLayerPosition(reconData, Pitches);
 
@@ -515,6 +511,7 @@ int main(int argc, char* argv[]) {
 					strcpy(str, fileLocation.c_str());
 					strcat(str, fileName);
 					cout << filenumber << endl;
+					cout << fileName << endl;
 					filenumber++;
 					//Loops through all .root files in the selected folder
 					TFile* rawFile = TFile::Open(str);
@@ -523,12 +520,48 @@ int main(int argc, char* argv[]) {
 					//takes the reconTree and loads it into a dataset that the code can process
 					positionsTreeToDataSet(rawTree, reconData);
 					
+					//Closes raw file to save memory
 					rawFile->Close();
 
+					//Converts timing information relative to the MCP hit into a position hit along the delay line
 					convertLayerPosition(reconData, Pitches);
 
+					//Converts layer info into the X,Y co0ordinates
 					convertCartesianPosition(reconData, &XYpositions);
 
+					//Histogram the absolute MCP hits
+					for (Group* g : *reconData) {
+						for (Hit* h : *g) {
+							if (h->channel == mcp) {
+								if (h->detector == pos) {
+									hists.positive->Fill(h->time);
+								}
+								else if (h->detector == neg) {
+									hists.negative->Fill(h->time);
+								}
+
+							}
+						}
+					}
+
+					//Histogram the relative timing to the positron (all "positron" hits will be at time 0)
+					for (Group* g : *reconData) {
+						for (Event *e : g->events) {
+							if (e->particletype == positron || e->particletype == ion1) {
+								TripleTOFHist.positive->Fill(e->mcp->time);
+							}
+							else if (e->particletype == electron) {
+								TripleTOFHist.negative->Fill(e->mcp->time);
+							}
+						}
+					}
+
+					//closes loaded in data to save memory
+					delete reconData;
+					c1.Modified();
+					c1.Update();
+					TOFTriples.Modified();
+					TOFTriples.Update();
 					c2.Modified();
 					c2.Update();
 					c3.Modified();
