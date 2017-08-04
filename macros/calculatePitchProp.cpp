@@ -46,6 +46,21 @@ PitchPropSet calculatePitchProp() {
 	//cout << "vposoffset: " << vposoffset << endl;
 	wposoffset = 0.00; 
 	//cout << "wposoffset: " << wposoffset << endl;
+	//Parameters as set by Dans calibration code
+	unegpitch = 0.3035*2;
+	//cout << "unegpitch" << unegpitch << endl;
+	vnegpitch = 0.296*2;
+	//cout << "vnegpitch" << vnegpitch << endl;
+	wnegpitch = 0.2999*2;
+	//cout << "wnegpitch" << wnegpitch << endl;
+	unegoffset = -0.631; 
+	//cout << "unegoffset" << unegoffset << endl;
+	vnegoffset = -0.012;
+	//cout << "vnegoffset" << vnegoffset << endl;
+	wnegoffset = 0.204; 
+	//cout << "wnegoffset" << wnegoffset << endl;
+
+	/*old parameters for electron detector
 	unegpitch = upospitch;//0.5662; //LENGTH_eU / 122.00; //124.14;
 	//cout << "unegpitch" << unegpitch << endl;
 	vnegpitch = vpospitch;//(0.5662);//LENGTH_eV / 126.00; //124.89;
@@ -58,6 +73,9 @@ PitchPropSet calculatePitchProp() {
 	//cout << "vnegoffset" << vnegoffset << endl;
 	wnegoffset = 0.7577; //1.05;
 	//cout << "wnegoffset" << wnegoffset << endl;
+
+
+	*/
 	Pitches.setPitchProp(positive, upospitch, uposoffset, vpospitch, vposoffset, wpospitch, wposoffset);
 	Pitches.setPitchProp(negative, unegpitch, unegoffset, vnegpitch, vnegoffset, wnegpitch, wnegoffset);
 	return Pitches;
