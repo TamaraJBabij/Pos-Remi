@@ -64,7 +64,7 @@ PitchPropSet calculatePitchProp() {
 	unegpitch = upospitch;//0.5662; //LENGTH_eU / 122.00; //124.14;
 	//cout << "unegpitch" << unegpitch << endl;
 	vnegpitch = vpospitch;//(0.5662);//LENGTH_eV / 126.00; //124.89;
-	//cout << "vnegpitch" << vnegpitch << endl;
+	//cout << "vnegpitch" << vnegpitch << endl;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 	wnegpitch = wpospitch;//(0.3031*2);//LENGTH_eW / 117.00;//117.39;
 	//cout << "wnegpitch" << wnegpitch << endl;
 	unegoffset = 3.00; //2.4497; //as given by the quick excel//2.65;
